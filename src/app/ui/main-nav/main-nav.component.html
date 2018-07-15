@@ -1,0 +1,38 @@
+<app-nav></app-nav>
+<nav class="navbar fixed-top mt-4_5 navbar-expand-lg pl-4">
+<a routerLink="/gallery" class="navbar-brand mb-0 h1">
+    <img class="logo" src="./assets/logo@2x.png" alt="Spaces and stories logo">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse d-md-flex justify-content-md-center" id="navbarSupportedContent">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item">
+        <a class="nav-link text-black" routerLink="/gallery">Gallery
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-black">How It Works</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-black">Get In Touch</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-md-0">
+      <li class="nav-item">
+        <a *ngIf="!(auth.user | async);else alreadyLoggedIn" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black"
+          routerLink="/login">Sign in
+          <span class="text-gray" style="font-size: 80%;font-weight: 100;">or</span> Sign up</a>
+        <ng-template #alreadyLoggedIn>
+          <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign out</a>
+        </ng-template>
+      </li>
+    </ul>
+
+  </div>
+
+</nav>
+<div class=" pl-4"></div>

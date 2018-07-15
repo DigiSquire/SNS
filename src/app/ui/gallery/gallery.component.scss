@@ -1,0 +1,51 @@
+.card-title {
+  margin-bottom: 0.25rem;
+}
+
+p {
+  margin-bottom: 0rem;
+}
+
+.artist-name {
+  color: #6ECCF0;
+  font-size: 90%;
+}
+
+.small,
+small {
+  font-size: 66%;
+}
+
+.card-body {
+  padding: 0.5rem;
+}
+
+.small-price {
+  font-size: 80%;
+}
+
+.card-ht {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 360px;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.sale-fill {
+  background-color: #35A8E6;
+  z-index: 1;
+  padding: 0 0.5em;
+}
+
+.rented {
+  background-color: #DC656D;
+  z-index: 1;
+  padding: 0 0.5em;
+}
+
+.sold {
+  background-color: #E6BA35;
+  z-index: 1;
+  padding: 0 0.5em;
+}

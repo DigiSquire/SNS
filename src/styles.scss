@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+html {
+  position: relative;
+}
+body{
+  font-family: 'Lato', sans-serif;
+}
+ul,
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+}
+a{
+    cursor: pointer;
+}
+body > .container {
+  padding: 60px 15px 0;
+}
+p {
+  font-family: 'Lato', sans-serif;
+}
+a:hover {
+  font-weight: bold;
+    text-decoration: none;
+}

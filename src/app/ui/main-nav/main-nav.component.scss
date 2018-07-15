@@ -1,0 +1,30 @@
+.navbar-brand {
+  font-size: 1rem;
+}
+
+.navbar {
+  padding: 1.4rem 1rem;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.48);
+}
+
+.text-black {
+  color: #333;
+}
+.btn.focus,
+.btn:focus {
+  outline: 0;
+  box-shadow: none;
+}
+.logo {
+  max-width: 203px;
+  max-height: 60px;
+}
+.mt-4_5{
+      margin-top: 2.5rem !important;
+      background-color : #fff;
+}
+@media (max-width: 767px) {
+  .mt-4_5{
+    margin-top: 4rem !important;
+  }
+}

@@ -1,0 +1,45 @@
+.p-responsive {
+  padding-right: 16px !important;
+  padding-left: 16px !important;
+}
+
+.footer {
+  color: #333;
+  font-size: 80%;
+  background: #F8F8F8
+}
+
+.ico-social {
+  color: #EC5A93;
+}
+
+a {
+  color: #333;
+}
+
+.font-sz {
+  font-size: 90%;
+}
+
+.logo-footer {
+  max-width: 71px;
+  max-height: 45px;
+}
+.padding-top-bottom{
+  padding:4rem 0;
+}
+.footer-splash::before {
+ content: '';
+ background: url(.././../../assets/footer-splash@2x.png) no-repeat left 100%;
+ max-height: 310px;
+ position: absolute;
+ height: 100%;
+ width: 100%;
+ z-index: 1;
+ right: 10%;
+ bottom: 0px;
+ background-size: 229px auto;
+ background-position: 3% 83%;
+}
+
+

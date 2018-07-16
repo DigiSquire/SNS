@@ -35,8 +35,6 @@ export const heroes: Hero[] = [
 ];
 
 export const states = ['CA', 'MD', 'OH', 'VA'];
-export const categories = [{arttype: 'Paintings'},
-                           {arttype: 'Photographs'}
-                          ];
+export const categories = ['Paintings', 'Photographs'];
 
 

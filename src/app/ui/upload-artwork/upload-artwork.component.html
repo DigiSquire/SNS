@@ -1,119 +1,70 @@
 <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
   <div style="margin-bottom: 1em">
-    <button type="submit"
-            [disabled]="heroForm.pristine || heroForm.invalid" class="btn btn-success">Save</button> &nbsp;
-    <button type="button" (click)="revert()"
-            [disabled]="heroForm.pristine" class="btn btn-danger">Revert</button>
+      <button mat-raised-button color="primary" [disabled]="heroForm.pristine || heroForm.invalid" >Save</button>
+    <!-- <button type="submit"
+            >Save</button> &nbsp; -->
+            <button class="margin-left10" mat-raised-button  >Cancel</button>
+    <!-- <button type="button" (click)="revert()"
+            [disabled]="heroForm.pristine" class="btn btn-danger">Revert</button> -->
   </div>
 
   <!-- Hero Detail Controls -->
   <div class="container" formGroupName="metadata">
-  <div class="form-group">
-      <label class="center-block">Name
-        <input class="form-control" formControlName="name">
-      </label>
-  </div>
-  <div class="error" *ngIf="heroForm.get('metadata.name').hasError('required') && heroForm.get('metadata.name').touched">
-  Name is required
-</div>
-<div class="form-group">
-  <label for="comment">Description</label>
-  <textarea class="form-control" rows="3" id="comment" formControlName="description"></textarea>
-</div>
-<div class="error" *ngIf="heroForm.get('metadata.description').hasError('required') &&heroForm.get('metadata.description').touched">
-  Description is required
-</div>
+      <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input  matInput placeholder="Name" formControlName="name">
+          <mat-error *ngIf="heroForm.get('metadata.name').hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        </div>
+        <div class="form-group">
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Description" formControlName="description"></textarea>
+            <mat-error *ngIf="heroForm.get('metadata.description').hasError('required')">
+                Description is <strong>required</strong>
+              </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width">
+                <input  matInput placeholder="Weight" formControlName="weight">
+              </mat-form-field>
+        </div>
+          <div class="form-group col-sm-2" formGroupName="category">Category
+              <mat-radio-group class="example-radio-group" formControlName="artType">
+                  <mat-radio-button class="example-radio-button" *ngFor="let artType of categories" [value]="artType">
+                    {{artType}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div class="form-group row" *ngIf="heroForm.get('metadata.category.artType').value=='Paintings'" >
+                  <div class="col-sm-2" formGroupName="medium">Medium
+                        <mat-checkbox class="example-margin" formControlName="oilOnCanvas">Oil on Canvas</mat-checkbox>
+                        <mat-checkbox class="example-margin" formControlName="watercolourOnCanvas">Watercolour on Canvas</mat-checkbox>
+                        <mat-checkbox class="example-margin" formControlName="acrylicOnCanvas">Acrylic on Canvas</mat-checkbox>
+                        <mat-checkbox class="example-margin" formControlName="watercolourOnPaper">Watercolour on Paper</mat-checkbox>
+                        <mat-checkbox class="example-margin" formControlName="inkOnPaper">Ink on Paper</mat-checkbox>
+                        <mat-checkbox class="example-margin" formControlName="mixedMedia">Mixed media</mat-checkbox>
+                  </div>
+                </div>
+          
+
   <div formGroupName="dimension">
     Dimension
    <div class="form-group">
-      <label class="">Height
-        <input class="form-control" formControlName="height">
-      </label>
-      <label class="">Width
-        <input class="form-control" formControlName="width">
-      </label>
-      <label class="">Depth
-        <input class="form-control" formControlName="depth">
-      </label>
+      <mat-form-field class="example-full-width">
+          <input  matInput placeholder="Height" formControlName="height">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input  matInput placeholder="Width" formControlName="width">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input  matInput placeholder="Depth" formControlName="depth">
+            </mat-form-field>
   </div>
-  
   </div>
-  <div class="form-group">
-    <label class="center-block">Weight
-      <input class="form-control" formControlName="weight">
-    </label>
-</div>
-<div class="form-group" formGroupName="category">
-    <label for="inputState">Category</label>
-    <label class="center-block"><input type="radio" formControlName="paintings" value=true>Paintings</label>
-    <label class="center-block"><input  type="radio" formControlName="photographs" value=true >Photographs</label>
-  </div>
-   
-    <!-- <div class="form-group row" >
-    <div class="col-sm-2" formGroupName="medium">Medium</div>
-    <div class="col-sm-10">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1" formControlName="oilOnCanvas">
-        <label class="form-check-label" for="gridCheck1">
-          Oil on Canvas
-        </label>
-        <input class="form-check-input" type="checkbox" id="gridCheck1"formControlName="watercolourOnCanvas">
-        <label class="form-check-label" for="gridCheck1">
-          Watercolour on Canvas
-        </label>
-        <input class="form-check-input" type="checkbox" id="gridCheck1"formControlName="acrylicOnCanvas">
-        <label class="form-check-label" for="gridCheck1">
-          Acrylic on Canvas
-        </label>
-        <input class="form-check-input" type="checkbox" id="gridCheck1" formControlName="watercolourOnPaper">
-        <label class="form-check-label" for="gridCheck1">
-          Watercolour on Paper
-        </label>
-         <input class="form-check-input" type="checkbox" id="gridCheck1" formControlName="inkOnPaper">
-        <label class="form-check-label" for="gridCheck1">
-          Ink on Paper
-        </label>
-         <input class="form-check-input" type="checkbox" id="gridCheck1" formControlName="mixedMedia">
-        <label class="form-check-label" for="gridCheck1">
-          Mixed media
-        </label>
-      </div>
-     
-    </div>
-  </div> -->
-  <!--<div formArrayName="secretLairs" class="well well-lg">
-    <div *ngFor="let address of secretLairs.controls; let i=index" [formGroupName]="i" >
-      <!The repeated address template -->
-     <!-- <h4>Address #{{i + 1}}</h4>
-      <div style="margin-left: 1em;">
-        <div class="form-group">
-          <label class="center-block">Street:
-            <input class="form-control" formControlName="street">
-          </label>
-        </div>
-        <div class="form-group">
-          <label class="center-block">City:
-            <input class="form-control" formControlName="city">
-          </label>
-        </div>
-        <div class="form-group">
-          <label class="center-block">State:
-            <select class="form-control" formControlName="state">
-              <option *ngFor="let state of states" [value]="state">{{state}}</option>
-            </select>
-          </label>
-        </div>
-        <div class="form-group">
-          <label class="center-block">Zip Code:
-            <input class="form-control" formControlName="zip">
-          </label>
-        </div>
-      </div>-->
-      <!-- <br> -->
-      <!-- End of the repeated address template -->
-   <!-- </div>
-    <button (click)="addLair()" type="button">Add a Secret Lair</button>
-  </div>-->
+    
   <div class="form-group radio" formGroupName="classification" >
     <h4>Classification</h4>
     <label class="center-block"><input  type="radio" formControlName="abstract" value=true>Abstract</label>
@@ -123,34 +74,44 @@
     <label class="center-block"><input  type="radio" formControlName="cityscape" value=true >Cityscape</label>
   </div>
   <div class="checkbox">
-    <label class="center-block">
-      <input type="checkbox" formControlName="rent">Rent
-    </label>
+      <mat-checkbox class="example-margin" formControlName="rent">Rent</mat-checkbox>
+    
   </div>
    <div class="form-group" *ngIf="heroForm.get('metadata.rent').value">
-      <label class="center-block">Rent Price:
-        <input class="form-control" formControlName="rentPrice">
-      </label>
+      <mat-form-field class="example-full-width">
+          <input  matInput placeholder="Rent Price:" formControlName="rentPrice">
+        </mat-form-field>
   </div>
+  <div class="form-group">
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="Available From" formControlName="availableFrom">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+  </div>
+  <div class="form-group">
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="Available To" formControlName="availableTo">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+  </div>
+  
   <div class="checkbox">
-    <label class="center-block">
-      <input type="checkbox" formControlName="buy">Buy
-    </label>
+      <mat-checkbox class="example-margin" formControlName="buy">Buy</mat-checkbox>
   </div>
    <div class="form-group" *ngIf="heroForm.get('metadata.buy').value">
-      <label class="center-block">Selling Price:
-        <input class="form-control" formControlName="sellingPrice">
-      </label>
+      <mat-form-field class="example-full-width">
+          <input  matInput placeholder="Selling Price:" formControlName="sellingPrice">
+        </mat-form-field>
   </div>
   <div class="checkbox">
-    <label class="center-block">
-      <input type="checkbox" formControlName="print">Print
-    </label>
+      <mat-checkbox class="example-margin" formControlName="print">Print</mat-checkbox>
   </div>
    <div class="form-group" *ngIf="heroForm.get('metadata.print').value">
-      <label class="center-block">Price
-        <input class="form-control" formControlName="printPrice">
-      </label>
+      <mat-form-field class="example-full-width">
+          <input  matInput placeholder="Price:" formControlName="printPrice">
+        </mat-form-field>
   </div>
 </div>
    <div class="form-group">
@@ -159,7 +120,7 @@
   </div>
 </form>
 <!-- Uncomment for to see chamges to JSON -->
-<!-- <p>heroForm value: {{ heroForm.value | json}}</p> -->
+<!-- <p>heroForm value: {{ heroForm.value | json}}</p>  -->
 
 <!-- <h4>Name change log</h4>
 <div *ngFor="let name of nameChangeLog">{{name}}</div> -->

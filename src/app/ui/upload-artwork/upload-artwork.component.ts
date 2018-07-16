@@ -15,9 +15,9 @@ export class UploadArtworkComponent implements OnChanges {
   heroForm: FormGroup;
   nameChangeLog: string[] = [];
   states = states;
-  // categories=categories;
-  
-
+   categories= categories;
+   availableFrom: Date= null;
+   availableTo: Date= null;
   constructor(
     private fb: FormBuilder, private http: HttpClient) {
 
@@ -28,48 +28,50 @@ export class UploadArtworkComponent implements OnChanges {
   createForm() {
 
     this.heroForm = this.fb.group({
-      metadata:this.fb.group({
+      metadata: this.fb.group({
+        availableFrom: null,
+        availableTo: null,
         name: ['', Validators.required ],
-      description:['', Validators.required ],
-      //secretLairs: this.fb.array([]),
-      dimension:this.fb.group({
-        height:'',
-        width:'',
-        depth:''
+      description: ['', Validators.required ],
+      dimension: this.fb.group({
+        height: '',
+        width: '',
+        depth: ''
 
       }),
-      weight:'',
-      category:this.fb.group({
-        paintings:false,
-        photographs:false
-      }),
+       category: this.fb.group({
+        artType: ''
+       }),
+      
+      weight: '',
+      
       //   artType:this.fb.group({
       //     categories
       // }),
       
-      classification:this.fb.group({
-        nature:false,
-        abstract:false,
-        animals:false,
-        flowers:false,
-        cityscape:false
+      classification: this.fb.group({
+        nature: false,
+        abstract: false,
+        animals: false,
+        flowers: false,
+        cityscape: false
         
       }),
-      medium:this.fb.group({
-        oilOnCanvas:false,
-        watercolourOnCanvas:false,
-        acrylicOnCanvas:false,
-        watercolourOnPaper:false,
-        inkOnPaper:false,
-        mixedMedia:false
+      medium: this.fb.group({
+        oilOnCanvas: false,
+        watercolourOnCanvas: false,
+        acrylicOnCanvas: false,
+        watercolourOnPaper: false,
+        inkOnPaper: false,
+        mixedMedia: false
         
       }),
       rent: '',
-      buy:'',
+      buy: '',
       print: '',
       rentPrice: '',
-      sellingPrice:'',
-      printPrice:'',
+      sellingPrice: '',
+      printPrice: '',
       
       }),
     file: [null, Validators.required]
@@ -124,7 +126,7 @@ export class UploadArtworkComponent implements OnChanges {
     const formData = new FormData();
     const data = [];
     data.push(this.heroForm.get('metadata').value);
-    // This can be done a lot prettier; for example automatically assigning values by looping through `this.form.controls`, but we'll keep it as simple as possible here
+   
     formData.append('metadata', JSON.stringify(data));
     formData.append('file', this.heroForm.get('file').value);
     return formData;
@@ -135,12 +137,9 @@ export class UploadArtworkComponent implements OnChanges {
     console.log(formModel);
     this
     .http
-    .post(uri,formModel)
+    .post(uri, formModel)
     .subscribe(res =>
         console.log('Done'));
-   
-    //this.hero = this.prepareSaveHero();
-    //this.rebuildForm();
   }
 
   prepareSaveHero(): Hero {

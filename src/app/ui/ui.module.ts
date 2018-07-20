@@ -16,10 +16,13 @@ import { UploadArtworkComponent } from './upload-artwork/upload-artwork.componen
 import { NavComponent } from './nav/nav.component';
 import { MainFooterComponent } from './main-footer/main-footer.component';
 import { MaterialModule } from '../material/material.module';
+import { AvatarModule } from 'ngx-avatar';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [LoadingModule,
-     CommonModule, RouterModule, FormsModule, ReactiveFormsModule, UploadsModule, MaterialModule ],
-  declarations: [ 
+    CommonModule, RouterModule, FormsModule, ReactiveFormsModule, UploadsModule, MaterialModule, AvatarModule, NgbModule
+  ],
+  declarations: [
     HomePageComponent,
     MainNavComponent,
     NotificationMessageComponent,

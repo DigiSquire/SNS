@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@font-face {
+  font-family: "Channel";
+  src: url("./assets/fonts/Channel.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Cabin-Regular";
+  src: url("./assets/fonts/Cabin-Regular.ttf") format("truetype");
+}
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 html {
   position: relative;
@@ -9,7 +15,7 @@ button:focus {
   outline: none
 }
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cabin-Regular', sans-serif;
 }
 
 ul,
@@ -28,7 +34,7 @@ body>.container {
 }
 
 p {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cabin-Regular', sans-serif;
 }
 
 a:hover {

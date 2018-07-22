@@ -10,22 +10,20 @@
   <div class="collapse navbar-collapse d-md-flex justify-content-md-center" id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
-        <a class="nav-link text-black" routerLink="/gallery">Gallery
-          <span class="sr-only">(current)</span>
-        </a>
+        <a class="nav-link text-black" routerLinkActive="text-grey" routerLink="/gallery">Gallery</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-black">Artists</a>
+        <a class="nav-link text-black" routerLinkActive="text-grey">Artists</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-black">Get In Touch</a>
+        <a class="nav-link text-black" routerLinkActive="text-grey">Get In Touch</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-md-0">
       <li class="nav-item" style="cursor:pointer;">
         <a *ngIf="!(auth.user | async);else alreadyLoggedIn" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black"
           routerLink="/login">Sign in
-          <span class="text-gray" style="font-size: 80%;font-weight: 100;">or</span> Sign up</a>
+          <span class="text-grey" style="font-size: 80%;font-weight: 100;">or</span> Sign up</a>
         <ng-template #alreadyLoggedIn>
           <div ngbDropdown>
             <a ngbDropdownToggle>

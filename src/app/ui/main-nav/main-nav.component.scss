@@ -1,12 +1,10 @@
 .navbar-brand {
   font-size: 1rem;
 }
-
 .navbar {
   padding: 1.4rem 1rem;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.48);
 }
-
 .text-black {
   color: #333;
 }
@@ -28,6 +26,9 @@
 }
 .icon-color{
   color: #EC5A93;
+}
+.text-grey {
+  color: #9E9E9E !important;
 }
 @media (max-width: 767px) {
   .mt-4_5{

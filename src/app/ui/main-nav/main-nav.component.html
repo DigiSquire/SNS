@@ -28,9 +28,9 @@
           <span class="text-gray" style="font-size: 80%;font-weight: 100;">or</span> Sign up</a>
         <ng-template #alreadyLoggedIn>
           <div ngbDropdown>
-            <ngx-avatar ngbDropdownToggle src="./assets/user-avatar.png" borderCorner="20"
-              bgColor="#EC5A93" fgColor="#fff" size="50" textSizeRatio="2.2" [round]="true">
-            </ngx-avatar>
+            <a ngbDropdownToggle>
+                <i class="fas fa-user icon-color fa-lg p-2"></i>
+            </a>
             <div ngbDropdownMenu>
               <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Profile</a>
               <a routerLink="/upload"class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Upload</a>

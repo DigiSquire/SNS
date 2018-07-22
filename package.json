@@ -40,7 +40,6 @@
     "firebase": "^5.2.0",
     "mongodb": "^3.1.1",
     "morgan": "^1.9.0",
-    "ngx-avatar": "^2.9.0",
     "ngx-loading": "^1.0.14",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",

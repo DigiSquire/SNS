@@ -18,6 +18,7 @@ import { MainFooterComponent } from './main-footer/main-footer.component';
 import { MaterialModule } from '../material/material.module';
 import { AvatarModule } from 'ngx-avatar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PageTitleComponent } from './page-title/page-title.component';
 @NgModule({
   imports: [LoadingModule,
     CommonModule, RouterModule, FormsModule, ReactiveFormsModule, UploadsModule, MaterialModule, AvatarModule, NgbModule
@@ -32,7 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     GalleryComponent,
     NavComponent,
     MainFooterComponent,
-    UploadArtworkComponent
+    UploadArtworkComponent,
+    PageTitleComponent
   ],
   exports: [
     MainNavComponent,

@@ -2,6 +2,10 @@
   margin-bottom: 0.25rem;
 }
 
+.pos-abs {
+  position: absolute;
+}
+
 p {
   margin-bottom: 0rem;
 }
@@ -33,19 +37,63 @@ small {
 }
 
 .sale-fill {
+  position: absolute;
   background-color: #35A8E6;
   z-index: 1;
   padding: 0 0.65em;
 }
 
 .rented {
+  position: absolute;
   background-color: #EC5A93;
   z-index: 1;
   padding: 0 0.5em;
 }
 
 .sold {
+  position: absolute;
   background-color: #E6BA35;
   z-index: 1;
   padding: 0 0.5em;
+}
+
+.portfolio-view {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  height: 78%;
+  background: #00000057;
+  width: 100%;
+  text-align: center;
+}
+
+.card:hover {
+  box-shadow: 0px 16px 22px 0px rgba(90, 91, 95, 0.3);
+}
+.wrapper{
+  height: 100%;
+}
+.wrapper:hover .portfolio-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-animation: fadeInUp 400ms;
+  animation: fadeInUp 400ms;
+}
+
+.btn-lay {
+  min-width: 80%;
+  font-size: 0.75em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.secondary {
+  background-color: #EC5A93;
+}
+
+.primary {
+  background-color: #6ECCF0;
 }

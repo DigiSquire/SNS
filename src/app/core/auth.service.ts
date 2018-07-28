@@ -106,7 +106,7 @@ export class AuthService {
         return this.registerNewUser(credential.user).subscribe((result => {
           console.log(result);
           if (result.success === true) {
-            this.router.navigate(['/upload']);
+            this.router.navigate(['./artist-center']);
             this.changeMessage(false);
             this.notify.update('Welcome To Spaces & Stories', 'success');
           } else {
@@ -131,9 +131,9 @@ export class AuthService {
         return this.registerNewUser(credential.user, role).subscribe((result => {
           console.log(result);
           if (result.success === true) {
-            this.router.navigate(['/upload']);
-            this.changeMessage(false);
+            this.router.navigate(['./artist-center']);            
             this.notify.update('Welcome To Spaces & Stories', 'success');
+            this.changeMessage(false);
           } else {
             this.user = Observable.of(null);
             this.signOut('unAuthenticated');

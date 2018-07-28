@@ -11,7 +11,6 @@ import { ArtistComponent } from './artist/artist.component';
 import { SeoService } from '../core/seo.service';
 import { UploadsModule } from '../uploads/uploads.module';
 import { GalleryComponent } from './gallery/gallery.component';
-import { UploadArtworkComponent } from './upload-artwork/upload-artwork.component';
 import { NavComponent } from './nav/nav.component';
 import { MainFooterComponent } from './main-footer/main-footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,12 +39,12 @@ import { PageTitleComponent } from './page-title/page-title.component';
     GalleryComponent,
     NavComponent,
     MainFooterComponent,
-    UploadArtworkComponent,
     PageTitleComponent
   ],
   exports: [
     MainNavComponent,
     MainFooterComponent,
+    PageTitleComponent,
     NotificationMessageComponent
   ],
   providers: [SeoService]

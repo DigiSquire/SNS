@@ -2,7 +2,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Address, Hero, states, categories } from '../../core/data.model';
-
+import { ArtworkService } from '../../core/artwork.service';
 @Component({
   selector: 'upload-artwork',
   templateUrl: './upload-artwork.component.html',
@@ -15,11 +15,11 @@ export class UploadArtworkComponent implements OnChanges {
   heroForm: FormGroup;
   nameChangeLog: string[] = [];
   states = states;
-   categories= categories;
-   availableFrom: Date= null;
-   availableTo: Date= null;
+  categories = categories;
+  availableFrom: Date = null;
+  availableTo: Date = null;
   constructor(
-    private fb: FormBuilder, private http: HttpClient) {
+    private fb: FormBuilder, private http: HttpClient, private artService: ArtworkService) {
 
     this.createForm();
     // this.logNameChange();
@@ -31,50 +31,50 @@ export class UploadArtworkComponent implements OnChanges {
       metadata: this.fb.group({
         availableFrom: null,
         availableTo: null,
-        name: ['', Validators.required ],
-      description: ['', Validators.required ],
-      dimension: this.fb.group({
-        height: '',
-        width: '',
-        depth: ''
+        name: ['', Validators.required],
+        description: ['', Validators.required],
+        dimension: this.fb.group({
+          height: '',
+          width: '',
+          depth: ''
+
+        }),
+        category: this.fb.group({
+          artType: ''
+        }),
+
+        weight: '',
+
+        //   artType:this.fb.group({
+        //     categories
+        // }),
+
+        classification: this.fb.group({
+          nature: false,
+          abstract: false,
+          animals: false,
+          flowers: false,
+          cityscape: false
+
+        }),
+        medium: this.fb.group({
+          oilOnCanvas: false,
+          watercolourOnCanvas: false,
+          acrylicOnCanvas: false,
+          watercolourOnPaper: false,
+          inkOnPaper: false,
+          mixedMedia: false
+
+        }),
+        rent: '',
+        buy: '',
+        print: '',
+        rentPrice: '',
+        sellingPrice: '',
+        printPrice: '',
 
       }),
-       category: this.fb.group({
-        artType: ''
-       }),
-      
-      weight: '',
-      
-      //   artType:this.fb.group({
-      //     categories
-      // }),
-      
-      classification: this.fb.group({
-        nature: false,
-        abstract: false,
-        animals: false,
-        flowers: false,
-        cityscape: false
-        
-      }),
-      medium: this.fb.group({
-        oilOnCanvas: false,
-        watercolourOnCanvas: false,
-        acrylicOnCanvas: false,
-        watercolourOnPaper: false,
-        inkOnPaper: false,
-        mixedMedia: false
-        
-      }),
-      rent: '',
-      buy: '',
-      print: '',
-      rentPrice: '',
-      sellingPrice: '',
-      printPrice: '',
-      
-      }),
-    file: [null, Validators.required]
+      file: [null, Validators.required]
     });
   }
 
@@ -122,24 +122,25 @@ export class UploadArtworkComponent implements OnChanges {
   addLair() {
     this.secretLairs.push(this.fb.group(new Address()));
   }
-   prepareSave(): any {
+  prepareSave(): any {
     const formData = new FormData();
     const data = [];
     data.push(this.heroForm.get('metadata').value);
-   
+
     formData.append('metadata', JSON.stringify(data));
     formData.append('file', this.heroForm.get('file').value);
     return formData;
   }
   onSubmit() {
-    const formModel = this.prepareSave();
-    const uri = 'https://sns-api-207407.appspot.com/api/art/upload';
+    const formModel = this.prepareSave();    
     console.log(formModel);
-    this
-    .http
-    .post(uri, formModel)
-    .subscribe(res =>
-        console.log('Done'));
+    return this.artService.uploadArtwork(formModel).subscribe((result => {
+      if (result) {
+        console.log(result);
+        // Clear form here
+        // this.revert();
+      }     
+    }));
   }
 
   prepareSaveHero(): Hero {
@@ -161,7 +162,9 @@ export class UploadArtworkComponent implements OnChanges {
     return saveHero;
   }
 
-  revert() { this.rebuildForm(); }
+  revert() {
+    this.rebuildForm();
+  }
 
   // logNameChange() {
   //   const nameControl = this.heroForm.get('name');

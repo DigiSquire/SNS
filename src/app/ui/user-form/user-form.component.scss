@@ -5,7 +5,13 @@
   margin: 2em auto;
   background: #fff;
 }
-
+.role-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+  color: #6c757d ;
+}
 .alert {
   background: #f2edda;
   padding: 7px;

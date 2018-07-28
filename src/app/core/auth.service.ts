@@ -123,13 +123,12 @@ export class AuthService {
       });
   }
 
-  // TODO : Solve the observable auth.user binding to template which flickers the login
-  emailLogin(email: string, password: string) {
+  emailLogin(email: string, password: string, role: string) {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
       .then(credential => {
         console.log(credential.user);
-        return this.registerNewUser(credential.user).subscribe((result => {
+        return this.registerNewUser(credential.user, role).subscribe((result => {
           console.log(result);
           if (result.success === true) {
             this.router.navigate(['/upload']);
@@ -162,13 +161,11 @@ export class AuthService {
     console.error(error);
     this.notify.update(error.message, 'error');
   }
-  private registerNewUser(user) {
+  private registerNewUser(user, role?) {    
     const data: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName || 'nameless user',
-      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
-      role: 'admin'
+      role: role
     }
     console.log(data);
     return this.http.post < User > (this.userRegisterURL, data, httpOptions).pipe(

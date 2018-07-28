@@ -14,7 +14,8 @@ const httpOptions = {
 };
 @Injectable()
 export class ArtworkService {
-  private uploadURL = `${ environment.API_BASE_URI }/art/upload`;
+  // private uploadURL = `${ environment.API_BASE_URI }/art/upload`;
+  readonly uploadURL = 'https://sns-api-207407.appspot.com/api/art/upload';
   private handleHTTPError: HandleError;
   constructor(private http: HttpClient, private notify: NotifyService, httpErrorHandler: HttpErrorHandler) { 
     this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');

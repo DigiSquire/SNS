@@ -1,3 +1,80 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <mat-form-field class="example-full-width">
+            <input  matInput placeholder="First Name" formControlName="firstName" required>
+            <mat-error *ngIf="profileForm.get('firstName').hasError('required')">
+                First Name is <strong>required</strong>
+              </mat-error>
+          </mat-form-field>
+          </div>
+
+  <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input  matInput placeholder="Last Name" formControlName="lastName" required>
+          <mat-error *ngIf="profileForm.get('lastName').hasError('required')">
+              Last Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        </div>
+  <div class="form-group">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" formControlName="email" readonly >
+              </mat-form-field>
+  </div>
+  <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input type="number" matInput placeholder="Contact Number" formControlName="contactNumber">
+        </mat-form-field>
+</div>
+<div class="form-group">
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Address" formControlName="address"></textarea>
+      </mat-form-field>
+</div>
+
+  <!-- <div formGroupName="address">
+    <h3>Address</h3>
+    <div class="form-group">
+        <mat-form-field class="example-full-width">
+            <input  matInput placeholder="Street" formControlName="street" >
+          </mat-form-field>
+          </div>
+ 
+    <div class="form-group">
+        <mat-form-field class="example-full-width">
+            <input  matInput placeholder="City" formControlName="city" >
+          </mat-form-field>
+          </div>
+          <div class="form-group">
+              <mat-form-field class="example-full-width">
+                  <input  matInput placeholder="State" formControlName="state" >
+                </mat-form-field>
+                </div>
+                <div class="form-group">
+<mat-form-field class="example-full-width">
+      <input matInput #postalCode maxlength="6" placeholder="Zip Code" value="">
+    </mat-form-field>
+    </div>
+
+  </div> -->
+
+ 
+
+  <button type="submit" [disabled]="!profileForm.valid">Update Profile</button>
+</form>
+
+<!-- <hr>
+
+
 <p>
-  profile works!
+  Form Value: {{ profileForm.value | json }}
 </p>
+
+
+<p>
+  Form Status: {{ profileForm.status }}
+</p> -->
+<!-- 
+<p>
+  <button (click)="updateProfile()">Update Profile</button>
+</p> -->

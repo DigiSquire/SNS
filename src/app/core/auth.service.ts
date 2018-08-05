@@ -39,6 +39,8 @@ const httpOptions = {
 export class AuthService {
   private messageSource = new BehaviorSubject < boolean > (false);
   isLoading = this.messageSource.asObservable();
+  // private userSource = new BehaviorSubject < any > (null);
+  // loggedInUser = this.userSource.asObservable();
   // private userRegisterURL = `${ environment.API_BASE_URI }/users/register`;  // URL to web api
   private userRegisterURL = `https://sns-api-207407.appspot.com/api/user/register`; // URL to web api
   private handleHTTPError: HandleError;
@@ -56,9 +58,11 @@ export class AuthService {
     this.user = this.afAuth.authState
       .switchMap(user => {
         this.changeMessage(false);
-        console.log('from auth state');
         if (user) {
+
           this.changeMessage(false);
+          sessionStorage.setItem('emailId', user.email);
+          // this.userSource.next(user.email);
           console.log('user generated');
           return this.afAuth.authState;
         } else {

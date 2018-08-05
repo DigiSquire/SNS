@@ -1,4 +1,4 @@
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<form  class="mt-4" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <mat-form-field class="example-full-width">
             <input  matInput placeholder="First Name" formControlName="firstName" required>
@@ -60,7 +60,8 @@
 
  
 
-  <button type="submit" [disabled]="!profileForm.valid">Update Profile</button>
+  <!-- <button type="submit" [disabled]="!profileForm.valid">Update Profile</button> -->
+  <button  type="submit" mat-raised-button color="primary" [disabled]="!profileForm.valid">Update Profile</button>
 </form>
 
 <!-- <hr>

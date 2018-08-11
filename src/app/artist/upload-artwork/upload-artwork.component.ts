@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Address, Hero, states, categories } from '../../core/data.model';
 import { ArtworkService } from '../../core/artwork.service';
 @Component({
@@ -19,7 +18,7 @@ export class UploadArtworkComponent implements OnChanges {
   availableFrom: Date = null;
   availableTo: Date = null;
   constructor(
-    private fb: FormBuilder, private http: HttpClient, private artService: ArtworkService) {
+    private fb: FormBuilder, private artService: ArtworkService) {
 
     this.createForm();
     // this.logNameChange();

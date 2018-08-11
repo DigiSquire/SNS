@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { AngularFirestore } from 'angularfire2/firestore';
 import { SeoService } from '../../core/seo.service';
 import { Router } from '@angular/router';
 
@@ -16,7 +15,6 @@ export class HomePageComponent implements OnInit {
   description = 'Giving Artists and art connoisseur to connect on a reliable platform';
 
   newAnimal: { name?: string, bio?: string } = {}
-  // private afs: AngularFirestore
   constructor(private seo: SeoService, private router: Router) { }
 
   ngOnInit() {
@@ -28,11 +26,5 @@ export class HomePageComponent implements OnInit {
       // image: animal.imgURL
     });
   }
-
-  // async create() {
-  //   const path = `animals/${this.newAnimal.name.toLowerCase()}`;
-  //   await this.afs.doc(path).set(this.newAnimal);
-  //   this.router.navigate([path]);
-  // }
 
 }

@@ -8,5 +8,7 @@ export const environment = {
     storageBucket: 'fire-ng-proto.appspot.com',
     messagingSenderId: '407159742468'
   },
-  API_BASE_URI: 'https://sns-api-207407.appspot.com/api'
+  API_BASE_URI: 'https://sns-api-207407.appspot.com/api',
+  id: '_id',
+  emailId: 'emailId'
 };

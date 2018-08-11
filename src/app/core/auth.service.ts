@@ -41,8 +41,7 @@ export class AuthService {
   isLoading = this.messageSource.asObservable();
   // private userSource = new BehaviorSubject < any > (null);
   // loggedInUser = this.userSource.asObservable();
-  // private userRegisterURL = `${ environment.API_BASE_URI }/users/register`;  // URL to web api
-  private userRegisterURL = `https://sns-api-207407.appspot.com/api/user/register`; // URL to web api
+  private userRegisterURL = `${ environment.API_BASE_URI }/user/register`;  // URL to web api
   private handleHTTPError: HandleError;
   user: Observable < User > ;
 
@@ -61,7 +60,7 @@ export class AuthService {
         if (user) {
 
           this.changeMessage(false);
-          sessionStorage.setItem('emailId', user.email);
+          sessionStorage.setItem(environment.emailId, user.email);
           // this.userSource.next(user.email);
           console.log('user generated');
           return this.afAuth.authState;
@@ -172,7 +171,7 @@ export class AuthService {
       role: role
     }
     console.log(data);
-    return this.http.post < User > (this.userRegisterURL, data, httpOptions).pipe(
+    return this.http.post <User> (this.userRegisterURL, data, httpOptions).pipe(
       catchError(this.handleHTTPError('registerNewUser'))
     );
   }
@@ -184,6 +183,8 @@ export class AuthService {
   }
   signOut(isAuthenticated) {
     this.afAuth.auth.signOut().then(() => {
+      console.log('clearing session storage');
+      sessionStorage.clear();
       this.router.navigate(['/']);
       isAuthenticated === 'unAuthenticated' ? this.notify.update('There was an error during sign up, please try gain.', 'error'):this.notify.update('You Have Been Successfully Logged-Out', 'success');
       

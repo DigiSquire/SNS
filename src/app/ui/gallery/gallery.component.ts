@@ -14,7 +14,7 @@ export interface Files {
 })
 
 export class GalleryComponent implements OnInit {
-  private files;
+  files;
   readonly base_uri= environment.API_BASE_URI;
   readonly url = `${this.base_uri}/art/image/`
   constructor(private artService: ArtworkService) { }

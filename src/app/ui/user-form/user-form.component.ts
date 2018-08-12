@@ -49,11 +49,11 @@ export class UserFormComponent implements OnInit {
   }
   signup() {
     this.auth.changeMessage(true);
-    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password']);
+    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password'], this.role);
   }
   login() {
     this.auth.changeMessage(true);
-    this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password'], this.role);
+    this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password']);
   }
   logout() {
     this.auth.changeMessage(true);

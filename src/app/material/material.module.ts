@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatToolbarModule,  MatButtonModule,  MatSidenavModule,  MatIconModule,  MatListModule,  MatCardModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule,
+        MatIconModule, MatListModule, MatCardModule, MatChipsModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
@@ -24,7 +25,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSlideToggleModule,
-    MatTabsModule
+    MatTabsModule,
+    MatChipsModule,
   ]
 })
 export class MaterialModule {}

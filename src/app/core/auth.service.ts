@@ -175,12 +175,6 @@ export class AuthService {
       catchError(this.handleHTTPError('registerNewUser'))
     );
   }
-  getimages() {
-    const getImagesURL = `${environment.API_BASE_URI}/art/files`;
-    return this.http.get < Files > (getImagesURL, httpOptions).pipe(
-      catchError(this.handleHTTPError('getImages'))
-    );
-  }
   signOut(isAuthenticated) {
     this.afAuth.auth.signOut().then(() => {
       console.log('clearing session storage');

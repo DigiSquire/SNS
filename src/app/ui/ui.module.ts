@@ -12,7 +12,6 @@ import { UploadsModule } from '../uploads/uploads.module';
 import { GalleryComponent } from './gallery/gallery.component';
 import { NavComponent } from './nav/nav.component';
 import { MainFooterComponent } from './main-footer/main-footer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../material/material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageTitleComponent } from './page-title/page-title.component';
@@ -24,8 +23,7 @@ import { PageTitleComponent } from './page-title/page-title.component';
     RouterModule,
     FormsModule, 
     ReactiveFormsModule,
-    UploadsModule, 
-    BrowserAnimationsModule, 
+    UploadsModule,   
     MaterialModule, 
     NgbModule
   ],

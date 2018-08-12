@@ -4,10 +4,13 @@ import { AuthGuard } from './auth.guard';
 import { NotifyService } from './notify.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpErrorHandler } from './http-error-handler.service';
-import { ArtworkService } from './artwork.service'
+import { ArtworkService } from './artwork.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   imports: [
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthService, AuthGuard, NotifyService, HttpErrorHandler, ArtworkService]
 })

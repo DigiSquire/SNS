@@ -1,35 +1,37 @@
 <page-title [heading]="'Gallery'"></page-title>
 <div class="row mb-5">
 
-  <div class=col-md-3>
+  <div *ngFor="let file of files" class="col-md-3 mb-4">
     <div class="card card-size">
       <div class="wrapper">
-        <div class="d-flex align-items-start flex-column pos-abs">
+        <div *ngIf="file.metadata[0].rent===true" class="d-flex align-items-start flex-column pos-abs">
           <div class="mb-auto  text-white rented">Rent</div>
         </div>
-        <div class="d-flex align-items-start flex-column pos-abs">
-          <div class="mb-auto mt-4  text-white sale-fill">Sale</div>
+        <div *ngIf="file.metadata[0].buy===true" class="d-flex align-items-start flex-column pos-abs">
+          <div class="mb-auto text-white sale-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rent===true">Sale</div>
         </div>
         <div class="card-ht">
-          <img class="card-img-top" src="./assets/picture1.jpg" alt="Card image cap">
+          <img class="card-img-top" src={{url}}{{file.filename}} alt="Card image cap">
         </div>
         <div class="portfolio-view  flex-column">
-          <button class="mb-2 btn-lay primary" mat-raised-button>BUY NOW</button>
-          <button class="btn-lay secondary" mat-raised-button>RENT STARTS AT $59/MONTH</button>
+          <button class="mb-2 btn-lay primary" *ngIf="file.metadata[0].buy===true" mat-raised-button>BUY NOW</button>
+          <button class="btn-lay secondary" *ngIf="file.metadata[0].rent===true" mat-raised-button>RENT STARTS AT $59/MONTH</button>
         </div>
       </div>
 
       <div class="card-body text-center">
         <h6 class="card-title">Dancing in the ruins</h6>
         <p class="card-text artist-name">by Rucha Chattur</p>
-        <p class="card-text small-price">$150</p>
-        <small class="text-muted">Rent starts at $59/month</small>
+        <p class="card-text small-price" [class.mb-4]="file.metadata[0].rent===false || file.metadata[0].rent===''" *ngIf="file.metadata[0].buy===true">${{file.metadata[0].sellingPrice}}</p>
+        <p [class.mb-custom]="file.metadata[0].buy===false || file.metadata[0].buy===''">
+          <small class="text-muted" *ngIf="file.metadata[0].rent===true">Rent starts at ${{file.metadata[0].rentPrice}}/month</small>
+        </p>
       </div>
     </div>
 
   </div>
 
-  <div class=col-md-3>
+  <!-- <div class=col-md-3>
     <div class="card card-size">
       <div class="d-flex align-items-start flex-column">
         <div class="mb-auto text-white rented">Rented</div>
@@ -77,8 +79,8 @@
       </div>
     </div>
   </div>
-</div>
-<div class="row mb-5">
+</div> -->
+  <!-- <div class="row mb-5">
   <div class=col-md-3>
     <div class="card card-size">
       <div class="d-flex align-items-start flex-column">
@@ -143,8 +145,8 @@
       </div>
     </div>
   </div>
-</div>
-<div class="row mb-5">
+</div> -->
+  <!-- <div class="row mb-5">
   <div class=col-md-3>
     <div class="card card-size">
       <div class="d-flex align-items-start flex-column">
@@ -209,4 +211,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

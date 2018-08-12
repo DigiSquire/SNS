@@ -11,16 +11,34 @@ const httpOptions = {
     'Access-Control-Allow-Origin': '*',
   })
 };
+export interface Files {
+  filename: string;
+  contentType: string;
+  metadata: Array<Object>;
+}
 @Injectable()
 export class ArtworkService {
-  readonly uploadURL = `${ environment.API_BASE_URI }/art/upload`;
+  readonly uploadURL = `${environment.API_BASE_URI}/art/upload`;
 
   private handleHTTPError: HandleError;
   constructor(private http: HttpClient, private notify: NotifyService, httpErrorHandler: HttpErrorHandler) { 
     this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');
   }
+  getArtworks() {
+    const getImagesURL = `${environment.API_BASE_URI}/art/files`;
+    return this.http.get<Files>(getImagesURL, httpOptions).pipe(
+      map(result => {
+        if (!result) {
+          this.notify.update('There was an error retrieving the artworks', 'error');
+        } else {
+          return result;
+        }
+      }),
+      catchError(this.handleHTTPError('getArtworks'))
+    );
+  }
   getProfile = (email) => {
-    const url = `${environment.API_BASE_URI_LOCAL}/user/${email}`;
+    const url = `${environment.API_BASE_URI}/user/${email}`;
     return this.http.get(url).pipe(
       map(result => {
         if (!result) {
@@ -35,7 +53,7 @@ export class ArtworkService {
   updateProfile = (profileData) => {
     const id = sessionStorage.getItem(environment.id);
     if ( id != null) {
-      const url = `${environment.API_BASE_URI_LOCAL}/user/updateProfile/${id}`
+      const url = `${environment.API_BASE_URI}/user/updateProfile/${id}`
       console.log(profileData);
       return this.http.put<any>(url, profileData, httpOptions).pipe(
         map(result => {
@@ -66,6 +84,25 @@ export class ArtworkService {
       }),
       catchError(this.handleHTTPError('uploadArtwork'))
     );
+  }
+  getUserArtworks() {
+    const email = sessionStorage.getItem(environment.emailId);
+    if (email != null) {
+      const getImagesURL = `${environment.API_BASE_URI}/art/files/${email}`;
+      return this.http.get<Files>(getImagesURL, httpOptions).pipe(
+        map(result => {
+          if (!result) {
+            this.notify.update('There was an error retrieving the artworks', 'error');
+          } else {
+            return result;
+          }
+        }),
+        catchError(this.handleHTTPError('getUserArtworks'))
+      );
+    }else {
+      this.notify.update('There was an error retrieving your artworks, email missing, please try again', 'error');
+    }
+    
   }
   
 }

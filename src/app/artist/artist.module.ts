@@ -7,10 +7,12 @@ import { ArtistCenterComponent } from './artist-center/artist-center.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MyArtworksComponent } from './my-artworks/my-artworks.component';
 import { UploadArtworkComponent } from './upload-artwork/upload-artwork.component';
+import {FileDropModule} from 'ngx-file-drop';
 @NgModule({
   imports: [
     CommonModule,
     ArtistCenterRoutingModule,
+    FileDropModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule

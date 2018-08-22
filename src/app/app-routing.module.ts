@@ -4,7 +4,7 @@ import { AuthGuard } from './core/auth.guard';
 import { HomePageComponent } from './ui/home-page/home-page.component';
 import { UserFormComponent } from './ui/user-form/user-form.component';
 import { GalleryComponent } from './ui/gallery/gallery.component';
-
+import { ArtistsComponent } from './ui/artists/artists.component';
 // , canActivate: [AuthGuard] 
 const routes: Routes = [
   { path: '', redirectTo: 'gallery', pathMatch: 'full' },
@@ -13,6 +13,7 @@ const routes: Routes = [
     path: 'artist-center',
     loadChildren: 'app/artist/artist.module#ArtistModule'
   },
+  { path: 'artists', component: ArtistsComponent },
   { path: 'login', component: UserFormComponent },
   { path: 'gallery', component: GalleryComponent },
 ];

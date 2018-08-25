@@ -1,0 +1,14 @@
+<section class="layover">
+  <div class="card">
+<ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows">
+  <ng-template *ngFor="let image of images" ngbSlide>
+    <img [src]="image.url" alt="Random first slide">
+  </ng-template>
+</ngb-carousel>
+</div>
+</section>
+<section class="page-heading mt-5 mb-5">
+<h2 class="text-center">How it<span class=""> works?</span></h2>
+<p class="text-center sub-heading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ullamcorper enim, vestibulum dignissim augue. Proin elementum
+  enim sit amet sodales ornare. Suspendisse commodo semper tellus.</p>
+</section>

@@ -39,12 +39,13 @@ const httpOptions = {
 export class AuthService {
   private messageSource = new BehaviorSubject < boolean > (false);
   isLoading = this.messageSource.asObservable();
-  // private userRegisterURL = `${ environment.API_BASE_URI }/users/register`;  // URL to web api
-  private userRegisterURL = `https://sns-api-207407.appspot.com/api/user/register`; // URL to web api
+  // private userSource = new BehaviorSubject < any > (null);
+  // loggedInUser = this.userSource.asObservable();
+  private userRegisterURL = `${ environment.API_BASE_URI }/user/register`;  // URL to web api
   private handleHTTPError: HandleError;
   user: Observable < User > ;
 
-  // If needed inculde in constructor to access firestore 'private afs: AngularFirestore'
+  // If needed include in constructor to access firestore 'private afs: AngularFirestore'
 
   constructor(private afAuth: AngularFireAuth,
     private http: HttpClient,
@@ -56,9 +57,11 @@ export class AuthService {
     this.user = this.afAuth.authState
       .switchMap(user => {
         this.changeMessage(false);
-        console.log('from auth state');
         if (user) {
+
           this.changeMessage(false);
+          sessionStorage.setItem(environment.emailId, user.email);
+          // this.userSource.next(user.email);
           console.log('user generated');
           return this.afAuth.authState;
         } else {
@@ -70,15 +73,6 @@ export class AuthService {
   changeMessage(isLoading: boolean) {
     this.messageSource.next(isLoading)
   }
-  // emailSignUp(email: string, password: string) {
-  //   return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-  //     .then(user => {
-  //       return this.setUserDoc(user) // create initial user document
-  //     })
-  //     .catch(error => this.handleError(error));
-  // }
-
-
   // googleLogin() {
   //   const provider = new firebase.auth.GoogleAuthProvider()
   //   return this.oAuthLogin(provider);
@@ -99,23 +93,21 @@ export class AuthService {
 
   //// Email/Password Auth ////
 
-  emailSignUp(email: string, password: string) {
+  emailSignUp(email: string, password: string, role: string) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(credential => {
-        return this.registerNewUser(credential.user).subscribe((result => {
+        return this.registerNewUser(credential.user, role).subscribe((result => {
           console.log(result);
-          if (result.success === true) {
-            this.router.navigate(['/upload']);
+          if (result.success === true) {            
             this.changeMessage(false);
+            this.router.navigate(['./artist-center']);
             this.notify.update('Welcome To Spaces & Stories', 'success');
           } else {
             this.user = Observable.of(null);
             this.changeMessage(false);
           }
         }));
-        // this.changeMessage(false);
-        // this.notify.update('Welcome To Spaces & Stories', 'success');
       })
       .catch(error => {
         this.handleError(error);
@@ -123,24 +115,25 @@ export class AuthService {
       });
   }
 
-  // TODO : Solve the observable auth.user binding to template which flickers the login
   emailLogin(email: string, password: string) {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
-      .then(credential => {
-        console.log(credential.user);
-        return this.registerNewUser(credential.user).subscribe((result => {
-          console.log(result);
-          if (result.success === true) {
-            this.router.navigate(['/upload']);
-            this.changeMessage(false);
+      .then(() => {
+            this.router.navigate(['./artist-center']);
             this.notify.update('Welcome To Spaces & Stories', 'success');
-          } else {
-            this.user = Observable.of(null);
-            this.signOut('unAuthenticated');
             this.changeMessage(false);
-          }
-        }));
+        // return this.registerNewUser(credential.user, role).subscribe((result => {
+        //   console.log(result);
+        //   if (result.success === true) {
+        //     this.router.navigate(['./artist-center']);            
+        //     this.notify.update('Welcome To Spaces & Stories', 'success');
+        //     this.changeMessage(false);
+        //   } else {
+        //     this.user = Observable.of(null);
+        //     this.signOut('unAuthenticated');
+        //     this.changeMessage(false);
+        //   }
+        // }));
       })
       .catch(error => {
         this.handleError(error);
@@ -162,27 +155,20 @@ export class AuthService {
     console.error(error);
     this.notify.update(error.message, 'error');
   }
-  private registerNewUser(user) {
+  private registerNewUser(user, role?) {    
     const data: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName || 'nameless user',
-      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
-      role: 'admin'
+      role: role
     }
-    console.log(data);
-    return this.http.post < User > (this.userRegisterURL, data, httpOptions).pipe(
+    return this.http.post <User> (this.userRegisterURL, data, httpOptions).pipe(
       catchError(this.handleHTTPError('registerNewUser'))
-    );
-  }
-  getimages() {
-    const getImagesURL = `${environment.API_BASE_URI}/art/files`;
-    return this.http.get < Files > (getImagesURL, httpOptions).pipe(
-      catchError(this.handleHTTPError('getImages'))
     );
   }
   signOut(isAuthenticated) {
     this.afAuth.auth.signOut().then(() => {
+      console.log('clearing session storage');
+      sessionStorage.clear();
       this.router.navigate(['/']);
       isAuthenticated === 'unAuthenticated' ? this.notify.update('There was an error during sign up, please try gain.', 'error'):this.notify.update('You Have Been Successfully Logged-Out', 'success');
       

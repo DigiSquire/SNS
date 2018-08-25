@@ -36,5 +36,7 @@ export const heroes: Hero[] = [
 
 export const states = ['CA', 'MD', 'OH', 'VA'];
 export const categories = ['Paintings', 'Photographs'];
-
+export const medium = ['Oil on Canvas', 'Watercolour on Canvas', 'Acrylic on Canvas', 'Watercolour on Paper', 
+'Ink on Paper', 'Mixed media'];
+export const classification = ['Abstract', 'Nature', 'Animals', 'Flowers', 'Cityscape'];
 

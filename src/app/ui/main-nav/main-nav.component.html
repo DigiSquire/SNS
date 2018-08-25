@@ -1,6 +1,6 @@
 <app-nav></app-nav>
 <nav class="navbar fixed-top mt-4_5 navbar-expand-lg pl-4">
-  <a routerLink="/gallery" class="navbar-brand mb-0 h1">
+  <a routerLink="./gallery" class="navbar-brand mb-0 h1">
     <img class="logo" src="./assets/logo@2x.png" alt="Spaces and stories logo">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -10,10 +10,10 @@
   <div class="collapse navbar-collapse d-md-flex justify-content-md-center" id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
-        <a class="nav-link text-black" routerLinkActive="text-grey" routerLink="/gallery">Gallery</a>
+        <a class="nav-link text-black" routerLinkActive="text-grey" routerLink="./gallery">Gallery</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-black" routerLinkActive="text-grey">Artists</a>
+        <a class="nav-link text-black" routerLinkActive="text-grey" routerLink="./artists">Artists</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-black" routerLinkActive="text-grey">Get In Touch</a>
@@ -22,16 +22,17 @@
     <ul class="navbar-nav ml-md-0">
       <li class="nav-item" style="cursor:pointer;">
         <a *ngIf="!(auth.user | async);else alreadyLoggedIn" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black"
-          routerLink="/login">Sign in
+          routerLink="./login">Sign in
           <span class="text-grey" style="font-size: 80%;font-weight: 100;">or</span> Sign up</a>
         <ng-template #alreadyLoggedIn>
           <div ngbDropdown>
             <a ngbDropdownToggle>
-                <i class="fas fa-user icon-color fa-lg p-2"></i>
+              <i class="fas fa-user icon-color fa-lg p-2"></i>
             </a>
             <div ngbDropdownMenu>
-              <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Profile</a>
-              <a routerLink="/upload"class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Upload</a>
+              <a routerLink="./artist-center/profile" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Profile</a>
+              <a routerLink="./artist-center/upload" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Upload</a>
+              <a routerLink="./artist-center/my-artworks" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">My Artworks</a>
               <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign out</a>
             </div>
           </div>
@@ -42,4 +43,4 @@
   </div>
 
 </nav>
-<div class=" pl-4"></div>
+<div class="pl-4"></div>

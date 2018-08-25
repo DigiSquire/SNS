@@ -14,10 +14,21 @@
       <div class="form-group">
         <input type="email" id="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email"
           required autocomplete="new-password">
-        <small id="emailHelp" class="mb-4 form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="mb-2 form-text text-muted">We'll never share your email with anyone else.</small>
         <div *ngIf="formErrors.email" class="alert">
           {{ formErrors.email }}
         </div>
+          <section class="d-flex flex-column role-section">
+            <div>
+              <span class="pr-3">I am an artist</span>
+              <mat-slide-toggle (change)="logChange($event);" formControlName="role" class="example-margin">
+              </mat-slide-toggle>
+            </div>
+
+            <div>
+              <small id="roleHelp" class="mb-2 form-text text-muted">As an artist you will be able to upload, sell & rent your artworks.</small>
+            </div>
+          </section>
         <input type="password" id="password" placeholder="Enter password" class="form-control" formControlName="password" required>
 
         <div *ngIf="formErrors.password" class="alert">
@@ -48,10 +59,10 @@
       <div class="form-group">
         <input type="email" id="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email"
           required autocomplete="new-password">
-        <small id="emailHelp" class="mb-4 form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="mb-2 form-text text-muted">We'll never share your email with anyone else.</small>
         <div *ngIf="formErrors.email" class="alert">
           {{ formErrors.email }}
-        </div>
+        </div>        
         <input type="password" id="password" placeholder="Enter password" class="form-control" formControlName="password" required
           autocomplete="new-password">
 

@@ -13,9 +13,11 @@ type FormErrors = { [u in UserFields]: string };
 export class UserFormComponent implements OnInit {
   public loading: boolean; 
   user;
+  role = 'publicUser';
   userForm: FormGroup;
   newUser = true; // to toggle login or signup form
   passReset = false; // set to true when password reset is triggered
+  emailPattern: any = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   formErrors: FormErrors = {
     'email': '',
     'password': '',
@@ -23,7 +25,7 @@ export class UserFormComponent implements OnInit {
   validationMessages = {
     'email': {
       'required': 'Email is required.',
-      'email': 'Email must be a valid email',
+      'pattern': 'Email must be a valid email.'
     },
     'password': {
       'required': 'Password is required.',
@@ -39,16 +41,16 @@ export class UserFormComponent implements OnInit {
     this.buildForm();
     this.auth.isLoading.subscribe(message => this.loading = message)
   }
-
+  logChange = (event) => {
+    this.role = event.checked === true ? 'artist' : 'publicUser';
+  }
   toggleForm() {
     this.newUser = !this.newUser;
   }
-
   signup() {
     this.auth.changeMessage(true);
-    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password']);
+    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password'], this.role);
   }
-
   login() {
     this.auth.changeMessage(true);
     this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password']);
@@ -66,13 +68,14 @@ export class UserFormComponent implements OnInit {
     this.userForm = this.fb.group({
       'email': ['', [
         Validators.required,
-        Validators.email,
+        Validators.pattern(this.emailPattern)
       ]],
       'password': ['', [
         Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         Validators.minLength(6),
         Validators.maxLength(25),
       ]],
+      'role': [''],
     });
 
     this.userForm.valueChanges.subscribe((data) => this.onValueChanged(data));

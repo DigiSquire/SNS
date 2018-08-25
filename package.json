@@ -32,10 +32,6 @@
     "core-js": "^2.5.7",
     "firebase": "^5.4.1",
     "hammerjs": "^2.0.8",
-<<<<<<< HEAD
-=======
-    "morgan": "^1.9.0",
->>>>>>> 618b78df8459f18b581ea0e12c69ea4fd26083ea
     "ngx-loading": "^1.0.14",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",

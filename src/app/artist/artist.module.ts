@@ -7,16 +7,15 @@ import { ArtistCenterComponent } from './artist-center/artist-center.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MyArtworksComponent } from './my-artworks/my-artworks.component';
 import { UploadArtworkComponent } from './upload-artwork/upload-artwork.component';
-import {FileDropModule} from 'ngx-file-drop';
+import { DropZoneDirective } from '../uploads/drop-zone.directive';
+
 @NgModule({
   imports: [
     CommonModule,
     ArtistCenterRoutingModule,
-    FileDropModule,
-    FormsModule,
     ReactiveFormsModule,
     MaterialModule
   ],
-  declarations: [ArtistCenterComponent, ProfileComponent, MyArtworksComponent, UploadArtworkComponent]
+  declarations: [ArtistCenterComponent, DropZoneDirective, ProfileComponent, MyArtworksComponent, UploadArtworkComponent]
 })
 export class ArtistModule { }

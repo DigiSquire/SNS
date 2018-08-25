@@ -8,7 +8,7 @@ import { FileSizePipe } from './file-size.pipe';
   imports: [
     CommonModule
   ],
-  declarations: [UploadPageComponent, DropZoneDirective, FileSizePipe],
+  declarations: [UploadPageComponent,  FileSizePipe],
   exports: [UploadPageComponent]
 })
 export class UploadsModule { }

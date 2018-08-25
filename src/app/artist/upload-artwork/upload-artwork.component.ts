@@ -2,7 +2,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Address, Hero, states, categories, medium, classification } from '../../core/data.model';
-import { UploadEvent, UploadFile } from 'ngx-file-drop';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'upload-artwork',
@@ -12,7 +12,7 @@ import { UploadEvent, UploadFile } from 'ngx-file-drop';
 
 export class UploadArtworkComponent implements OnChanges {
   @Input() hero: Hero;
-  public files: UploadFile[] = [];
+ // public files: UploadFile[] = [];
   heroForm: FormGroup;
   nameChangeLog: string[] = [];
   states = states;
@@ -21,57 +21,91 @@ export class UploadArtworkComponent implements OnChanges {
    categories= categories;
    availableFrom: Date= null;
    availableTo: Date= null;
+   file;
   constructor(
     private fb: FormBuilder, private http: HttpClient) {
 
     this.createForm();
     // this.logNameChange();
   }
-  public dropped(event: UploadEvent) {
-    this.files = event.files;
-    console.log(this.files);
-    for (const droppedFile of event.files) {
- 
-      // Is it a file?
-      if (droppedFile.fileEntry.isFile) {
-        const fileEntry = droppedFile.fileEntry;
-        // fileEntry.file((file: File) => {
- 
-          // Here you can access the real file
-        //  console.log(droppedFile.relativePath, file);
- 
-          /**
-          // You could upload it like this:
-          const formData = new FormData()
-          formData.append('logo', file, relativePath)
- 
-          // Headers
-          const headers = new HttpHeaders({
-            'security-token': 'mytoken'
-          })
- 
-          this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
-          .subscribe(data => {
-            // Sanitized logo returned from backend
-          })
-          **/
- 
-       //  });
-      } else {
-        // It was a directory (empty directories are added, otherwise only files)
-       // const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-        // console.log(droppedFile.relativePath, fileEntry);
-      }
+
+  startUpload(event: FileList) {
+    // The File object
+    this.file = event.item(0);
+
+    // Client-side validation example
+    if (this.file.type.split('/')[0] !== 'image') {
+      console.error('unsupported file type :( ');
+      return;
     }
+
+    // Totally optional metadata
+   // const customMetadata = { app: 'My AngularFire-powered PWA!' };
+    console.log(this.file);
+     this.heroForm.get('file').setValue(this.file);
+    // return this.updateUserData(file).subscribe((result => {
+    //   console.log(result);
+    // }));
+    // Progress monitoring
+    // this.percentage = this.task.percentageChanges();
+    // this.snapshot = this.task.snapshotChanges().pipe(
+    //   tap(snap => {
+    //     if (snap.bytesTransferred === snap.totalBytes) {
+    //       // Update firestore on completion
+    //       this.db.collection('photos').add({ path, size: snap.totalBytes });
+    //     }
+    //   }),
+    //   finalize(() => this.downloadURL = this.storage.ref(path).getDownloadURL() )
+    // );
+
+
+    // The file's download URL
   }
+  // public dropped(event: UploadEvent) {
+  //   this.files = event.files;
+  //   console.log(this.files);
+  //   for (const droppedFile of event.files) {
  
-  public fileOver(event) {
-    console.log(event);
-  }
+  //     // Is it a file?
+  //     if (droppedFile.fileEntry.isFile) {
+  //       const fileEntry = droppedFile.fileEntry;
+  //        fileEntry.file((file: File) => {
  
-  public fileLeave(event) {
-    console.log(event);
-  }
+  //         // Here you can access the real file
+  //         console.log(droppedFile.relativePath, file);
+ 
+          
+  //         // You could upload it like this:
+  //         const formData = new FormData()
+  //         formData.append('logo', file, relativePath)
+ 
+  //         // Headers
+  //         const headers = new HttpHeaders({
+  //           'security-token': 'mytoken'
+  //         })
+ 
+  //         this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
+  //         .subscribe(data => {
+  //           // Sanitized logo returned from backend
+  //         })
+          
+ 
+  //       });
+  //     } else {
+  //       // It was a directory (empty directories are added, otherwise only files)
+  //      const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
+  //        console.log(droppedFile.relativePath, fileEntry);
+  //     }
+  //   }
+  // }
+ 
+  // public fileOver(event) {
+  //   console.log(event);
+  // }
+ 
+  // public fileLeave(event) {
+  //   console.log(event);
+  // }
 
   createForm() {
 
@@ -111,6 +145,8 @@ export class UploadArtworkComponent implements OnChanges {
       rentPrice: '',
       sellingPrice: '',
       printPrice: '',
+      approvalStatus: 'pending',
+      artBy :  sessionStorage.getItem(environment.emailId)
       
       }),
     file: [null, Validators.required]
@@ -135,12 +171,12 @@ export class UploadArtworkComponent implements OnChanges {
   //   }
   // }
 
-  onFileChange(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.heroForm.get('file').setValue(file);
-    }
-  }
+  // onFileChange(event) {
+  //   if (event.target.files.length > 0) {
+  //     const file = event.target.files[0];
+  //     this.heroForm.get('file').setValue(file);
+  //   }
+  // }
   rebuildForm() {
      this.heroForm.reset();
      // {

@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'artist-center',
     loadChildren: 'app/artist/artist.module#ArtistModule'
   },
+  {
+    path: 'admin-center',
+    loadChildren: 'app/admin/admin.module#AdminModule'
+  },
   { path: 'artists', component: ArtistsComponent },
   { path: 'login', component: UserFormComponent },
   { path: 'gallery', component: GalleryComponent },

@@ -21,6 +21,7 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "src/assets/bootstrap/bootstrap_v4.css",
               "src/styles.scss"
             ],
             "scripts": []

@@ -27,7 +27,7 @@ export class AdminService {
     this.handleHTTPError = httpErrorHandler.createHandleError('AdminService');
   }
   getPendingArtworks = (approvalStatus) => {
-    const getImagesURL = `${environment.API_BASE_URI_LOCAL}/art/admin/${approvalStatus}`;
+    const getImagesURL = `${environment.API_BASE_URI}/art/admin/${approvalStatus}`;
       return this.http.get<Files>(getImagesURL, httpOptions).pipe(
         map(result => {
           if (!result) {
@@ -41,7 +41,7 @@ export class AdminService {
 
   }
   getArtworks() {
-    const getImagesURL = `${environment.API_BASE_URI_LOCAL}/art/admin/files`;
+    const getImagesURL = `${environment.API_BASE_URI}/art/admin/files`;
     return this.http.get<Files>(getImagesURL, httpOptions).pipe(
       map(result => {
         if (!result) {
@@ -54,7 +54,7 @@ export class AdminService {
     );
   }
   setApprovalTo(approvalStatus: String, id) {
-    const approveURL = `${environment.API_BASE_URI_LOCAL}/art/admin/files/${id}`;
+    const approveURL = `${environment.API_BASE_URI}/art/admin/files/${id}`;
     return this.http.put<any>(approveURL, { 'approvalStatus': approvalStatus}, httpOptions).pipe(
       map(result => {
         if (!result) {

@@ -17,7 +17,7 @@ export class RejectedArtworksComponent implements OnInit {
   files;
   isArtPresent: boolean;
   message: string;
-  readonly base_uri = environment.API_BASE_URI_LOCAL;
+  readonly base_uri = environment.API_BASE_URI;
   readonly url = `${this.base_uri}/art/image/`
   constructor(private adminService: AdminService) { }
 

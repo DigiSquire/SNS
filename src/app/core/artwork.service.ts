@@ -25,7 +25,7 @@ export class ArtworkService {
     this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');
   }
   getArtworks() {
-    const getImagesURL = `${environment.API_BASE_URI_LOCAL}/art/files`;
+    const getImagesURL = `${environment.API_BASE_URI}/art/files`;
     return this.http.get<Files>(getImagesURL, httpOptions).pipe(
       map(result => {
         if (!result) {
@@ -38,7 +38,7 @@ export class ArtworkService {
     );
   }
   getProfile = (email) => {
-    const url = `${environment.API_BASE_URI_LOCAL}/user/${email}`;
+    const url = `${environment.API_BASE_URI}/user/${email}`;
     return this.http.get(url).pipe(
       map(result => {
         if (!result) {
@@ -88,7 +88,7 @@ export class ArtworkService {
   getUserArtworks() {
     const email = sessionStorage.getItem(environment.emailId);
     if (email != null) {
-      const getImagesURL = `${environment.API_BASE_URI_LOCAL}/art/files/${email}`;
+      const getImagesURL = `${environment.API_BASE_URI}/art/files/${email}`;
       return this.http.get<Files>(getImagesURL, httpOptions).pipe(
         map(result => {
           if (!result) {

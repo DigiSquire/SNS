@@ -13,8 +13,8 @@ export class AdminCenterComponent implements OnInit {
     'path': './approved',
     'label': 'Approved'
   }, {
-    'path': './all-artworks',
-    'label': 'All Artworks'
+    'path': './rejected',
+    'label': 'Rejected'
   }];
   activeLink = this.navLinks[0];
   constructor() { }

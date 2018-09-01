@@ -6,7 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminCenterComponent } from './admin-center/admin-center.component';
 import { PendingArtworksComponent } from './pending-artworks/pending-artworks.component';
 import { ApprovedArtworksComponent } from './approved-artworks/approved-artworks.component';
-import { AllArtworksComponent } from './all-artworks/all-artworks.component';
+import { RejectedArtworksComponent } from './rejected-artworks/rejected-artworks.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { AllArtworksComponent } from './all-artworks/all-artworks.component';
     ReactiveFormsModule,
     MaterialModule
   ],
-  declarations: [AdminCenterComponent, PendingArtworksComponent, ApprovedArtworksComponent, AllArtworksComponent]
+  declarations: [AdminCenterComponent, PendingArtworksComponent, ApprovedArtworksComponent, RejectedArtworksComponent, DialogComponent],
+  entryComponents: [
+    DialogComponent
+  ],
 })
 export class AdminModule { }

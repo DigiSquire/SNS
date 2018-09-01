@@ -16,5 +16,7 @@ export const environment = {
   API_BASE_URI: 'https://sns-api-207407.appspot.com/api',
   API_BASE_URI_LOCAL: 'http://localhost:8083/api',
   id: '_id',
-  emailId: 'emailId'
+  emailId: 'emailId',
+  wrongCredentials: 'auth/wrong-password',
+  invalidUser: 'auth/user-not-found'
 };

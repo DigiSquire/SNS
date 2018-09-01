@@ -1,5 +1,7 @@
 <div class="row mb-5 mt-5">
-
+<div class="text-center text-muted col-md-12 col-sm-12 col-xs-12" *ngIf="!isArtPresent">
+  <h3>{{message}}</h3>
+</div>
   <div *ngFor="let file of files" class="col-md-3 mb-4">
     <div class="card card-size">
       <div class="wrapper">
@@ -18,8 +20,7 @@
       <div class="card-body text-center">
         <div class="d-flex justify-content-center mb-3">
           <mat-chip-list>
-            <mat-chip class="approve" *ngIf="file.metadata[0].approvalStatus==='approved'" selected>Approved</mat-chip>
-            <mat-chip *ngIf="file.metadata[0].approvalStatus==='pending'" color="warn" selected>Approval Pending</mat-chip>
+            <mat-chip color="warn" *ngIf="file.metadata[0].approvalStatus==='rejected'" selected>Rejected</mat-chip>
           </mat-chip-list>
         </div>
 

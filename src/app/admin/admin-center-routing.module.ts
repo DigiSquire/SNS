@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PendingArtworksComponent } from './pending-artworks/pending-artworks.component';
-import { AllArtworksComponent } from './all-artworks/all-artworks.component';
+import { RejectedArtworksComponent } from './rejected-artworks/rejected-artworks.component';
 import { AdminCenterComponent } from './admin-center/admin-center.component';
 import { ApprovedArtworksComponent } from './approved-artworks/approved-artworks.component';
 
@@ -27,8 +27,8 @@ const adminCenterRoutes: Routes = [
                 component: ApprovedArtworksComponent                
             },            
             {
-                path: 'all-artworks',
-                component: AllArtworksComponent
+                path: 'rejected',
+                component: RejectedArtworksComponent
             }
         ]
     }

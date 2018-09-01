@@ -12,10 +12,9 @@ import {  NotifyService } from './notify.service';
 import {  HttpClient } from '@angular/common/http';
 import {  HttpHeaders } from '@angular/common/http';
 import {  HttpErrorHandler,  HandleError } from './http-error-handler.service';
-interface Files {
-  filename: string;
-  contentType: string;
-  metadata: Array < any > []
+interface Error {
+  code: string;
+  message: string;
 }
 interface User {
   uid: string;
@@ -41,7 +40,7 @@ export class AuthService {
   isLoading = this.messageSource.asObservable();
   // private userSource = new BehaviorSubject < any > (null);
   // loggedInUser = this.userSource.asObservable();
-  private userRegisterURL = `${ environment.API_BASE_URI }/user/register`;  // URL to web api
+  private userRegisterURL = `${ environment.API_BASE_URI }/user/register`; // URL to web api
   private handleHTTPError: HandleError;
   user: Observable < User > ;
 
@@ -73,25 +72,6 @@ export class AuthService {
   changeMessage(isLoading: boolean) {
     this.messageSource.next(isLoading)
   }
-  // googleLogin() {
-  //   const provider = new firebase.auth.GoogleAuthProvider()
-  //   return this.oAuthLogin(provider);
-  // }
-  // facebookLogin() {
-  //   const provider = new firebase.auth.FacebookAuthProvider();
-  //   return this.oAuthLogin(provider);
-  // }
-  // private oAuthLogin(provider: any) {
-  //   return this.afAuth.auth
-  //     .signInWithPopup(provider)
-  //     .then(credential => {
-  //       alert('Welcome to SNS!!!');
-  //       return this.updateUserData(credential.user);
-  //     })
-  //     .catch(error => this.handleError(error));
-  // }
-
-  //// Email/Password Auth ////
 
   emailSignUp(email: string, password: string, role: string) {
     return this.afAuth.auth
@@ -99,7 +79,7 @@ export class AuthService {
       .then(credential => {
         return this.registerNewUser(credential.user, role).subscribe((result => {
           console.log(result);
-          if (result.success === true) {            
+          if (result.success === true) {
             this.changeMessage(false);
             this.router.navigate(['./artist-center']);
             this.notify.update('Welcome To Spaces & Stories', 'success');
@@ -119,21 +99,9 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-            this.router.navigate(['./artist-center']);
-            this.notify.update('Welcome To Spaces & Stories', 'success');
-            this.changeMessage(false);
-        // return this.registerNewUser(credential.user, role).subscribe((result => {
-        //   console.log(result);
-        //   if (result.success === true) {
-        //     this.router.navigate(['./artist-center']);            
-        //     this.notify.update('Welcome To Spaces & Stories', 'success');
-        //     this.changeMessage(false);
-        //   } else {
-        //     this.user = Observable.of(null);
-        //     this.signOut('unAuthenticated');
-        //     this.changeMessage(false);
-        //   }
-        // }));
+        this.router.navigate(['./artist-center']);
+        this.notify.update('Welcome To Spaces & Stories', 'success');
+        this.changeMessage(false);
       })
       .catch(error => {
         this.handleError(error);
@@ -152,16 +120,22 @@ export class AuthService {
   }
   // If error, console log and notify user
   private handleError(error: Error) {
-    console.error(error);
-    this.notify.update(error.message, 'error');
+    if (error.code === environment.invalidUser) {
+      this.notify.update('Please enter a valid email-id / password to continue', 'error');
+    } else if (error.code === environment.wrongCredentials) {
+      this.notify.update('Please enter valid authorization credentials', 'error');
+    } else {
+      this.notify.update(error.message, 'error');
+    }
+
   }
-  private registerNewUser(user, role?) {    
+  private registerNewUser(user, role ? ) {
     const data: User = {
       uid: user.uid,
       email: user.email,
       role: role
     }
-    return this.http.post <User> (this.userRegisterURL, data, httpOptions).pipe(
+    return this.http.post < User > (this.userRegisterURL, data, httpOptions).pipe(
       catchError(this.handleHTTPError('registerNewUser'))
     );
   }
@@ -170,8 +144,10 @@ export class AuthService {
       console.log('clearing session storage');
       sessionStorage.clear();
       this.router.navigate(['/']);
-      isAuthenticated === 'unAuthenticated' ? this.notify.update('There was an error during sign up, please try gain.', 'error'):this.notify.update('You Have Been Successfully Logged-Out', 'success');
-      
+      isAuthenticated === 'unAuthenticated' ?
+        this.notify.update('There was an error during sign up, please try gain.', 'error') :
+        this.notify.update('You Have Been Successfully Logged-Out', 'success');
+
     });
   }
 }

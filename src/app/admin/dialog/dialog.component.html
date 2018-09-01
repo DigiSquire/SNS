@@ -1,0 +1,5 @@
+<h1 mat-dialog-title>Are you sure you want to {{data.approvalStatus}}?</h1>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+<button mat-button (click)="setApprovalTo(data.approvalStatus, data.objectId);" cdkFocusInitial>Yes</button>
+</div>

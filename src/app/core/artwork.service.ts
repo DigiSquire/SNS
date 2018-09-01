@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 
 import { NotifyService } from './notify.service';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 const httpOptions = {
   headers: new HttpHeaders({
@@ -11,7 +11,7 @@ const httpOptions = {
     'Access-Control-Allow-Origin': '*',
   })
 };
-export interface Files {
+export interface Files { 
   filename: string;
   contentType: string;
   metadata: Array<Object>;
@@ -25,7 +25,7 @@ export class ArtworkService {
     this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');
   }
   getArtworks() {
-    const getImagesURL = `${environment.API_BASE_URI}/art/files`;
+    const getImagesURL = `${environment.API_BASE_URI_LOCAL}/art/files`;
     return this.http.get<Files>(getImagesURL, httpOptions).pipe(
       map(result => {
         if (!result) {
@@ -38,7 +38,7 @@ export class ArtworkService {
     );
   }
   getProfile = (email) => {
-    const url = `${environment.API_BASE_URI}/user/${email}`;
+    const url = `${environment.API_BASE_URI_LOCAL}/user/${email}`;
     return this.http.get(url).pipe(
       map(result => {
         if (!result) {
@@ -88,7 +88,7 @@ export class ArtworkService {
   getUserArtworks() {
     const email = sessionStorage.getItem(environment.emailId);
     if (email != null) {
-      const getImagesURL = `${environment.API_BASE_URI}/art/files/${email}`;
+      const getImagesURL = `${environment.API_BASE_URI_LOCAL}/art/files/${email}`;
       return this.http.get<Files>(getImagesURL, httpOptions).pipe(
         map(result => {
           if (!result) {

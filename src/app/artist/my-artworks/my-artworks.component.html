@@ -18,8 +18,9 @@
       <div class="card-body text-center">
         <div class="d-flex justify-content-center mb-3">
           <mat-chip-list>
-            <mat-chip color="primary" *ngIf="file.metadata[0].approvalStatus==='approved'" selected>Approved</mat-chip>
-            <mat-chip *ngIf="file.metadata[0].approvalStatus==='pending'" color="warn" selected>Approval Pending</mat-chip>
+            <mat-chip class="approve" *ngIf="file.metadata[0].approvalStatus==='approved'" selected>Approved</mat-chip>
+            <mat-chip color="warn" *ngIf="file.metadata[0].approvalStatus==='rejected'" selected>Rejected</mat-chip>
+            <mat-chip color="warn" *ngIf="file.metadata[0].approvalStatus==='pending'" selected>Approval Pending</mat-chip>
           </mat-chip-list>
         </div>
 

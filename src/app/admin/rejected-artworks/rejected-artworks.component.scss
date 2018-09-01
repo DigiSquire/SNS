@@ -1,7 +1,9 @@
 .card-title {
   margin-bottom: 0.25rem;
 }
-
+h3 {
+  font-family: 'Cabin-Regular', sans-serif;
+}
 .pos-abs {
   position: absolute;
 }
@@ -75,8 +77,9 @@ small {
 .secondary {
   background-color: #EC5A93;
 }
-.approve {
-  background: linear-gradient(#35c350, #03b525);
+
+.primary {
+  background-color: #6ECCF0;
 }
 
 .mb-custom {

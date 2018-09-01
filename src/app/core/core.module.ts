@@ -5,12 +5,12 @@ import { NotifyService } from './notify.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpErrorHandler } from './http-error-handler.service';
 import { ArtworkService } from './artwork.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     HttpClientModule,
-    BrowserAnimationsModule
+    // BrowserAnimationsModule
   ],
   providers: [AuthService, AuthGuard, NotifyService, HttpErrorHandler, ArtworkService]
 })

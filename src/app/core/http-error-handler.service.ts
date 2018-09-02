@@ -35,7 +35,7 @@ export class HttpErrorHandler {
             // TODO: send the error to remote logging infrastructure
             console.error(error); // log to console instead
             /// TODO:check the error obj for error event ---error.error.message :
-            if (error.name === 'HttpErrorResponse' && error.status === 0) {
+            if (error.name === 'HttpErrorResponse') {
                 message = `Our services are down for maintenance , we will be back shortly`;
                 this.messageService.update(`${message}`, 'error');
             }else {

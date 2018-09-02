@@ -60,7 +60,7 @@ export class AdminService {
         if (!result) {
           this.notify.update('There was an error during approval process', 'error');
         } else {
-          this.notify.update(`Image is approved Successfully`, 'success');
+          this.notify.update(`${result.message}`, 'success');
           return result;
         }
       }),

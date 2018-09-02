@@ -5,12 +5,12 @@ import { HomePageComponent } from './ui/home-page/home-page.component';
 import { UserFormComponent } from './ui/user-form/user-form.component';
 import { GalleryComponent } from './ui/gallery/gallery.component';
 import { ArtistsComponent } from './ui/artists/artists.component';
-// , canActivate: [AuthGuard] 
 const routes: Routes = [
   { path: '', redirectTo: 'gallery', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
   {
     path: 'artist-center',
+    canActivate: [AuthGuard],
     loadChildren: 'app/artist/artist.module#ArtistModule'
   },
   {

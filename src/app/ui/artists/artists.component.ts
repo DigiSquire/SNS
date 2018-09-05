@@ -14,10 +14,11 @@ export class ArtistsComponent implements OnInit {
   images: Array<any> = [
     { 
       'url': './assets/img_1@2x.jpg'
-    },
-    {
-      'url': './assets/img_2.jpeg'
-    }
+    
+      },
+     {
+        'url': './assets/img_2.jpeg'
+      }
   ];
   constructor(private _http: HttpClient) {}
 

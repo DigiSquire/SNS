@@ -20,14 +20,13 @@ export interface Files {
   providedIn: 'root'
 })
 export class AdminService {
-  readonly uploadURL = `${environment.API_BASE_URI}/art/upload`;
 
   private handleHTTPError: HandleError;
   constructor(private http: HttpClient, private notify: NotifyService, httpErrorHandler: HttpErrorHandler) {
     this.handleHTTPError = httpErrorHandler.createHandleError('AdminService');
   }
   getPendingArtworks = (approvalStatus) => {
-    const getImagesURL = `${environment.API_BASE_URI}/art/admin/${approvalStatus}`;
+    const getImagesURL = `${environment.API_BASE_URI}/admin/${approvalStatus}`;
       return this.http.get<Files>(getImagesURL, httpOptions).pipe(
         map(result => {
           if (!result) {
@@ -41,7 +40,7 @@ export class AdminService {
 
   }
   getArtworks() {
-    const getImagesURL = `${environment.API_BASE_URI}/art/admin/files`;
+    const getImagesURL = `${environment.API_BASE_URI}/admin/files`;
     return this.http.get<Files>(getImagesURL, httpOptions).pipe(
       map(result => {
         if (!result) {
@@ -54,7 +53,7 @@ export class AdminService {
     );
   }
   setApprovalTo(approvalStatus: String, id) {
-    const approveURL = `${environment.API_BASE_URI}/art/admin/files/${id}`;
+    const approveURL = `${environment.API_BASE_URI}/admin/files/${id}`;
     return this.http.put<any>(approveURL, { 'approvalStatus': approvalStatus}, httpOptions).pipe(
       map(result => {
         if (!result) {

@@ -18,7 +18,7 @@ export class RejectedArtworksComponent implements OnInit {
   isArtPresent: boolean;
   message: string;
   readonly base_uri = environment.API_BASE_URI;
-  readonly url = `${this.base_uri}/art/image/`
+  readonly url = `${this.base_uri}/gallery/image/`
   constructor(private adminService: AdminService) { }
 
   ngOnInit() {

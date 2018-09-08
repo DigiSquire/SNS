@@ -1,23 +1,25 @@
 <ngx-loading [show]="loading"></ngx-loading>
-<div class="d-md-flex flex-items-center gutter-md-spacious" *ngIf="!(auth.user|async);">
-  <form class="mx-auto login-box col-sm-8 col-md-5 hide-sm" [formGroup]="userForm" *ngIf="newUser" (ngSubmit)="signup()">
-    <div class="form-container">
-      <div class="text-center">
-        <h3 class="dark-grey-text mb-4">
-          <strong>Sign up</strong>
-        </h3>
-      </div>
-      <div class="text-center d-flex justify-content-center mb-3">
-        <button (click)="toggleForm()" type="button" class=" mb-4 btn blue-gradient btn-block btn-rounded z-depth-1a waves-effect waves-light">Already a member? Sign in</button>
-      </div>
-
-      <div class="form-group">
-        <input type="email" id="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email"
-          required autocomplete="new-password">
-        <small id="emailHelp" class="mb-2 form-text text-muted">We'll never share your email with anyone else.</small>
-        <div *ngIf="formErrors.email" class="alert">
-          {{ formErrors.email }}
+<div class="container">
+  <div class="d-md-flex mt-5 mb-5 flex-items-center gutter-md-spacious" *ngIf="!(auth.user|async);">
+    <form class="mx-auto login-box col-sm-8 col-md-5 hide-sm" [formGroup]="userForm" *ngIf="newUser" (ngSubmit)="signup()">
+      <div class="form-container">
+        <div class="text-center">
+          <h3 class="dark-grey-text mb-4">
+            <strong>Sign up</strong>
+          </h3>
         </div>
+        <div class="text-center d-flex justify-content-center mb-3">
+          <button (click)="toggleForm()" type="button" class=" mb-4 btn blue-gradient btn-block btn-rounded z-depth-1a waves-effect waves-light">Already
+            a member? Sign in</button>
+        </div>
+
+        <div class="form-group">
+          <input type="email" id="email" class="form-control" formControlName="email" aria-describedby="emailHelp"
+            placeholder="Enter email" required autocomplete="new-password">
+          <small id="emailHelp" class="mb-2 form-text text-muted">We'll never share your email with anyone else.</small>
+          <div *ngIf="formErrors.email" class="alert">
+            {{ formErrors.email }}
+          </div>
           <section class="d-flex flex-column role-section">
             <div>
               <span class="pr-3">I am an artist</span>
@@ -26,55 +28,61 @@
             </div>
 
             <div>
-              <small id="roleHelp" class="mb-2 form-text text-muted">As an artist you will be able to upload, sell & rent your artworks.</small>
+              <small id="roleHelp" class="mb-2 form-text text-muted">As an artist you will be able to upload, sell &
+                rent
+                your artworks.</small>
             </div>
           </section>
-        <input type="password" id="password" placeholder="Enter password" class="form-control" formControlName="password" required>
+          <input type="password" id="password" placeholder="Enter password" class="form-control" formControlName="password"
+            required>
 
-        <div *ngIf="formErrors.password" class="alert">
-          {{ formErrors.password }}
+          <div *ngIf="formErrors.password" class="alert">
+            {{ formErrors.password }}
+          </div>
         </div>
-      </div>
-      <div *ngIf="errorMessage" class="alert">
-        {{ errorMessage }}
-      </div>
-      <div class="d-flex justify-content-center ">
-        <button type="submit" class="btn-full text-center mb-4 btn blue-gradient btn-rounded z-depth-1a " [disabled]="!userForm.valid">Submit</button>
-      </div>
-
-    </div>
-  </form>
-
-
-  <form class="mx-auto login-box col-sm-8 col-md-5 hide-sm" [formGroup]="userForm" *ngIf="!newUser" (ngSubmit)="login()">
-    <div class="form-container">
-      <div class="text-center">
-        <h3 class="dark-grey-text mb-4">
-          <strong>Sign in</strong>
-        </h3>
-      </div>
-      <div class="text-center d-flex justify-content-center mb-3">
-        <button (click)="toggleForm()" type="button" class="mb-4 btn blue-gradient btn-block btn-rounded z-depth-1a waves-effect waves-light">or Sign up?</button>
-      </div>
-      <div class="form-group">
-        <input type="email" id="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email"
-          required autocomplete="new-password">
-        <small id="emailHelp" class="mb-2 form-text text-muted">We'll never share your email with anyone else.</small>
-        <div *ngIf="formErrors.email" class="alert">
-          {{ formErrors.email }}
-        </div>        
-        <input type="password" id="password" placeholder="Enter password" class="form-control" formControlName="password" required
-          autocomplete="new-password">
-
-        <div *ngIf="formErrors.password" class="alert">
-          {{ formErrors.password }}
+        <div *ngIf="errorMessage" class="alert">
+          {{ errorMessage }}
         </div>
+        <div class="d-flex justify-content-center ">
+          <button type="submit" class="btn-full text-center mb-4 btn blue-gradient btn-rounded z-depth-1a " [disabled]="!userForm.valid">Submit</button>
+        </div>
+
       </div>
-      <div class="d-flex justify-content-center ">
-        <button type="submit" class="text-center mb-4 btn blue-gradient btn-full btn-rounded z-depth-1a " [disabled]="!userForm.valid">Submit</button>
+    </form>
+
+
+    <form class="mx-auto login-box col-sm-8 col-md-5 hide-sm" [formGroup]="userForm" *ngIf="!newUser" (ngSubmit)="login()">
+      <div class="form-container">
+        <div class="text-center">
+          <h3 class="dark-grey-text mb-4">
+            <strong>Sign in</strong>
+          </h3>
+        </div>
+        <div class="text-center d-flex justify-content-center mb-3">
+          <button (click)="toggleForm()" type="button" class="mb-4 btn blue-gradient btn-block btn-rounded z-depth-1a waves-effect waves-light">or
+            Sign up?</button>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" class="form-control" formControlName="email" aria-describedby="emailHelp"
+            placeholder="Enter email" required autocomplete="new-password">
+          <small id="emailHelp" class="mb-2 form-text text-muted">We'll never share your email with anyone else.</small>
+          <div *ngIf="formErrors.email" class="alert">
+            {{ formErrors.email }}
+          </div>
+          <input type="password" id="password" placeholder="Enter password" class="form-control" formControlName="password"
+            required autocomplete="new-password">
+
+          <div *ngIf="formErrors.password" class="alert">
+            {{ formErrors.password }}
+          </div>
+        </div>
+        <div class="d-flex justify-content-center ">
+          <button type="submit" class="text-center mb-4 btn blue-gradient btn-full btn-rounded z-depth-1a " [disabled]="!userForm.valid">Submit</button>
+        </div>
+        <a *ngIf="!passReset && userForm.controls.email.valid" class="help is-info" (click)="resetPassword()">Reset
+          Password for {{userForm.value.email}}?</a>
+        <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
       </div>
-      <a *ngIf="!passReset && userForm.controls.email.valid" class="help is-info" (click)="resetPassword()">Reset Password for {{userForm.value.email}}?</a>
-      <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

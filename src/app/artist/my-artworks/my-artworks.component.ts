@@ -16,7 +16,7 @@ export class MyArtworksComponent implements OnInit {
 
   files;
   readonly base_uri = environment.API_BASE_URI;
-  readonly url = `${this.base_uri}/art/image/`
+  readonly url = `${this.base_uri}/gallery/image/`
   constructor(private artService: ArtworkService) { }
 
   ngOnInit() {

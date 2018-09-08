@@ -1,12 +1,4 @@
-#wrapper {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-.container{
-  min-height: 100vh;
-}
-.container::after {
+.splash::after {
   content: '';
   background: url(../assets/container-splash.svg) no-repeat right 100%;
   max-height: 335px;

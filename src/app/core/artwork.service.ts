@@ -18,14 +18,14 @@ export interface Files {
 }
 @Injectable()
 export class ArtworkService {
-  readonly uploadURL = `${environment.API_BASE_URI}/art/upload`;
+  readonly uploadURL = `${environment.API_BASE_URI}/artist/upload`;
 
   private handleHTTPError: HandleError;
   constructor(private http: HttpClient, private notify: NotifyService, httpErrorHandler: HttpErrorHandler) { 
     this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');
   }
   getArtworks() {
-    const getImagesURL = `${environment.API_BASE_URI}/art/files`;
+    const getImagesURL = `${environment.API_BASE_URI}/gallery/files`;
     return this.http.get<Files>(getImagesURL, httpOptions).pipe(
       map(result => {
         if (!result) {
@@ -88,7 +88,7 @@ export class ArtworkService {
   getUserArtworks() {
     const email = sessionStorage.getItem(environment.emailId);
     if (email != null) {
-      const getImagesURL = `${environment.API_BASE_URI}/art/files/${email}`;
+      const getImagesURL = `${environment.API_BASE_URI}/artist/files/${email}`;
       return this.http.get<Files>(getImagesURL, httpOptions).pipe(
         map(result => {
           if (!result) {

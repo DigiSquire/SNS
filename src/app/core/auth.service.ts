@@ -51,8 +51,6 @@ export class AuthService {
     private router: Router, private notify: NotifyService, httpErrorHandler: HttpErrorHandler) {
     this.changeMessage(true);
     this.handleHTTPError = httpErrorHandler.createHandleError('AuthService');
-
-    // Get auth data, then get firestore user document || null
     this.user = this.afAuth.authState
       .switchMap(user => {
         this.changeMessage(false);
@@ -102,6 +100,14 @@ export class AuthService {
         this.router.navigate(['./artist-center']);
         this.notify.update('Welcome To Spaces & Stories', 'success');
         this.changeMessage(false);
+        return this.afAuth.auth.currentUser.getIdToken(true).then( (idToken) => {
+          // Send token to your backend via HTTPS
+          console.log(idToken)
+        }).catch((error) => {
+          this.handleError(error);
+          this.changeMessage(false);
+
+        });
       })
       .catch(error => {
         this.handleError(error);

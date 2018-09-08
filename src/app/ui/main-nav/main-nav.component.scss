@@ -30,6 +30,24 @@
 .text-grey {
   color: #9E9E9E !important;
 }
+.arrow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -0.1em;
+  width: 0;
+  height: 0;
+  display: block;
+  height: 0;
+  width: 0;
+  border-top: .267rem solid #EC5A93;
+  border-right: .267rem solid transparent;
+  border-left: .267rem solid transparent;
+  -webkit-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+
 @media (max-width: 767px) {
   .mt-4_5{
     margin-top: 4rem !important;

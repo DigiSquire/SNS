@@ -10,6 +10,8 @@ export const environment = {
   },
   API_BASE_URI: 'https://sns-api-207407.appspot.com/api',
   API_BASE_URI_LOCAL: 'http://localhost:8083/api',
+  IMAGE_LOCAL: 'http://localhost:8083/api/gallery/image/',
+  IMAGE: 'https://sns-api-207407.appspot.com/api/gallery/image/',
   id: '_id',
   emailId: 'emailId',
   wrongCredentials: 'auth/wrong-password',

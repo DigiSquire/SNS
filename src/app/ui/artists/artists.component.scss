@@ -1,6 +1,7 @@
 .layover{
     background-image: linear-gradient(to top, #00a5c1 0%, #6dc38e 100%);
     opacity: 0.7;
+    margin-top: 0px;
 }
 img{
     width: 100%;
@@ -12,4 +13,68 @@ img{
 .sub-heading{
     color: #a7a7a7;
     font-size: 14px;
+}
+#profile-cards h4{
+color: #242424;
+font-family: Cabin;
+font-size: 21px;
+font-weight: 700;
+line-height: 35px;
+text-align: center;
+}
+#profile-cards img {
+    width: 168px;
+    height:168px;
+}
+#profile-cards p {
+    color: #878787;
+    font-size: 14px;
+    font-weight: 400;
+}
+#buttons-section h4{
+    color: #2d2c2c;
+font-family: "Cabin";
+font-weight: 700;
+line-height: 60px;
+text-align: center;
+}
+
+#buttons-section .btn-lg {
+    padding: 0.85rem 4rem;
+}
+.layover{
+    margin-top: 80px;
+}
+.cabin-font{
+    font-family : "cabin";
+    font-weight: 700;
+    font-size : 45px;
+}
+.channel-font{
+    font-family: "Channel";
+    font-weight: 700;
+    font-size : 45px;
+    font-style : italic ; 
+
+}
+
+/* carousel classes */
+.carousel-indicators li {
+    border-radius: 50%;
+}
+.carousel-inner {
+    max-height: 650px;
+}
+.carousel-subtext{
+    font-family: "Montserrat Medium";
+font-weight: 500;
+font-size : 65px
+}
+.carousel-text {
+    font-family: "Montserrat - Bold";
+    font-weight: 700;
+    font-size: 65px;
+}
+.carousel-caption {
+    bottom: 45%;
 }

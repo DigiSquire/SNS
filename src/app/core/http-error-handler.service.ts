@@ -36,11 +36,9 @@ export class HttpErrorHandler {
             console.error(error); // log to console instead
             /// TODO:check the error obj for error event ---error.error.message :error.name === 'HttpErrorResponse'
             if (error.error) {
-                message = (error.error instanceof ErrorEvent) ?
-                    error.message :
-                    `server returned code ${error.error.message} with body "${error.error.message}"`;
-
-                this.messageService.update(`${serviceName}: ${operation} failed: ${message}`, 'error');
+                message = 'There was an error retrieving artworks, please try again.'
+                console.log(`${serviceName}: ${operation} failed`);
+                this.messageService.update(`${message}`, 'error');
 
                 result.data = error.error.data;
                 result.success = error.error.message;

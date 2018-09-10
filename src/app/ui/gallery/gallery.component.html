@@ -35,10 +35,9 @@
 </div>
 <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1500" (scrolled)="onScroll()">
 </div>
-
-
-<div *ngIf="finished">
-  End of database... That's all folks!
+<mat-spinner style="margin:0 auto;" *ngIf="!finished" [diameter]="40" color="warn"></mat-spinner>
+<div class="text-center"  *ngIf="finished">
+  <h5>That's all folks!</h5>
 </div>
   <!-- <div class=col-md-3>
     <div class="card card-size">

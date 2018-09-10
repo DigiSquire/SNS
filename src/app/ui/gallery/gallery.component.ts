@@ -25,9 +25,11 @@ export class GalleryComponent implements OnInit {
   constructor(private artService: ArtworkService) { }
   
   ngOnInit() {
+    this.loading = true;
     this.getFiles();
   }
   onScroll() {
+    this.loading = true;
     console.log(`this.lastKey on scroll is :${this.lastKey}`);
     this.getFiles(this.lastKey);
   }
@@ -35,7 +37,7 @@ export class GalleryComponent implements OnInit {
     if (this.finished) { return }
     return this.artService.getArtworks(key).pipe(
       tap((images: Result) => {
-        if (images.message === undefined) {
+        if (images !== null && images.message === undefined) {
           /// set the lastKey in preparation for next query
           console.log(`Initial this.lastKey on client is :${this.lastKey}`);
           this.lastKey = images.last_id;
@@ -45,8 +47,10 @@ export class GalleryComponent implements OnInit {
           const currentFiles = this.files.getValue();
           /// Concatenate new movies to current movies
           this.files.next(currentFiles.concat(newFiles));
+          this.loading = false;
         } else {
           this.finished = true;
+          this.loading = false;
         }
       }),
       take(1)

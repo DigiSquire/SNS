@@ -1,7 +1,7 @@
 <page-title [heading]="'Gallery'"></page-title>
 <div class="container">
 <div class="row mb-5">
-  <div *ngFor="let file of files" class="col-md-3 mb-4">
+<div *ngFor="let file of files | async" class="col-md-3 mb-4">
     <div class="card card-size">
       <div class="wrapper">
         <div *ngIf="file.metadata[0].rent===true" class="d-flex align-items-start flex-column pos-abs">
@@ -33,7 +33,13 @@
 
   </div>
 </div>
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1500" (scrolled)="onScroll()">
+</div>
 
+
+<div *ngIf="finished">
+  End of database... That's all folks!
+</div>
   <!-- <div class=col-md-3>
     <div class="card card-size">
       <div class="d-flex align-items-start flex-column">

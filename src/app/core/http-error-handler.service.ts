@@ -34,20 +34,18 @@ export class HttpErrorHandler {
         return (error: HttpErrorResponse): Observable<Result> => {
             // TODO: send the error to remote logging infrastructure
             console.error(error); // log to console instead
-            /// TODO:check the error obj for error event ---error.error.message :error.name === 'HttpErrorResponse'
-            if (error.error) {
-                message = 'There was an error retrieving artworks, please try again.'
-                console.log(`${serviceName}: ${operation} failed`);
+            if (error.statusText === 'Unknown Error') {
+                message = `Our services are down for maintenance , we will be back shortly`;
                 this.messageService.update(`${message}`, 'error');
+                return Observable.of(null);
+            }else {
+                console.log(`${serviceName}: ${operation} failed`);
+                this.messageService.update('There was an error retrieving artworks, please try again.', 'error');
 
                 result.data = error.error.data;
                 result.success = error.error.message;
                 result.status = error.error.status;
                 result.success = error.error.success;
-                
-            }else {
-                message = `Our services are down for maintenance , we will be back shortly`;
-                this.messageService.update(`${message}`, 'error');
             }            
             // Let the app keep running by returning a safe result.
             return Observable.of(result);

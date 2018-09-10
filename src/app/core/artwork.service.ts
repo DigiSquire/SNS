@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 
 import { NotifyService } from './notify.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,9 +24,14 @@ export class ArtworkService {
   constructor(private http: HttpClient, private notify: NotifyService, httpErrorHandler: HttpErrorHandler) { 
     this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');
   }
-  getArtworks() {
+  getArtworks(lastKey?) {
     const getImagesURL = `${environment.API_BASE_URI}/gallery/files`;
-    return this.http.get<Files>(getImagesURL, httpOptions).pipe(
+    let params;
+    if (lastKey != null || lastKey !== '' && lastKey !== undefined) {
+        params = new HttpParams()
+        .set('last_id', lastKey);
+    }    
+    return this.http.get(getImagesURL, { params }).pipe(
       map(result => {
         if (!result) {
           this.notify.update('There was an error retrieving the artworks', 'error');

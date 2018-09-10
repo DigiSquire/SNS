@@ -34,7 +34,7 @@ export class HttpErrorHandler {
         return (error: HttpErrorResponse): Observable<Result> => {
             // TODO: send the error to remote logging infrastructure
             console.error(error); // log to console instead
-            if (error.statusText === 'Unknown Error') {
+            if (error.status === 501 || error.statusText === 'Unknown Error') {
                 message = `Our services are down for maintenance , we will be back shortly`;
                 this.messageService.update(`${message}`, 'error');
                 return Observable.of(null);

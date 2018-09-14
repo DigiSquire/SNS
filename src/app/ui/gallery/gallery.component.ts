@@ -24,11 +24,9 @@ export class GalleryComponent implements OnInit {
   constructor(private artService: ArtworkService) { }
   
   ngOnInit() {
-    // this.loading = true;
     this.getFiles();
   }
   onScroll() {
-    // this.loading = true;
     console.log(`this.lastKey on scroll is :${this.lastKey}`);
     this.getFiles(this.lastKey);
   }

@@ -16,7 +16,7 @@ export interface Result {
 export class MyArtworksComponent implements OnInit {
   files = new BehaviorSubject([]);
   lastKey = '';     // key to offset next query from
-  private finished = false;  // boolean when end of database is reached
+  finished = false;  // boolean when end of database is reached
 
   isArtPresent: boolean;
   message: string;

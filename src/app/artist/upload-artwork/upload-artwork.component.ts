@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Address, Hero, states, categories, medium, classification } from '../../core/data.model';
 import { environment } from '../../../environments/environment';
-
+import { ArtworkService } from '../../core/artwork.service';
 @Component({
   selector: 'upload-artwork',
   templateUrl: './upload-artwork.component.html',
@@ -23,7 +23,8 @@ export class UploadArtworkComponent implements OnChanges {
    availableTo: Date= null;
    file;
   constructor(
-    private fb: FormBuilder, private http: HttpClient) {
+    private fb: FormBuilder, private http: HttpClient,
+    private artService: ArtworkService) {
 
     this.createForm();
     // this.logNameChange();
@@ -212,11 +213,9 @@ export class UploadArtworkComponent implements OnChanges {
     const uri = 'https://sns-api-207407.appspot.com/api/art/upload';
     console.log(formModel);
     console.log('in submit');
-    this
-    .http
-    .post(uri, formModel)
-    .subscribe(res =>
-        console.log('Done'));
+    return this.artService.uploadArtwork(formModel).subscribe((result => {
+      console.log(result);
+    }));
   }
 
   prepareSaveHero(): Hero {

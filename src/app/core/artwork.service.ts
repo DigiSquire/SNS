@@ -17,11 +17,13 @@ export interface Files {
   metadata: Array<Object>;
 }
 @Injectable()
-export class ArtworkService {
+export class ArtworkService { 
   readonly uploadURL = `${environment.API_BASE_URI}/artist/upload`;
 
   private handleHTTPError: HandleError;
-  constructor(private http: HttpClient, private notify: NotifyService, httpErrorHandler: HttpErrorHandler) { 
+  constructor(private http: HttpClient,
+      private notify: NotifyService,
+      httpErrorHandler: HttpErrorHandler) { 
     this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');
   }
   getArtworks(lastKey?) {

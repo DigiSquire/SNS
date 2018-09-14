@@ -60,46 +60,46 @@ small {
   padding: 0 0.5em;
 }
 
-.portfolio-view {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  height: 78%;
-  background: #00000057;
-  width: 100%;
-  text-align: center;
-}
+// .portfolio-view {
+//   display: none;
+//   justify-content: center;
+//   align-items: center;
+//   position: absolute;
+//   top: 0;
+//   height: 78%;
+//   background: #00000057;
+//   width: 100%;
+//   text-align: center;
+// }
 
-.card:hover {
-  box-shadow: 0px 16px 22px 0px rgba(90, 91, 95, 0.3);
-}
-.wrapper{
-  height: 100%;
-}
-.wrapper:hover .portfolio-view {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  -webkit-animation: fadeInUp 400ms;
-  animation: fadeInUp 400ms;
-}
+// .card:hover {
+//   box-shadow: 0px 16px 22px 0px rgba(90, 91, 95, 0.3);
+// }
+// .wrapper{
+//   height: 100%;
+// }
+// .wrapper:hover .portfolio-view {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   -webkit-animation: fadeInUp 400ms;
+//   animation: fadeInUp 400ms;
+// }
 
-.btn-lay {
-  min-width: 80%;
-  font-size: 0.75em;
-  color: #fff;
-  text-transform: uppercase;
-}
+// .btn-lay {
+//   min-width: 80%;
+//   font-size: 0.75em;
+//   color: #fff;
+//   text-transform: uppercase;
+// }
 
-.secondary {
-  background-color: #EC5A93;
-}
+// .secondary {
+//   background-color: #EC5A93;
+// }
 
-.primary {
-  background-color: #6ECCF0;
-}
+// .primary {
+//   background-color: #6ECCF0;
+// }
 .mb-custom{
       margin-bottom: 1.2rem !important
 }

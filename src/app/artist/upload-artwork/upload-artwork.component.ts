@@ -199,20 +199,19 @@ export class UploadArtworkComponent implements OnChanges {
   addLair() {
     this.secretLairs.push(this.fb.group(new Address()));
   }
-   prepareSave(): any {
+  prepareSave(): any {
     const formData = new FormData();
     const data = [];
     data.push(this.heroForm.get('metadata').value);
-   
+  
     formData.append('metadata', JSON.stringify(data));
     formData.append('file', this.heroForm.get('file').value);
     return formData;
   }
   onSubmit() {
     const formModel = this.prepareSave();
-    const uri = 'https://sns-api-207407.appspot.com/api/art/upload';
     console.log(formModel);
-    console.log('in submit');
+    console.log('Submit Executed');
     return this.artService.uploadArtwork(formModel).subscribe((result => {
       console.log(result);
     }));

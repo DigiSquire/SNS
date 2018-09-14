@@ -67,7 +67,7 @@ export class ArtworkService {
           if (!result) {
             this.notify.update('There was an error updating your profile, please try again', 'error');
           } else {
-            this.notify.update(`Profile updated successfully for : ${result.data.firstname} ${result.data.lastname}`, 'success');
+            this.notify.update(`Profile updated successfully`, 'success');
             return result;
           }
         }),
@@ -92,11 +92,16 @@ export class ArtworkService {
       catchError(this.handleHTTPError('uploadArtwork'))
     );
   }
-  getUserArtworks() {
+  getUserArtworks(lastKey?) {
     const email = sessionStorage.getItem(environment.emailId);
+    let params;
+    if (lastKey != null || lastKey !== '' && lastKey !== undefined) {
+      params = new HttpParams()
+        .set('last_id', lastKey);
+    } 
     if (email != null) {
       const getImagesURL = `${environment.API_BASE_URI}/artist/files/${email}`;
-      return this.http.get<Files>(getImagesURL, httpOptions).pipe(
+      return this.http.get<Files>(getImagesURL, { params }).pipe(
         map(result => {
           if (!result) {
             this.notify.update('There was an error retrieving the artworks', 'error');

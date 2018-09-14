@@ -16,7 +16,6 @@ export interface Result {
 })
 
 export class GalleryComponent implements OnInit {
-  public loading: boolean; 
   files = new BehaviorSubject([]);
   readonly base_uri= environment.API_BASE_URI;
   readonly url = `${this.base_uri}/gallery/image/`;
@@ -25,11 +24,11 @@ export class GalleryComponent implements OnInit {
   constructor(private artService: ArtworkService) { }
   
   ngOnInit() {
-    this.loading = true;
+    // this.loading = true;
     this.getFiles();
   }
   onScroll() {
-    this.loading = true;
+    // this.loading = true;
     console.log(`this.lastKey on scroll is :${this.lastKey}`);
     this.getFiles(this.lastKey);
   }
@@ -47,10 +46,8 @@ export class GalleryComponent implements OnInit {
           const currentFiles = this.files.getValue();
           /// Concatenate new movies to current movies
           this.files.next(currentFiles.concat(newFiles));
-          this.loading = false;
         } else {
           this.finished = true;
-          this.loading = false;
         }
       }),
       take(1)

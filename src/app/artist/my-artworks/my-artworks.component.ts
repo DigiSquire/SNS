@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtworkService } from '../../core/artwork.service'; 
 import { environment } from '../../../environments/environment';
+import { BehaviorSubject } from 'rxjs';
+import { tap, take } from 'rxjs/operators';
 export interface Result {
   files: Array<Object>;
   message: string;
-  filename: string;
-  contentType: string;
-  metadata: Array<Object>;
+  last_id: string;
 }
 @Component({
   selector: 'my-artworks',
@@ -14,8 +14,10 @@ export interface Result {
   styleUrls: ['./my-artworks.component.scss']
 })
 export class MyArtworksComponent implements OnInit {
+  files = new BehaviorSubject([]);
+  lastKey = '';     // key to offset next query from
+  private finished = false;  // boolean when end of database is reached
 
-  files;
   isArtPresent: boolean;
   message: string;
   readonly base_uri = environment.API_BASE_URI;
@@ -23,15 +25,39 @@ export class MyArtworksComponent implements OnInit {
   constructor(private artService: ArtworkService) { }
 
   ngOnInit() {
-    return this.artService.getUserArtworks().subscribe((result: Result) => {
-      if (result.message === undefined) {
-        this.files = result.files;
-        this.isArtPresent = true;
-      } else {
-        this.isArtPresent = false;
-        this.message = result.message;
-      }
-    });
+    this.getFiles();
+  }
+  onScroll() {
+    console.log(`this.lastKey on scroll is :${this.lastKey}`);
+    this.getFiles(this.lastKey);
+  }
+  private getFiles(key?) {
+    if (this.finished) { return }
+    return this.artService.getUserArtworks(key).pipe(
+      tap((images: Result) => {
+        if (images.message !== undefined) {
+          this.isArtPresent = false;
+          this.message = images.message;
+          this.finished = true;  
+          return;
+        }
+        if (images !== null && images.message === undefined) {
+          /// set the lastKey in preparation for next query
+          console.log(`Initial this.lastKey on client is :${this.lastKey}`);
+          this.lastKey = images.last_id;
+          console.log(`updated this.lastKey on client is :${this.lastKey}`);
+          const newFiles = images.files;
+          /// Get current movies in BehaviorSubject
+          const currentFiles = this.files.getValue();
+          /// Concatenate new movies to current movies
+          this.files.next(currentFiles.concat(newFiles));
+          this.isArtPresent = true;
+        } else {
+          this.finished = true;          
+        }
+      }),
+      take(1)
+    ).subscribe();
   }
 
 }

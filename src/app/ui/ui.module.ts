@@ -17,7 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { ArtistsComponent } from './artists/artists.component';
 
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 @NgModule({
   imports: [
     LoadingModule,
@@ -28,7 +28,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     UploadsModule,   
     MaterialModule, 
     NgbModule,
-    InfiniteScrollModule
   ],
   declarations: [
     HomePageComponent,

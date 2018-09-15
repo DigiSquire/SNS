@@ -2,7 +2,7 @@
   <div class="form-group">
     <div class="dropzone" dropZone  (dropped)="startUpload($event)">
   
-      <p>Drag and Drop a File</p>
+      <h3 class="text-muted">Drag or Drop a File</h3>
       <div class="file">
         <label class="file-label">
           <input class="file-input" type="file" (change)="startUpload($event.target.files)">
@@ -45,7 +45,8 @@
                   <span matSuffix>lbs</span>
                 </mat-form-field>
           </div>
-            <div class="form-group col-sm-2" formGroupName="category">Category
+            <div class="form-group col-sm-2" formGroupName="category">
+              <h3 class="sub-heading">Category</h3>
                 <mat-radio-group class="example-radio-group" formControlName="artType">
                     <mat-radio-button class="example-radio-button" *ngFor="let artType of categories" [value]="artType">
                       {{artType}}
@@ -53,7 +54,8 @@
                   </mat-radio-group>
                 </div>
                 <div class="form-group row" *ngIf="heroForm.get('metadata.category.artType').value=='Paintings'" >
-                    <div class="col-sm-2" formGroupName="artmedium">Medium
+                    <div class="col-sm-2" formGroupName="artmedium">
+                      <h3 class="sub-heading">Medium</h3>
                       <mat-radio-group class="example-radio-group" formControlName="medium">
                           <mat-radio-button class="example-radio-button" *ngFor="let medium of medium" [value]="medium">
                             {{medium}}
@@ -64,8 +66,8 @@
             
   
     <div formGroupName="dimension">
-      Dimension
-     <div class="form-group">
+      <h3 class="sub-heading">Dimension</h3>
+      <div class="form-group">
         <mat-form-field class="example-full-width">
             <input  matInput placeholder="Height" formControlName="height">
             <span matSuffix>inch</span>
@@ -82,9 +84,9 @@
     </div>
       
     <div class="form-group radio" formGroupName="classification" >
-      <h4>Classification</h4>
+      <h3 class="sub-heading">Classification</h3>
       <mat-radio-group class="example-radio-group" formControlName="artClassification">
-          <mat-radio-button class="example-radio-button" *ngFor="let artClassification of classification" [value]="artClassification">
+          <mat-radio-button class="ml-05 example-radio-button" *ngFor="let artClassification of classification" [value]="artClassification">
             {{artClassification}}
           </mat-radio-button>
         </mat-radio-group>
@@ -139,8 +141,6 @@
           </mat-form-field>
     </div>
   </div>
- 
-     
       <!-- <input type="file" class="form-control-file"  id="file" (change)="onFileChange($event)" #fileInput>
     -->
     <div style="margin-bottom: 1em">

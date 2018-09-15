@@ -3,12 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ArtworkService } from '../../core/artwork.service';
 import { environment } from '../../../environments/environment';
-interface Response {
-  data: any,
-  message,
-  status: number,
-  success: boolean
-}
+import { Result } from '../../core/result.interface';
 @Component({
   selector: 'profile',
   templateUrl: './profile.component.html',
@@ -37,7 +32,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     const email = sessionStorage.getItem(environment.emailId);
     if (sessionStorage.getItem(environment.id) === null && email != null) {
-      return this.artService.getProfile(email).subscribe((result: Response) => {
+      return this.artService.getProfile(email).subscribe((result: Result) => {
         if (result) {
           sessionStorage.setItem(environment.id, result.data._id);
           // TODO populate form with the returned details from this API call 

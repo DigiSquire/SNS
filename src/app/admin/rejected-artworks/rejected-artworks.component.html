@@ -2,7 +2,7 @@
     <div class="text-center text-muted col-md-12 col-sm-12 col-xs-12" *ngIf="!isArtPresent">
       <h3>{{message}}</h3>
     </div>
-    <div *ngFor="let file of files" class="col-md-3 mb-4">
+    <div *ngFor="let file of files | async" class="col-md-3 mb-4">
       <div class="card card-size">
         <div class="wrapper">
 
@@ -37,3 +37,7 @@
 
     </div>
   </div>
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1500" (scrolled)="onScroll()">
+</div>
+<mat-spinner style="margin:0 auto;" *ngIf="!finished" [diameter]="40" color="warn"></mat-spinner>
+

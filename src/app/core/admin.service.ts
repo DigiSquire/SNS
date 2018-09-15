@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 
 import { NotifyService } from './notify.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,9 +25,14 @@ export class AdminService {
   constructor(private http: HttpClient, private notify: NotifyService, httpErrorHandler: HttpErrorHandler) {
     this.handleHTTPError = httpErrorHandler.createHandleError('AdminService');
   }
-  getPendingArtworks = (approvalStatus) => {
+  getPendingArtworks = (approvalStatus, lastKey?) => {
     const getImagesURL = `${environment.API_BASE_URI}/admin/${approvalStatus}`;
-      return this.http.get<Files>(getImagesURL, httpOptions).pipe(
+    let params;
+    if (lastKey != null || lastKey !== '' && lastKey !== undefined) {
+      params = new HttpParams()
+        .set('last_id', lastKey);
+    } 
+    return this.http.get<Files>(getImagesURL, { params }).pipe(
         map(result => {
           if (!result) {
             this.notify.update('There was an error retrieving the artworks', 'error');
@@ -38,19 +43,6 @@ export class AdminService {
         catchError(this.handleHTTPError('getPendingArtworks'))
       );
 
-  }
-  getArtworks() {
-    const getImagesURL = `${environment.API_BASE_URI}/admin/files`;
-    return this.http.get<Files>(getImagesURL, httpOptions).pipe(
-      map(result => {
-        if (!result) {
-          this.notify.update('There was an error retrieving the artworks', 'error');
-        } else {
-          return result;
-        }
-      }),
-      catchError(this.handleHTTPError('getArtworks'))
-    );
   }
   setApprovalTo(approvalStatus: String, id) {
     const approveURL = `${environment.API_BASE_URI}/admin/files/${id}`;

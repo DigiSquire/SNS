@@ -3,11 +3,7 @@ import { ArtworkService } from '../../core/artwork.service';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { tap, take } from 'rxjs/operators';
-export interface Result {
-  files: Array<Object>;
-  message: string;
-  last_id: string;
-}
+import { Result } from '../../core/result.interface';
 @Component({
   selector: 'my-artworks',
   templateUrl: './my-artworks.component.html',
@@ -15,9 +11,8 @@ export interface Result {
 })
 export class MyArtworksComponent implements OnInit {
   files = new BehaviorSubject([]);
-  lastKey = '';     // key to offset next query from
-  finished = false;  // boolean when end of database is reached
-
+  lastKey = '';
+  finished = false;
   isArtPresent: boolean;
   message: string;
   readonly base_uri = environment.API_BASE_URI;
@@ -35,6 +30,11 @@ export class MyArtworksComponent implements OnInit {
     if (this.finished) { return }
     return this.artService.getUserArtworks(key).pipe(
       tap((images: Result) => {
+        if (images.status === 504) {
+          this.isArtPresent = true;
+          this.finished = true;
+          return;
+        }
         if (images.message !== undefined) {
           this.isArtPresent = false;
           this.message = images.message;

@@ -7,9 +7,19 @@
 }
 .example-margin {
     margin: 0 10px;
-  }
-
-  .dropzone { 
+}
+h3{
+    font-family: 'Cabin-Regular',
+    sans-serif;
+}
+.ml-05{
+    margin-left: 0.65rem;
+}
+.sub-heading {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+.dropzone { 
     display: flex;
     align-items: center;
     justify-content: center;

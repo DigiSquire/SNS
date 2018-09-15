@@ -1,10 +1,23 @@
 .layover{
-    background-image: linear-gradient(to top, #00a5c1 0%, #6dc38e 100%);
-    opacity: 0.7;
-    margin-top: -10.5em;
+    // background-image: linear-gradient(to top, #00a5c1 0%, #6dc38e 100%);
+    // opacity: 0.7;
+    margin-top: -40px;
 }
 img{
     width: 100%;
+}
+.slide-gradient {
+max-height: 650px;
+}
+.slide-gradient::before {
+content: '';
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+background-image: linear-gradient(to top, #006374 30%, #6dc38e 70%);
+opacity: 0.5; 
 }
 .card{
     background-color: transparent;
@@ -59,7 +72,7 @@ text-align: center;
 .carousel-indicators li {
     border-radius: 50%;
 }
-.carousel-inner {
+.layover .carousel-inner {
     max-height: 650px;
 }
 .carousel-subtext{

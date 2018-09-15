@@ -13,12 +13,12 @@ export class ArtistsComponent implements OnInit {
   showNavigationArrows = false;
   images: Array<any> = [
     { 
-      'url': './assets/img_1@2x.jpg'
+      'url': './assets/artistimage1.jpg'
     
       },
      {
-        'url': './assets/img_2.jpeg'
-      }
+    'url': './assets/img_1.jpg'
+       }
   ];
   constructor(private _http: HttpClient) {}
 

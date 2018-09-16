@@ -136,11 +136,20 @@ export class UploadArtworkComponent implements OnChanges {
         artClassification: ''
         
       }),
-      artmedium: this.fb.group({
+      artmedium : this.fb.group({
         medium: ''
         
       }),
       rent: '',
+      rentTenure: this.fb.group({
+        oneMonth : '',
+        oneMonthRentPrice : '',
+        threeMonth : '',
+        threeMonthRentPrice : '',
+        sixMonth : '',
+        sixMonthRentPrice : ''
+
+        }),
       buy: '',
       print: '',
       rentPrice: '',

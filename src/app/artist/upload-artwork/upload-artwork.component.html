@@ -95,19 +95,22 @@
         <mat-checkbox class="example-margin" formControlName="rent">Rent</mat-checkbox>
       
     </div>
-     <div class="form-group" *ngIf="heroForm.get('metadata.rent').value" >
-        <mat-checkbox class="example-margin" formControlName="oneMotnh">1 month</mat-checkbox>
-        <mat-form-field class="example-full-width">
-            <input  matInput placeholder="Price:" formControlName="rentPrice">
-          </mat-form-field>
-          <mat-checkbox class="example-margin" formControlName="oneMotnh">3 month</mat-checkbox>
-          <mat-form-field class="example-full-width">
-              <input  matInput placeholder="Price:" formControlName="rentPrice">
-            </mat-form-field>
-            <mat-checkbox class="example-margin" formControlName="oneMotnh">6 month</mat-checkbox>
-            <mat-form-field class="example-full-width">
-                <input  matInput placeholder="Price:" formControlName="rentPrice">
-              </mat-form-field>
+<div class="form-group" *ngIf="heroForm.get('metadata.rent').value" >
+<div formGroupName="rentTenure">
+<mat-checkbox class="example-margin" formControlName="oneMonth">1 month</mat-checkbox>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Price:" formControlName="oneMonthRentPrice">
+</mat-form-field>
+<mat-checkbox class="example-margin" formControlName="threeMonth">3 month</mat-checkbox>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Price:" formControlName="threeMonthRentPrice">
+</mat-form-field>
+<mat-checkbox class="example-margin" formControlName="sixMonth">6 month</mat-checkbox>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Price:" formControlName="sixMonthRentPrice">
+</mat-form-field>
+  </div>
+
     </div>
     <div class="form-group" style="display:inline;">
         <mat-form-field>
@@ -176,7 +179,7 @@
     </div>
   </div> -->
   <!-- Uncomment for to see chamges to JSON -->
-  <!-- <p>heroForm value: {{ heroForm.value | json}}</p>  -->
+   <p>heroForm value: {{ heroForm.value | json}}</p> 
   
   <!-- <h4>Name change log</h4>
   <div *ngFor="let name of nameChangeLog">{{name}}</div> -->

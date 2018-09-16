@@ -36,7 +36,11 @@ export class ProfileComponent implements OnInit {
         if (result) {
           sessionStorage.setItem(environment.id, result.data._id);
           this.profileForm.patchValue({
-            firstName: result.data.firstname
+            firstName: result.data.firstname,
+            lastName: result.data.lastname,
+            contactNumber: result.data.contact,
+            address: result.data.deliveryAddress
+
           });
           // TODO populate form with the returned details from this API call 
           // So on every subsequent visit the form comes populated

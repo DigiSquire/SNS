@@ -30,7 +30,7 @@ opacity: 0.5;
 #profile-cards h4{
 color: #242424;
 font-family: Cabin;
-font-size: 21px;
+font-size: 16px;
 font-weight: 700;
 line-height: 35px;
 text-align: center;
@@ -43,6 +43,7 @@ text-align: center;
     color: #878787;
     font-size: 14px;
     font-weight: 400;
+    text-align:center;
 }
 #buttons-section h4{
     color: #2d2c2c;
@@ -63,9 +64,12 @@ text-align: center;
 .channel-font{
     font-family: "Channel";
     font-weight: 700;
-    font-size : 45px;
+    font-size : 28px;
     font-style : italic ; 
 
+}
+.padding-top15{
+    padding-top:15px;
 }
 
 /* carousel classes */

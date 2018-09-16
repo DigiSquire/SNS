@@ -17,8 +17,11 @@ export class ArtistsComponent implements OnInit {
     
       },
      {
-    'url': './assets/img_1.jpg'
-       }
+    'url': './assets/paint1.jpg'
+       },
+       {
+        'url': './assets/paint2.png'
+           }
   ];
   constructor(private _http: HttpClient) {}
 

@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   // Hit the API with email id from session storage to get relevant Details according to profile
   ngOnInit() {
     const email = sessionStorage.getItem(environment.emailId);
-    if (sessionStorage.getItem(environment.id) === null && email != null) {
+    if (email != null) {
       return this.artService.getProfile(email).subscribe((result: Result) => {
         if (result) {
           sessionStorage.setItem(environment.id, result.data._id);
@@ -47,9 +47,10 @@ export class ProfileComponent implements OnInit {
           console.log(result);
         }
       });
-    }else {
-      console.log('Id is already set');
     }
+    // else {
+    //   console.log('Id is already set');
+    // }
     
     // this.auth.loggedInUser.subscribe(message => this.email = message);
     // this.profileForm.patchValue({
@@ -57,14 +58,6 @@ export class ProfileComponent implements OnInit {
     // })
     // console.log(this.email);
   }
-  // updateProfile() {
-  //   this.profileForm.patchValue({
-  //     firstName: 'Nancy',
-  //     address: {
-  //       street: '123 Drew Street'
-  //     }
-  //   });
-  // }
 
 
 

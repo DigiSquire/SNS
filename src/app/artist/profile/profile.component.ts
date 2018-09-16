@@ -35,6 +35,9 @@ export class ProfileComponent implements OnInit {
       return this.artService.getProfile(email).subscribe((result: Result) => {
         if (result) {
           sessionStorage.setItem(environment.id, result.data._id);
+          this.profileForm.patchValue({
+            firstName: result.data.firstname
+          });
           // TODO populate form with the returned details from this API call 
           // So on every subsequent visit the form comes populated
           console.log(result);

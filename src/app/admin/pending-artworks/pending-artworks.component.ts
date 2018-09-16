@@ -62,9 +62,23 @@ export class PendingArtworksComponent implements OnInit {
     ).subscribe();
   }
   openDialog(action: string, id): void {
-    this.dialog.open(DialogComponent, {
-      data: { approvalStatus: action,
-              objectId: id }
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        approvalStatus: action,
+        objectId: id
+      }
     });
+    dialogRef.afterClosed().subscribe(
+      (data) => {
+        this.updatePending(data);
+      }
+    );
+  }
+  updatePending(data) {
+    const currentFiles = this.files.getValue();
+    currentFiles.forEach((item, index) => {
+      if (item._id === data) { currentFiles.splice(index, 1); }
+    });
+    this.files.next(currentFiles);
   }
 }

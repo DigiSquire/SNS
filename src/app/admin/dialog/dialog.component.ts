@@ -19,10 +19,11 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
   }
   setApprovalTo = (approvalStatus, id) => {
-    this.dialogRef.close();
     return this.adminService.setApprovalTo(approvalStatus, id).subscribe((result => {
       if (result) {
-        console.log(result);
+        this.dialogRef.close(id);
+      }else {
+        this.dialogRef.close();
       }
     }));
     

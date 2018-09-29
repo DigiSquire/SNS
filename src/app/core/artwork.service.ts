@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { NotifyService } from './notify.service';
 import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
+import { AuthService } from './auth.service';
 const httpOptions = {
   headers: new HttpHeaders({
     'Authorization': 'my-auth-token',
@@ -16,14 +17,16 @@ export interface Files {
   contentType: string;
   metadata: Array<Object>;
 }
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ArtworkService { 
   readonly uploadURL = `${environment.API_BASE_URI}/artist/upload`;
 
   private handleHTTPError: HandleError;
   constructor(private http: HttpClient,
       private notify: NotifyService,
-      httpErrorHandler: HttpErrorHandler) { 
+      httpErrorHandler: HttpErrorHandler, private auth: AuthService) { 
     this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');
   }
   getArtworks(lastKey?) {
@@ -58,6 +61,7 @@ export class ArtworkService {
     );
   }
   updateProfile = (profileData) => {
+    this.auth.changeMessage(true);
     const id = sessionStorage.getItem(environment.id);
     if ( id != null) {
       const url = `${environment.API_BASE_URI}/user/updateProfile/${id}`
@@ -65,8 +69,10 @@ export class ArtworkService {
       return this.http.put<any>(url, profileData, httpOptions).pipe(
         map(result => {
           if (!result) {
+            this.auth.changeMessage(false);
             this.notify.update('There was an error updating your profile, please try again', 'error');
           } else {
+            this.auth.changeMessage(false);
             this.notify.update(`Profile updated successfully`, 'success');
             return result;
           }
@@ -74,17 +80,21 @@ export class ArtworkService {
         catchError(this.handleHTTPError('updateProfile'))
       );
     }else {
+      this.auth.changeMessage(false);
       this.notify.update('There was an error updating your profile, userID missing, please try again', 'error');
     }
     
   }
   uploadArtwork = (formData) => {
+    this.auth.changeMessage(true);
     console.log(formData);
     return this.http.post<any>(this.uploadURL, formData, httpOptions).pipe(
       map(result => {
         if (!result) {
+          this.auth.changeMessage(false);
           this.notify.update('There Was An Error Uploading Your Artwork', 'error');
         } else {
+          this.auth.changeMessage(false);
           this.notify.update(`Image: ${result.file.originalname} Uploaded Successfully`, 'success');
           return result.file.originalname;
         }

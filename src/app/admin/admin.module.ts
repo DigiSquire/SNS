@@ -16,9 +16,15 @@ import { DialogComponent } from './dialog/dialog.component';
     ReactiveFormsModule,
     MaterialModule
   ],
-  declarations: [AdminCenterComponent, PendingArtworksComponent, ApprovedArtworksComponent, RejectedArtworksComponent, DialogComponent],
-  entryComponents: [
+  declarations: [
+    AdminCenterComponent,
+    PendingArtworksComponent,
+    ApprovedArtworksComponent,
+    RejectedArtworksComponent,
     DialogComponent
   ],
+    entryComponents: [
+      DialogComponent
+    ],
 })
 export class AdminModule { }

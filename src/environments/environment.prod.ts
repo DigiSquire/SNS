@@ -15,5 +15,7 @@ export const environment = {
   id: '_id',
   emailId: 'emailId',
   wrongCredentials: 'auth/wrong-password',
-  invalidUser: 'auth/user-not-found'
+  invalidUser: 'auth/user-not-found',
+  role_artist: 'artist',
+  role_admin: 'admin'
 };

@@ -4,4 +4,6 @@ export interface Result {
     last_id: string;
     status: number;
     data: any;
+    success: boolean;
+    role: 'artist' | 'publicUser';
 }

@@ -12,16 +12,16 @@ import { ArtworkService } from '../../core/artwork.service';
 
 export class UploadArtworkComponent implements OnChanges {
   @Input() hero: Hero;
- // public files: UploadFile[] = [];
+  // public files: UploadFile[] = [];
   heroForm: FormGroup;
   nameChangeLog: string[] = [];
   states = states;
   medium= medium;
   classification= classification;
-   categories= categories;
-   availableFrom: Date= null;
-   availableTo: Date= null;
-   file;
+  categories= categories;
+  availableFrom: Date= null;
+  availableTo: Date= null;
+  file;
   constructor(
     private fb: FormBuilder, private http: HttpClient,
     private artService: ArtworkService) {
@@ -41,9 +41,9 @@ export class UploadArtworkComponent implements OnChanges {
     }
 
     // Totally optional metadata
-   // const customMetadata = { app: 'My AngularFire-powered PWA!' };
+    // const customMetadata = { app: 'My AngularFire-powered PWA!' };
     console.log(this.file);
-     this.heroForm.get('file').setValue(this.file);
+    this.heroForm.get('file').setValue(this.file);
     // return this.updateUserData(file).subscribe((result => {
     //   console.log(result);
     // }));
@@ -122,9 +122,9 @@ export class UploadArtworkComponent implements OnChanges {
         depth: ''
 
       }),
-       category: this.fb.group({
+        category: this.fb.group({
         artType: ''
-       }),
+      }),
       
       weight: '',
       
@@ -188,8 +188,8 @@ export class UploadArtworkComponent implements OnChanges {
   //   }
   // }
   rebuildForm() {
-     this.heroForm.reset();
-     // {
+    this.heroForm.reset();
+    // {
     //   name: this.hero.name
     // });
     // this.setAddresses(this.hero.addresses);
@@ -218,6 +218,7 @@ export class UploadArtworkComponent implements OnChanges {
     return formData;
   }
   onSubmit() {
+    window.scroll(0, 0);
     const formModel = this.prepareSave();
     console.log(formModel);
     console.log('Submit Executed');
@@ -245,7 +246,10 @@ export class UploadArtworkComponent implements OnChanges {
     return saveHero;
   }
 
-  revert() { this.rebuildForm(); }
+  revert() { 
+    window.scroll(0, 0);
+    this.rebuildForm();
+  }
 
   // logNameChange() {
   //   const nameControl = this.heroForm.get('name');

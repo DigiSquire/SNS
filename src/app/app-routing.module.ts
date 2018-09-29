@@ -9,13 +9,14 @@ const routes: Routes = [
   { path: '', redirectTo: 'gallery', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
   {
-    path: 'artist-center',
-    canActivate: [AuthGuard],
-    loadChildren: 'app/artist/artist.module#ArtistModule'
+    path: 'artist-center',    
+    loadChildren: 'app/artist/artist.module#ArtistModule',
+    canActivate: [AuthGuard]
   },
   {
-    path: 'admin-center',
-    loadChildren: 'app/admin/admin.module#AdminModule'
+    path: 'admin-center',    
+    loadChildren: 'app/admin/admin.module#AdminModule',
+    canActivate: [AuthGuard]
   },
   { path: 'artists', component: ArtistsComponent },
   { path: 'login', component: UserFormComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { initialNavigation: 'enabled' })],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -8,7 +8,9 @@ export interface Msg {
   style: string;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NotifyService {
 
   private _msgSource = new Subject<Msg | null>();

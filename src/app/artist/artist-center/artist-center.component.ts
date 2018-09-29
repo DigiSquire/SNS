@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
 @Component({
   selector: 'artist-center',
   templateUrl: './artist-center.component.html',
   styleUrls: ['./artist-center.component.scss']
 })
-export class ArtistCenterComponent implements OnInit {
+export class ArtistCenterComponent {
   navLinks = [{
     'path': './profile',
     'label': 'Profile'
@@ -17,9 +16,5 @@ export class ArtistCenterComponent implements OnInit {
       'label': 'My Artworks'
     }];
   activeLink = this.navLinks[0];
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

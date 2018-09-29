@@ -5,12 +5,13 @@ import { PendingArtworksComponent } from './pending-artworks/pending-artworks.co
 import { RejectedArtworksComponent } from './rejected-artworks/rejected-artworks.component';
 import { AdminCenterComponent } from './admin-center/admin-center.component';
 import { ApprovedArtworksComponent } from './approved-artworks/approved-artworks.component';
-
+import { AuthGuard } from '../core/auth.guard';
 
 const adminCenterRoutes: Routes = [
     {
         path: '', 
         component: AdminCenterComponent,
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',

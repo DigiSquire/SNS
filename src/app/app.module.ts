@@ -9,9 +9,10 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CoreModule } from './core/core.module';
 import { UiModule } from './ui/ui.module';
+
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [ 
     LoadingModule,

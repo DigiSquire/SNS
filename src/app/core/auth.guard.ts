@@ -8,7 +8,9 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router, private notify: NotifyService) { }
   canActivate(
@@ -16,7 +18,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return this.auth.user
       .take(1)
-      .map(user => !!user)
+      .map((user) => !!user)
       .do(loggedIn => {
         if (!loggedIn) {
           this.notify.update('Login to continue', 'error');

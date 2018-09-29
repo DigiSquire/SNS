@@ -8,14 +8,23 @@ import { ProfileComponent } from './profile/profile.component';
 import { MyArtworksComponent } from './my-artworks/my-artworks.component';
 import { UploadArtworkComponent } from './upload-artwork/upload-artwork.component';
 import { DropZoneDirective } from '../uploads/drop-zone.directive';
-
+import { LoadingModule } from 'ngx-loading';
+import { NumbersOnlyDirective } from '../core/numbers-only.directive';
 @NgModule({
   imports: [
     CommonModule,
     ArtistCenterRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    LoadingModule
   ],
-  declarations: [ArtistCenterComponent, DropZoneDirective, ProfileComponent, MyArtworksComponent, UploadArtworkComponent]
+  declarations: [
+    NumbersOnlyDirective,
+    ArtistCenterComponent,
+    DropZoneDirective,
+    ProfileComponent,
+    MyArtworksComponent,
+    UploadArtworkComponent
+  ]
 })
 export class ArtistModule { }

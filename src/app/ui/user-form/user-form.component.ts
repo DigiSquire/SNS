@@ -13,7 +13,9 @@ type FormErrors = { [u in UserFields]: string };
 export class UserFormComponent implements OnInit {
   public loading: boolean; 
   user;
-  role = 'publicUser';
+  checked = true;
+  role: 'public_user' | 'artist';
+  setTrue: boolean;
   userForm: FormGroup;
   newUser = true; // to toggle login or signup form
   passReset = false; // set to true when password reset is triggered
@@ -39,17 +41,17 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    this.auth.isLoading.subscribe(message => this.loading = message)
   }
-  logChange = (event) => {
-    this.role = event.checked === true ? 'artist' : 'publicUser';
-  }
+  // use below when we have roles defined
+  // logChange = (event) => {
+  //   this.role = event.checked === true ? 'artist' : 'publicUser';
+  // }
   toggleForm() {
     this.newUser = !this.newUser;
   }
   signup() {
     this.auth.changeMessage(true);
-    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password'], this.role);
+    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password']);
   }
   login() {
     this.auth.changeMessage(true);

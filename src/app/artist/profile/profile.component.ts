@@ -10,9 +10,8 @@ import { Result } from '../../core/result.interface';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  // private email;
   
+  finished = false;
   profileForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
@@ -26,7 +25,9 @@ export class ProfileComponent implements OnInit {
     //   zip: ['']
     // })
   });
-  constructor(private fb: FormBuilder, private artService: ArtworkService) {}
+  constructor(private fb: FormBuilder, private artService: ArtworkService) {
+    
+  }
 
   // Hit the API with email id from session storage to get relevant Details according to profile
   ngOnInit() {
@@ -45,6 +46,7 @@ export class ProfileComponent implements OnInit {
           // TODO populate form with the returned details from this API call 
           // So on every subsequent visit the form comes populated
           console.log(result);
+          this.finished = true;
         }
       });
     }
@@ -62,6 +64,7 @@ export class ProfileComponent implements OnInit {
 
 
   onSubmit() {
+    window.scroll(0, 0);
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
     return this.artService.updateProfile(this.profileForm.value).subscribe((result => {

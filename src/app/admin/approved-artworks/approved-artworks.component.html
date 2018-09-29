@@ -25,7 +25,7 @@
             </mat-chip-list>
           </div>
 
-          <h6 class="card-title">Dancing in the ruins</h6>
+          <h6 class="card-title">{{file.metadata[0].name}}</h6>
           <p class="card-text artist-name">by Rucha Chattur</p>
           <p class="card-text small-price" [class.mb-4]="file.metadata[0].rent===false || file.metadata[0].rent===''"
             *ngIf="file.metadata[0].buy===true">${{file.metadata[0].sellingPrice}}</p>

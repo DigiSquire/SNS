@@ -13,12 +13,14 @@ export const environment = {
     storageBucket: 'fire-ng-proto.appspot.com',
     messagingSenderId: '407159742468'
   },
-  API_BASE_URI: 'https://sns-api-207407.appspot.com/api',
+  API_BASE_URI: 'http://localhost:8083/api',
   API_BASE_URI_LOCAL: 'http://localhost:8083/api',
   IMAGE_LOCAL: 'http://localhost:8083/api/gallery/image/',
   IMAGE: 'https://sns-api-207407.appspot.com/api/gallery/image/',
   id: '_id',
   emailId: 'emailId',
   wrongCredentials: 'auth/wrong-password',
-  invalidUser: 'auth/user-not-found'
+  invalidUser: 'auth/user-not-found',
+  role_artist: 'artist',
+  role_admin: 'admin'
 };

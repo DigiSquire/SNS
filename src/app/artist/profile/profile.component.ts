@@ -10,7 +10,7 @@ import { Result } from '../../core/result.interface';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  
+
   finished = false;
   profileForm = this.fb.group({
     firstName: ['', Validators.required],
@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
     console.warn(this.profileForm.value);
     return this.artService.updateProfile(this.profileForm.value).subscribe((result => {
       if (result) {
-        // Preserve the form details in UI after successfull submit OR
+        // Preserve the form details in UI after successful submit OR
         // The form should be populated with the values from the ngOnInit call 
         console.log(result);
       }

@@ -1,12 +1,12 @@
 <section class="layover">
  <ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows">
-  <ng-template  ngbSlide>
+   <ng-template  ngbSlide>
     <div class="slide-gradient">
     <img [src]="images[0].url" alt="Random first slide">
     </div>
     <div class="carousel-caption">
-        <h3 class="carousel-text">YOUR MISSION :<span class="carousel-subtext">Build your series</span> </h3>
-        <h3 class="carousel-text" >OURS : <span class="carousel-subtext">Build your audience</span></h3>
+        <h3 class="carousel-text">WE <span class="carousel-subtext" >have </span> <span class="carousel-text">ART </span> <span class="carousel-subtext">in our Hearts,</span> </h3>
+        <h3 class="carousel-text" >YOU <span class="carousel-subtext">have your Heart in </span><span class="carousel-text">ART</span></h3>
       </div>
   </ng-template>
   <ng-template  ngbSlide>
@@ -17,15 +17,15 @@
           <h3 class="carousel-text">YOU <span class="carousel-subtext">provide the art,</span> </h3>
           <h3 class="carousel-text" >WE  <span class="carousel-subtext">provide the Spaces</span></h3>
         </div>
-    </ng-template>
+    </ng-template> 
     <ng-template  ngbSlide>
         <div class="slide-gradient">
         <img [src]="images[2].url" alt="Random first slide">
         </div>
         <div class="carousel-caption">
-            <h3 class="carousel-text">WE <span class="carousel-subtext" >have </span> <span class="carousel-text">ART </span> <span class="carousel-subtext">in our Hearts,</span> </h3>
-            <h3 class="carousel-text" >YOU <span class="carousel-subtext">have your Heart in </span><span class="carousel-text">ART</span></h3>
-          </div>
+            <h3 class="carousel-text">YOUR MISSION :<span class="carousel-subtext">Build your series</span> </h3>
+            <h3 class="carousel-text" >OURS : <span class="carousel-subtext">Build your audience</span></h3>
+            </div>
       </ng-template>
 </ngb-carousel>
 

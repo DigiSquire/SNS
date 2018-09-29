@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700');
 .layover{
     // background-image: linear-gradient(to top, #00a5c1 0%, #6dc38e 100%);
     // opacity: 0.7;
@@ -82,14 +83,17 @@ text-align: center;
     max-height: 650px;
 }
 .carousel-subtext{
-    font-family: "Montserrat Medium";
+    font-family: "Montserrat";
 font-weight: 500;
-font-size : 65px
+font-size : 65px;
+letter-spacing: -2.6px;
 }
 .carousel-text {
-    font-family: "Montserrat - Bold";
+    font-family: "Montserrat";
     font-weight: 700;
     font-size: 65px;
+    letter-spacing: -2.6px;
+
 }
 .carousel-caption {
     bottom: 45%;

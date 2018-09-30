@@ -58,7 +58,12 @@
       </div>
     </div>
 
-
+    <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Weight" formControlName="weight" OnlyNumber="true">
+          <span matSuffix>lbs</span>
+        </mat-form-field>
+      </div>
     <div formGroupName="dimension">
       <h3 class="sub-heading">Dimension</h3>
       <div class="form-group">
@@ -76,12 +81,7 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="form-group">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Weight" formControlName="weight" OnlyNumber="true">
-        <span matSuffix>lbs</span>
-      </mat-form-field>
-    </div>
+    
     <div class="form-group radio" formGroupName="classification">
       <h3 class="sub-heading">Classification</h3>
       <mat-radio-group class="example-radio-group" formControlName="artClassification">

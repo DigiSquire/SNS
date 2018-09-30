@@ -14,8 +14,18 @@
         </div>
 
         <div class="form-group">
+          <input type="text" id="fname" class="form-control mb-3" formControlName="fname" aria-describedby="emailHelp"
+            placeholder="First name" required>
+          <div *ngIf="formErrors.fname" class="alert">
+            {{ formErrors.fname }}
+          </div>
+          <input type="text" id="lname" class="form-control mb-3" formControlName="lname" aria-describedby="emailHelp"
+            placeholder="Last name" required>
+          <div *ngIf="formErrors.lname" class="alert">
+            {{ formErrors.lname }}
+          </div>
           <input type="email" id="email" class="form-control" formControlName="email" aria-describedby="emailHelp"
-            placeholder="Enter email" required autocomplete="new-password">
+            placeholder="Enter email" required>
           <small id="emailHelp" class="mb-2 form-text text-muted">We'll never share your email with anyone else.</small>
           <div *ngIf="formErrors.email" class="alert">
             {{ formErrors.email }}
@@ -33,7 +43,7 @@
                 your artworks.</small>
             </div>
           </section>
-          <input type="password" id="password" placeholder="Enter password" class="form-control" formControlName="password"
+          <input type="password" id="password" placeholder="Enter password" class="form-control  mb-3" formControlName="password"
             required>
 
           <div *ngIf="formErrors.password" class="alert">
@@ -51,7 +61,7 @@
     </form>
 
 
-    <form class="mx-auto login-box col-sm-8 col-md-5 hide-sm" [formGroup]="userForm" *ngIf="!newUser" (ngSubmit)="login()">
+    <form class="mx-auto login-box col-sm-8 col-md-5 hide-sm" [formGroup]="existingUserForm" *ngIf="!newUser" (ngSubmit)="login()">
       <div class="form-container">
         <div class="text-center">
           <h3 class="dark-grey-text mb-4">
@@ -63,24 +73,24 @@
             Sign up?</button>
         </div>
         <div class="form-group">
-          <input type="email" id="email" class="form-control" formControlName="email" aria-describedby="emailHelp"
-            placeholder="Enter email" required autocomplete="new-password">
+          <input type="email" id="existingEmail" class="form-control" formControlName="existingEmail" aria-describedby="emailHelp"
+            placeholder="Enter email" required autocomplete="email">
           <small id="emailHelp" class="mb-2 form-text text-muted">We'll never share your email with anyone else.</small>
-          <div *ngIf="formErrors.email" class="alert">
-            {{ formErrors.email }}
+          <div *ngIf="existingFormErrors.existingEmail" class="alert">
+            {{ existingFormErrors.existingEmail }}
           </div>
-          <input type="password" id="password" placeholder="Enter password" class="form-control" formControlName="password"
-            required autocomplete="new-password">
+          <input type="password" id="existingPassword" placeholder="Enter password" class="form-control mb-3"  formControlName="existingPassword"
+            required>
 
-          <div *ngIf="formErrors.password" class="alert">
-            {{ formErrors.password }}
+          <div *ngIf="existingFormErrors.existingPassword" class="alert">
+            {{ existingFormErrors.existingPassword }}
           </div>
         </div>
         <div class="d-flex justify-content-center ">
-          <button type="submit" class="text-center mb-4 btn blue-gradient btn-full btn-rounded z-depth-1a " [disabled]="!userForm.valid">Submit</button>
+          <button type="submit" class="text-center mb-4 btn blue-gradient btn-full btn-rounded z-depth-1a " [disabled]="!existingUserForm.valid">Submit</button>
         </div>
-        <a *ngIf="!passReset && userForm.controls.email.valid" class="help is-info" (click)="resetPassword()">Reset
-          Password for {{userForm.value.email}}?</a>
+        <a *ngIf="!passReset && existingUserForm.controls.existingEmail.valid" class="help is-info" (click)="resetPassword()">Reset
+          Password for {{existingUserForm.value.existingEmail}}?</a>
         <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
       </div>
     </form>

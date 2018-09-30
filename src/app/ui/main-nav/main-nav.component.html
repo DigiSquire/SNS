@@ -21,11 +21,11 @@
     </ul>
     <ul class="navbar-nav ml-md-0">
       <li class="nav-item" style="cursor:pointer;">
-        <a *ngIf="!(auth.user | async);else alreadyLoggedIn" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black"
+        <a *ngIf="userRole===null" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black"
           routerLink="./login">Sign in
           <span class="text-grey" style="font-size: 80%;font-weight: 100;">or</span> Sign up</a>
-        <ng-template #alreadyLoggedIn>
-          <div ngbDropdown>
+        <!-- <ng-template #alreadyLoggedIn> -->
+          <div *ngIf="userRole==='artist'" ngbDropdown>
             <a ngbDropdownToggle class="arrow">
               <i class="fas fa-user icon-color fa-lg p-2"></i>
             </a>
@@ -36,7 +36,18 @@
               <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign out</a>
             </div>
           </div>
-        </ng-template>
+          <div *ngIf="userRole==='admin'" ngbDropdown>
+            <a ngbDropdownToggle class="arrow">
+              <i class="fas fa-user icon-color fa-lg p-2"></i>
+            </a>
+            <div ngbDropdownMenu>
+              <a routerLink="./admin-center/pending-approvals" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Pending-Approvals</a>
+              <a routerLink="./admin-center/approved" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Approved</a>
+              <a routerLink="./admin-center/rejected" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Rejected</a>
+              <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign out</a>
+            </div>
+          </div>
+        <!-- </ng-template> -->
       </li>
     </ul>
 

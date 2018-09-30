@@ -36,6 +36,8 @@ export class ProfileComponent implements OnInit {
       return this.artService.getProfile(email).subscribe((result: Result) => {
         if (result) {
           sessionStorage.setItem(environment.id, result.data._id);
+          sessionStorage.setItem('fname', result.data.firstname);
+          sessionStorage.setItem('lname', result.data.lastname);
           this.profileForm.patchValue({
             firstName: result.data.firstname,
             lastName: result.data.lastname,

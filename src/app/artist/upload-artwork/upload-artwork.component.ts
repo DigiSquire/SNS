@@ -157,7 +157,8 @@ export class UploadArtworkComponent implements OnChanges {
       printPrice: '',
       approvalStatus: 'pending',
       agreement: '',
-      artBy :  sessionStorage.getItem(environment.emailId)
+      owner: sessionStorage.getItem(environment.emailId),
+      artBy: `${sessionStorage.getItem('fname')} ${sessionStorage.getItem('lname')}`
       
       }),
     file: [null, Validators.required]

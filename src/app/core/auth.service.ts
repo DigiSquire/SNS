@@ -12,6 +12,7 @@ import {  NotifyService } from './notify.service';
 import {  HttpClient } from '@angular/common/http';
 import {  HttpHeaders } from '@angular/common/http';
 import {  HttpErrorHandler,  HandleError } from './http-error-handler.service';
+import { first } from 'rxjs/operators';
 interface Error {
   code: string;
   message: string;
@@ -38,8 +39,13 @@ const httpOptions = {
 export class AuthService {
   private messageSource = new BehaviorSubject < boolean > (false);
   isLoading = this.messageSource.asObservable();
-  // private userSource = new BehaviorSubject < any > (null);
-  // loggedInUser = this.userSource.asObservable();
+
+  private userRole = new BehaviorSubject < string > (null);
+  loggedInUserRole = this.userRole.asObservable();
+
+  isUser = new BehaviorSubject<boolean>(false);
+  isUserPresent = this.isUser.asObservable();
+
   private userRegisterURL = `${ environment.API_BASE_URI }/user/register`; // URL to web api
   private handleHTTPError: HandleError;
   user: Observable < User > ;
@@ -65,26 +71,30 @@ export class AuthService {
           return Observable.of(null);
         }
       })
+    this.checkLoginStreamRole();
   }
   
   changeMessage(isLoading: boolean) {
     this.messageSource.next(isLoading)
   }
 
-  emailSignUp(email: string, password: string) {
+  emailSignUp(email: string, password: string, firstName: string, lastName: string) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(credential => {
         return credential.user.getIdToken()
       }).then((idToken) => {
-        return this.registerNewUser(idToken).subscribe((result => {
+        const userData = {
+          'idToken': idToken,
+          'firstName': firstName,
+          'lastName': lastName
+        }
+
+        return this.registerNewUser(userData).subscribe((result => {
           console.log(result);
           if (result.success === true) {            
-            this.router.navigate(['./artist-center']);
-            this.notify.update('Welcome To Spaces & Stories Artist Center', 'success');
-            this.changeMessage(false);
+            this.checkRoleRedirect();
           } else {
-            // this.user = Observable.of(null);
             this.signOut('unAuthenticated');
             this.changeMessage(false);
           }
@@ -96,16 +106,49 @@ export class AuthService {
         this.changeMessage(false);
       });
   }
+  
+
+
+isLoggedIn() {
+  return this.afAuth.authState.pipe(first()).toPromise();
+}
+
+async checkLoginStreamRole() {
+  const user = await this.isLoggedIn()
+  if (user) {
+    this.isUser.next(true);
+    sessionStorage.setItem(environment.emailId, user.email);
+    const idTokenResult = await this.afAuth.auth.currentUser.getIdTokenResult();
+    if (!!idTokenResult.claims.artist) {
+      // Show artist user UI.
+      this.userRole.next('artist');
+      this.changeMessage(false);
+    } else if (!!idTokenResult.claims.admin) {
+      // Show admin UI.    
+      this.userRole.next('admin');
+      this.changeMessage(false);
+    }
+  } else {
+    // this.router.navigate(['./login']);
+    // this.notify.update('An error occurred  while login, please try again', 'error');
+    // this.signOut('unAuthenticated');
+    this.changeMessage(false);
+    return null;
+  }
+}
   checkRoleRedirect= () => {
-    this.afAuth.auth.currentUser.getIdTokenResult()
+    this.afAuth.auth.currentUser.getIdTokenResult(true)
       .then((idTokenResult) => {
+        this.isUser.next(true);
         // Confirm the user is an Admin.
         if (!!idTokenResult.claims.artist) {
           // Show artist user UI.
+          this.userRole.next('artist');
           this.router.navigate(['./artist-center']);
           this.notify.update('Welcome To Spaces & Stories Artist Center', 'success');
         } else if (!!idTokenResult.claims.admin) {
           // Show admin UI.      
+          this.userRole.next('admin');
           this.router.navigate(['./admin-center']);
           this.notify.update('Welcome To Spaces & Stories Ar Center', 'success');
         }else {
@@ -122,7 +165,7 @@ export class AuthService {
   emailLogin(email: string, password: string) {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then(() => {        
         this.checkRoleRedirect();
       })
       .catch(error => {
@@ -151,18 +194,20 @@ export class AuthService {
     }
 
   }
-  private registerNewUser(idToken) {
-    return this.http.post<User>(this.userRegisterURL, { idToken: idToken }, httpOptions).pipe(
+  private registerNewUser(userData) {
+    return this.http.post<User>(this.userRegisterURL, userData, httpOptions).pipe(
       catchError(this.handleHTTPError('registerNewUser'))
     );
   }
   signOut(isAuthenticated) {
     this.afAuth.auth.signOut().then(() => {
+      this.isUser.next(null);
+      this.userRole.next(null);
       console.log('clearing session storage');
       sessionStorage.clear();
       this.router.navigate(['/']);
       isAuthenticated === 'unAuthenticated' ?
-        this.notify.update('There was an error during sign up, please try gain.', 'error') :
+        this.notify.update('There was an error during sign up, please try again.', 'error') :
         this.notify.update('You Have Been Successfully Logged-Out', 'success');
 
     });

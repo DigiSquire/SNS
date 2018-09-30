@@ -156,6 +156,7 @@ export class UploadArtworkComponent implements OnChanges {
       sellingPrice: '',
       printPrice: '',
       approvalStatus: 'pending',
+      agreement: '',
       artBy :  sessionStorage.getItem(environment.emailId)
       
       }),
@@ -218,10 +219,13 @@ export class UploadArtworkComponent implements OnChanges {
     return formData;
   }
   onSubmit() {
+    
     window.scroll(0, 0);
     const formModel = this.prepareSave();
     console.log(formModel);
     console.log('Submit Executed');
+    
+    this.heroForm.reset();
     return this.artService.uploadArtwork(formModel).subscribe((result => {
       console.log(result);
     }));

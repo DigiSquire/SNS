@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Address, Hero, states, categories, medium, classification } from '../../core/data.model';
 import { environment } from '../../../environments/environment';
@@ -219,16 +219,16 @@ export class UploadArtworkComponent implements OnChanges {
     formData.append('file', this.heroForm.get('file').value);
     return formData;
   }
-  onSubmit() {
+  onSubmit(formData: any, formDirective: FormGroupDirective) {
     
     window.scroll(0, 0);
     const formModel = this.prepareSave();
     console.log(formModel);
     console.log('Submit Executed');
-    
-    this.heroForm.reset();
     return this.artService.uploadArtwork(formModel).subscribe((result => {
       console.log(result);
+      formDirective.resetForm();
+      this.heroForm.reset();
     }));
   }
 

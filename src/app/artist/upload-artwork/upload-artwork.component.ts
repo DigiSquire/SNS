@@ -5,6 +5,7 @@ import { Address, Hero, states, categories, medium, classification } from '../..
 import { environment } from '../../../environments/environment';
 import { ArtworkService } from '../../core/artwork.service';
 import { AuthService } from '../../core/auth.service';
+import { NotifyService } from '../../core/notify.service';
 @Component({
   selector: 'upload-artwork',
   templateUrl: './upload-artwork.component.html',
@@ -26,7 +27,8 @@ export class UploadArtworkComponent implements OnChanges {
   file;
   constructor(
     private fb: FormBuilder, private http: HttpClient,
-    private artService: ArtworkService, private auth: AuthService) {
+    private artService: ArtworkService, private auth: AuthService,
+    private notify: NotifyService) {
     
     this.auth.getEmail.subscribe((message) => {
       this.email = message;
@@ -227,7 +229,7 @@ export class UploadArtworkComponent implements OnChanges {
     return formData;
   }
   onSubmit(formData: any, formDirective: FormGroupDirective) {
-    
+    this.notify.clear();
     window.scroll(0, 0);
     const formModel = this.prepareSave();
     console.log(formModel);
@@ -258,8 +260,9 @@ export class UploadArtworkComponent implements OnChanges {
     return saveHero;
   }
 
-  revert() { 
-    window.scroll(0, 0);
+  revert() {
+    this.notify.clear();
+    window.scroll(0, 0);    
     this.rebuildForm();
   }
 

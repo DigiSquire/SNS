@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NotifyService } from '../../core/notify.service';
 @Component({
   selector: 'admin-center',
   templateUrl: './admin-center.component.html',
@@ -17,9 +17,10 @@ export class AdminCenterComponent implements OnInit {
     'label': 'Rejected'
   }];
   activeLink = this.navLinks[0];
-  constructor() { }
+  constructor(private notify: NotifyService) { }
 
   ngOnInit() {
+    this.notify.update('Welcome To Spaces & Stories Admin Center', 'success');
   }
 
 }

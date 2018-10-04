@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Address, Hero, states, categories, medium, classification } from '../../core/data.model';
 import { environment } from '../../../environments/environment';
 import { ArtworkService } from '../../core/artwork.service';
+import { AuthService } from '../../core/auth.service';
 @Component({
   selector: 'upload-artwork',
   templateUrl: './upload-artwork.component.html',
@@ -12,6 +13,7 @@ import { ArtworkService } from '../../core/artwork.service';
 
 export class UploadArtworkComponent implements OnChanges {
   @Input() hero: Hero;
+  email: string;
   // public files: UploadFile[] = [];
   heroForm: FormGroup;
   nameChangeLog: string[] = [];
@@ -24,9 +26,13 @@ export class UploadArtworkComponent implements OnChanges {
   file;
   constructor(
     private fb: FormBuilder, private http: HttpClient,
-    private artService: ArtworkService) {
-
-    this.createForm();
+    private artService: ArtworkService, private auth: AuthService) {
+    
+    this.auth.getEmail.subscribe((message) => {
+      this.email = message;
+      this.createForm();
+    });
+    
     // this.logNameChange();
   }
 
@@ -109,7 +115,7 @@ export class UploadArtworkComponent implements OnChanges {
   // }
 
   createForm() {
-
+    console.log(`Signed in user's email is: ${this.email}`)
     this.heroForm = this.fb.group({
       metadata: this.fb.group({
         availableFrom: null,
@@ -157,7 +163,7 @@ export class UploadArtworkComponent implements OnChanges {
       printPrice: '',
       approvalStatus: 'pending',
       agreement: '',
-      owner: sessionStorage.getItem(environment.emailId),
+      owner: this.email,
       artBy: `${sessionStorage.getItem('fname')} ${sessionStorage.getItem('lname')}`
       
       }),
@@ -211,6 +217,7 @@ export class UploadArtworkComponent implements OnChanges {
     this.secretLairs.push(this.fb.group(new Address()));
   }
   prepareSave(): any {
+    console.log(`Signed in user's email is: ${this.email}`)
     const formData = new FormData();
     const data = [];
     data.push(this.heroForm.get('metadata').value);

@@ -22,12 +22,13 @@ export interface Files {
 })
 export class ArtworkService { 
   readonly uploadURL = `${environment.API_BASE_URI}/artist/upload`;
-
+  email: string;
   private handleHTTPError: HandleError;
   constructor(private http: HttpClient,
       private notify: NotifyService,
       httpErrorHandler: HttpErrorHandler, private auth: AuthService) { 
     this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');
+    this.auth.getEmail.subscribe((message) => this.email = message);
   }
   getArtworks(lastKey?) {
     const getImagesURL = `${environment.API_BASE_URI}/gallery/files`;
@@ -102,8 +103,8 @@ export class ArtworkService {
       catchError(this.handleHTTPError('uploadArtwork'))
     );
   }
-  getUserArtworks(lastKey?) {
-    const email = sessionStorage.getItem(environment.emailId);
+  getUserArtworks(emailID, lastKey?) {
+    const email = emailID
     let params;
     if (lastKey != null || lastKey !== '' && lastKey !== undefined) {
       params = new HttpParams()

@@ -40,37 +40,38 @@ export class AuthService {
   private messageSource = new BehaviorSubject < boolean > (false);
   isLoading = this.messageSource.asObservable();
 
-  private userRole = new BehaviorSubject < string > (null);
+  userRole = new BehaviorSubject <string> (null);
   loggedInUserRole = this.userRole.asObservable();
 
-  isUser = new BehaviorSubject<boolean>(false);
-  isUserPresent = this.isUser.asObservable();
+  permissionMsg = new BehaviorSubject<string>(null);
+
+  private email = new BehaviorSubject<string>(null);
+  getEmail = this.email.asObservable();
 
   private userRegisterURL = `${ environment.API_BASE_URI }/user/register`; // URL to web api
   private handleHTTPError: HandleError;
-  user: Observable < User > ;
+  user: Promise <User> ;
 
-  // If needed include in constructor to access firestore 'private afs: AngularFirestore'
 
   constructor(private afAuth: AngularFireAuth,
     private http: HttpClient,
     private router: Router, private notify: NotifyService, httpErrorHandler: HttpErrorHandler) {
     this.changeMessage(true);
     this.handleHTTPError = httpErrorHandler.createHandleError('AuthService');
-    this.user = this.afAuth.authState
-      .switchMap(user => {
-        this.changeMessage(false);
-        if (user) {
-          this.changeMessage(false);
-          sessionStorage.setItem(environment.emailId, user.email);
-          // this.userSource.next(user.email);
-          console.log('user generated');
-          return this.afAuth.authState;
-        } else {
-          // logged out, null
-          return Observable.of(null);
-        }
-      })
+    // this.user = this.afAuth.authState
+    //   .switchMap(user => {
+    //     this.changeMessage(false);
+    //     if (user) {
+    //       this.changeMessage(false);
+    //       sessionStorage.setItem(environment.emailId, user.email);
+    //       // this.userSource.next(user.email);
+    //       console.log('user generated');
+    //       return this.afAuth.authState;
+    //     } else {
+    //       // logged out, null
+    //       return Observable.of(null);
+    //     }
+    //   })
     this.checkLoginStreamRole();
   }
   
@@ -89,7 +90,6 @@ export class AuthService {
           'firstName': firstName,
           'lastName': lastName
         }
-
         return this.registerNewUser(userData).subscribe((result => {
           console.log(result);
           if (result.success === true) {            
@@ -107,8 +107,6 @@ export class AuthService {
       });
   }
   
-
-
 isLoggedIn() {
   return this.afAuth.authState.pipe(first()).toPromise();
 }
@@ -116,10 +114,11 @@ isLoggedIn() {
 async checkLoginStreamRole() {
   const user = await this.isLoggedIn()
   if (user) {
-    this.isUser.next(true);
-    sessionStorage.setItem(environment.emailId, user.email);
     const idTokenResult = await this.afAuth.auth.currentUser.getIdTokenResult();
     if (!!idTokenResult.claims.artist) {
+      if (this.email.getValue() === null) {
+        this.email.next(user.email)
+      }
       // Show artist user UI.
       this.userRole.next('artist');
       this.changeMessage(false);
@@ -129,28 +128,61 @@ async checkLoginStreamRole() {
       this.changeMessage(false);
     }
   } else {
-    // this.router.navigate(['./login']);
-    // this.notify.update('An error occurred  while login, please try again', 'error');
-    // this.signOut('unAuthenticated');
     this.changeMessage(false);
     return null;
   }
 }
+checkLoginAndRole(route: String): Promise<boolean> {
+  return new Promise((resolve, reject) => {
+    return this.isLoggedIn().then((user) => {
+      if (user) {
+        // sessionStorage.setItem(environment.emailId, user.email);
+        return this.afAuth.auth.currentUser.getIdTokenResult().then((idTokenResult) => {
+          if (!!idTokenResult.claims.artist && route.indexOf(environment.role_admin) === -1) {            
+              if (this.email.getValue() === null) {
+                this.email.next(user.email)
+              }
+            // Show artist user UI.
+            this.userRole.next('artist');
+            this.changeMessage(false);
+            resolve(true)
+          } else if (!!idTokenResult.claims.admin && route.indexOf(environment.role_artist) === -1) {
+            // Show admin UI.    
+            this.userRole.next('admin');
+            this.changeMessage(false);
+            resolve(true)
+          }else {
+            this.permissionMsg.next('You do not have the access permission');
+            this.changeMessage(false);
+            resolve(false)
+          }
+        });
+        
+      }else {
+        this.changeMessage(false);
+        resolve(false)
+      }
+    }), (error) => {
+      console.error('error in checkLoginAndRole : ', error);
+      reject(error);
+    }
+  });    
+}
+
   checkRoleRedirect= () => {
     this.afAuth.auth.currentUser.getIdTokenResult(true)
       .then((idTokenResult) => {
-        this.isUser.next(true);
-        // Confirm the user is an Admin.
+        // Confirm the user is an Artist.
         if (!!idTokenResult.claims.artist) {
           // Show artist user UI.
           this.userRole.next('artist');
           this.router.navigate(['./artist-center']);
-          this.notify.update('Welcome To Spaces & Stories Artist Center', 'success');
+          // this.notify.update('Welcome To Spaces & Stories Artist Center', 'success');
         } else if (!!idTokenResult.claims.admin) {
           // Show admin UI.      
           this.userRole.next('admin');
           this.router.navigate(['./admin-center']);
-          this.notify.update('Welcome To Spaces & Stories Ar Center', 'success');
+          // this.notify.update('Welcome To Spaces & Stories Admin Center', 'success');
         }else {
           this.router.navigate(['./login']);
           this.notify.update('An error occurred  while login, please try again', 'error');
@@ -201,10 +233,13 @@ async checkLoginStreamRole() {
   }
   signOut(isAuthenticated) {
     this.afAuth.auth.signOut().then(() => {
-      this.isUser.next(null);
+      // Reset Role and email id saved
       this.userRole.next(null);
+      this.email.next(null);
+
       console.log('clearing session storage');
       sessionStorage.clear();
+
       this.router.navigate(['/']);
       isAuthenticated === 'unAuthenticated' ?
         this.notify.update('There was an error during sign up, please try again.', 'error') :

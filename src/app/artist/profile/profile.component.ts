@@ -4,13 +4,14 @@ import { Validators } from '@angular/forms';
 import { ArtworkService } from '../../core/artwork.service';
 import { environment } from '../../../environments/environment';
 import { Result } from '../../core/result.interface';
+import { AuthService } from '../../core/auth.service';
 @Component({
   selector: 'profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
+  email: string;
   finished = false;
   profileForm = this.fb.group({
     firstName: ['', Validators.required],
@@ -25,13 +26,14 @@ export class ProfileComponent implements OnInit {
     //   zip: ['']
     // })
   });
-  constructor(private fb: FormBuilder, private artService: ArtworkService) {
-    
+  constructor(private fb: FormBuilder, private artService: ArtworkService, private auth: AuthService) {
+    this.auth.getEmail.subscribe((message) => this.email = message);
   }
 
   // Hit the API with email id from session storage to get relevant Details according to profile
   ngOnInit() {
-    const email = sessionStorage.getItem(environment.emailId);
+    const email = this.email;
+    console.log(`Signed in user's email is: ${this.email}`)
     if (email != null) {
       return this.artService.getProfile(email).subscribe((result: Result) => {
         if (result) {
@@ -42,7 +44,8 @@ export class ProfileComponent implements OnInit {
             firstName: result.data.firstname,
             lastName: result.data.lastname,
             contactNumber: result.data.contact,
-            address: result.data.deliveryAddress
+            address: result.data.deliveryAddress,
+            email: this.email
 
           });
           // TODO populate form with the returned details from this API call 

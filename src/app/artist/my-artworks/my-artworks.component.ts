@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { tap, take } from 'rxjs/operators';
 import { Result } from '../../core/result.interface';
+import { AuthService } from '../../core/auth.service';
 @Component({
   selector: 'my-artworks',
   templateUrl: './my-artworks.component.html',
@@ -12,12 +13,15 @@ import { Result } from '../../core/result.interface';
 export class MyArtworksComponent implements OnInit {
   files = new BehaviorSubject([]);
   lastKey = '';
+  email: string;
   finished = false;
   isArtPresent: boolean;
   message: string;
   readonly base_uri = environment.API_BASE_URI;
   readonly url = `${this.base_uri}/gallery/image/`
-  constructor(private artService: ArtworkService) { }
+  constructor(private artService: ArtworkService, private auth: AuthService) { 
+    this.auth.getEmail.subscribe((message) => this.email = message);
+  }
 
   ngOnInit() {
     this.getFiles();
@@ -28,7 +32,7 @@ export class MyArtworksComponent implements OnInit {
   }
   private getFiles(key?) {
     if (this.finished) { return }
-    return this.artService.getUserArtworks(key).pipe(
+    return this.artService.getUserArtworks(this.email, key ).pipe(
       tap((images: Result) => {
         if (images.status === 504) {
           this.isArtPresent = true;

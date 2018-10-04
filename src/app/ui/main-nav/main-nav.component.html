@@ -21,11 +21,11 @@
     </ul>
     <ul class="navbar-nav ml-md-0">
       <li class="nav-item" style="cursor:pointer;">
-        <a *ngIf="userRole===null" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black"
+        <a *ngIf="userRole===null && !loading" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black"
           routerLink="./login">Sign in
           <span class="text-grey" style="font-size: 80%;font-weight: 100;">or</span> Sign up</a>
         <!-- <ng-template #alreadyLoggedIn> -->
-          <div *ngIf="userRole==='artist'" ngbDropdown>
+          <div *ngIf="userRole==='artist' && !loading" ngbDropdown>
             <a ngbDropdownToggle class="arrow">
               <i class="fas fa-user icon-color fa-lg p-2"></i>
             </a>
@@ -36,7 +36,7 @@
               <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign out</a>
             </div>
           </div>
-          <div *ngIf="userRole==='admin'" ngbDropdown>
+          <div *ngIf="userRole==='admin'  && !loading" ngbDropdown>
             <a ngbDropdownToggle class="arrow">
               <i class="fas fa-user icon-color fa-lg p-2"></i>
             </a>

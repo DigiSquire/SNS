@@ -16,14 +16,40 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.auth.user
-      .take(1)
-      .map((user) => !!user)
-      .do(loggedIn => {
-        if (!loggedIn) {
-          this.notify.update('Login to continue', 'error');
-          this.router.navigate(['/login']);
+      console.log(state.url);
+      return this.authorize(state.url);
+    // return this.auth.user
+    //   .take(1)
+    //   .map((user) => !!user)
+    //   .do(loggedIn => {
+    //     if (!loggedIn) {
+    //       this.notify.update('Login to continue', 'error');
+    //       this.router.navigate(['/login']);
+    //     }
+    //   });
+  }
+  authorize(attemptedPath: String): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.auth.checkLoginAndRole(attemptedPath)
+      .then((hasAccess) => {        
+        if (hasAccess) {          
+          resolve(true);
+        }else {
+          if (this.auth.permissionMsg.getValue()) {
+            this.notify.update(this.auth.permissionMsg.getValue(), 'error');
+            // route to previous url
+            this.router.navigate(['./gallery']); 
+          }else {
+            this.notify.update('Login to continue', 'error');          
+            this.router.navigate(['./login']); 
+          }          
+          resolve(false);
         }
-      });
+      }, (error) => {
+        this.notify.update('There was an error during authentication', 'error');
+        this.router.navigate(['/login']);       
+        reject(error);
+      })    
+    })    
   }
 }

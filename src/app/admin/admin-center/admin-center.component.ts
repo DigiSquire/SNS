@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NotifyService } from '../../core/notify.service';
 @Component({
   selector: 'admin-center',
   templateUrl: './admin-center.component.html',
   styleUrls: ['./admin-center.component.scss']
 }) 
-export class AdminCenterComponent implements OnInit {
+export class AdminCenterComponent {
   navLinks = [{
     'path': './pending-approvals',
     'label': 'Pending-Approvals'
@@ -18,9 +18,7 @@ export class AdminCenterComponent implements OnInit {
   }];
   activeLink = this.navLinks[0];
   constructor(private notify: NotifyService) { }
-
-  ngOnInit() {
-    this.notify.update('Welcome To Spaces & Stories Admin Center', 'success');
+  clearMsg = () => {
+    this.notify.clear();
   }
-
 }

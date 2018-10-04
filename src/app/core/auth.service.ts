@@ -177,12 +177,12 @@ checkLoginAndRole(route: String): Promise<boolean> {
           // Show artist user UI.
           this.userRole.next('artist');
           this.router.navigate(['./artist-center']);
-          // this.notify.update('Welcome To Spaces & Stories Artist Center', 'success');
+          this.notify.update('Welcome To Spaces & Stories Artist Center', 'success');
         } else if (!!idTokenResult.claims.admin) {
           // Show admin UI.      
           this.userRole.next('admin');
           this.router.navigate(['./admin-center']);
-          // this.notify.update('Welcome To Spaces & Stories Admin Center', 'success');
+          this.notify.update('Welcome To Spaces & Stories Admin Center', 'success');
         }else {
           this.router.navigate(['./login']);
           this.notify.update('An error occurred  while login, please try again', 'error');
@@ -236,7 +236,6 @@ checkLoginAndRole(route: String): Promise<boolean> {
       // Reset Role and email id saved
       this.userRole.next(null);
       this.email.next(null);
-
       console.log('clearing session storage');
       sessionStorage.clear();
 

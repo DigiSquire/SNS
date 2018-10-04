@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../core/auth.service';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { startWith, tap } from 'rxjs/operators';
+import { NotifyService } from '../../core/notify.service';
 @Component({
   selector: 'main-nav',
   templateUrl: './main-nav.component.html',
@@ -12,7 +13,7 @@ export class MainNavComponent implements OnInit, OnDestroy {
   userRole: string = null;
   private subscription;
   public loading: boolean; 
-  constructor(public auth: AuthService, config: NgbDropdownConfig) {
+  constructor(public auth: AuthService, config: NgbDropdownConfig, private notify: NotifyService) {
     config.placement = 'bottom-right';
     config.autoClose = true;
   }
@@ -24,6 +25,9 @@ export class MainNavComponent implements OnInit, OnDestroy {
         startWith(false),
         tap((message) => this.loading = message)
       ).subscribe();
+  }
+  clearMsg = () => {
+    this.notify.clear();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

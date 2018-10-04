@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NotifyService } from '../../core/notify.service';
 @Component({
   selector: 'artist-center',
   templateUrl: './artist-center.component.html',
   styleUrls: ['./artist-center.component.scss']
 })
-export class ArtistCenterComponent implements OnInit { 
+export class ArtistCenterComponent { 
   navLinks = [{
     'path': './profile',
     'label': 'Profile'
@@ -18,7 +18,7 @@ export class ArtistCenterComponent implements OnInit {
     }];
   activeLink = this.navLinks[0];
   constructor(private notify: NotifyService) {}
-  ngOnInit() {
-    this.notify.update('Welcome To Spaces & Stories Artist Center', 'success');
+  clearMsg = () => {
+    this.notify.clear();
   }
 }

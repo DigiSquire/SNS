@@ -10,18 +10,18 @@
   <div class="collapse navbar-collapse d-md-flex justify-content-md-center" id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
-        <a class="nav-link text-black" routerLinkActive="text-grey" routerLink="./gallery">Gallery</a>
+        <a (click)="clearMsg()" class="nav-link text-black" routerLinkActive="text-grey" routerLink="./gallery">Gallery</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-black" routerLinkActive="text-grey" routerLink="./artists">Artists</a>
+        <a (click)="clearMsg()" class="nav-link text-black" routerLinkActive="text-grey" routerLink="./artists">Artists</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-black" routerLinkActive="text-grey">Get In Touch</a>
+        <a (click)="clearMsg()" class="nav-link text-black" routerLinkActive="text-grey">Get In Touch</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-md-0">
       <li class="nav-item" style="cursor:pointer;">
-        <a *ngIf="userRole===null && !loading" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black"
+        <a (click)="clearMsg()" *ngIf="userRole===null && !loading" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black"
           routerLink="./login">Sign in
           <span class="text-grey" style="font-size: 80%;font-weight: 100;">or</span> Sign up</a>
         <!-- <ng-template #alreadyLoggedIn> -->
@@ -30,9 +30,9 @@
               <i class="fas fa-user icon-color fa-lg p-2"></i>
             </a>
             <div ngbDropdownMenu>
-              <a routerLink="./artist-center/profile" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Profile</a>
-              <a routerLink="./artist-center/upload" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Upload</a>
-              <a routerLink="./artist-center/my-artworks" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">My Artworks</a>
+              <a (click)="clearMsg()" routerLink="./artist-center/profile" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Profile</a>
+              <a (click)="clearMsg()" routerLink="./artist-center/upload" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Upload</a>
+              <a (click)="clearMsg()" routerLink="./artist-center/my-artworks" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">My Artworks</a>
               <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign out</a>
             </div>
           </div>
@@ -41,9 +41,9 @@
               <i class="fas fa-user icon-color fa-lg p-2"></i>
             </a>
             <div ngbDropdownMenu>
-              <a routerLink="./admin-center/pending-approvals" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Pending-Approvals</a>
-              <a routerLink="./admin-center/approved" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Approved</a>
-              <a routerLink="./admin-center/rejected" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Rejected</a>
+              <a (click)="clearMsg()" routerLink="./admin-center/pending-approvals" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Pending-Approvals</a>
+              <a (click)="clearMsg()" routerLink="./admin-center/approved" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Approved</a>
+              <a (click)="clearMsg()" routerLink="./admin-center/rejected" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Rejected</a>
               <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign out</a>
             </div>
           </div>

@@ -1,16 +1,16 @@
-<form class="mt-4 mb-4 row" [formGroup]="heroForm" #formDirective="ngForm" (ngSubmit)="onSubmit(heroForm,formDirective)">
-  <div class="form-group col-sm-12">
+<form class="mt-4 mb-4" [formGroup]="heroForm" #formDirective="ngForm" (ngSubmit)="onSubmit(heroForm,formDirective)">
+  <div class="form-group">
     <div class="dropzone" dropZone (dropped)="startUpload($event)">
 
       <h3 class="text-muted">Drag or Drop a File</h3>
-      <div class="file col-sm-12">
-        <label class="file-label col-sm-12">
-          <input class="file-input col-sm-12" type="file" (change)="startUpload($event.target.files)">
-          <span class="file-cta col-sm-12">
-            <span class="file-icon col-sm-12">
-              <i class="fa fa-upload col-sm-12"></i>
+      <div class="file">
+        <label class="file-label">
+          <input class="file-input" type="file" (change)="startUpload($event.target.files)">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fa fa-upload"></i>
             </span>
-            <span class="file-label col-sm-12">
+            <span class="file-label">
               or choose a file…
             </span>
             <span *ngIf="file">

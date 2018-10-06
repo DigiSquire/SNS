@@ -1,42 +1,63 @@
-.example-full-width{
-    width:50%;
-    display:block;
+.example-full-width {
+  width: 50%;
+  display: block;
 }
-.margin-left10{
-    margin-left: 10px;
+
+.margin-left10 {
+  margin-left: 10px;
 }
+
 .example-margin {
-    margin: 0 10px;
+  margin: 0 10px;
 }
-h3{
-    font-family: 'Cabin-Regular',
+
+h3 {
+  font-family: 'Cabin-Regular',
     sans-serif;
 }
-.ml-05{
-    margin-left: 0.65rem;
+
+.ml-05 {
+  margin-left: 0.65rem;
 }
+
 .sub-heading {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+  font-size: 1.06rem;
+  margin-bottom: 1rem;
 }
-.dropzone { 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column; 
-    font-weight: 200;
-    height: 300px;
-    border: 2px dashed #f16624;
-    border-radius: 5px;
-    background: white;
-    margin: 10px 0;
 
-    &.hovering {
-        border: 2px solid #f16624;
-        color: #dadada !important;
-    }
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 200;
+  height: 300px;
+  border: 2px dashed #f16624;
+  border-radius: 5px;
+  background: white;
+  margin: 10px 0;
 
-    .file-label {
-        font-size: 1.2em;
-    }
+  &.hovering {
+    border: 2px solid #f16624;
+    color: #dadada !important;
+  }
+
+  .file-label {
+    font-size: 1.2em;
+  }
+}
+
+.mat-form-field {
+  font-family: 'Cabin-Regular', sans-serif;
+}
+
+.mat-radio-button {
+  font-family: 'Cabin-Regular', sans-serif;
+  font-size: 0.97rem;
+}
+
+.mat-checkbox {
+  font-family: 'Cabin-Regular',
+    sans-serif;
+  font-size: 0.97rem;
 }

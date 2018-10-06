@@ -4,7 +4,6 @@ import {  catchError } from 'rxjs/operators';
 import * as firebase from 'firebase/app';
 import {  AngularFireAuth } from 'angularfire2/auth';
 import {  environment } from '../../environments/environment';
-import {  Observable } from 'rxjs/Observable';
 import {  BehaviorSubject } from 'rxjs';
 import 'rxjs/add/operator/switchMap'
 import {  NotifyService } from './notify.service';

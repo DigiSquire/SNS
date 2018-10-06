@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'artists',
@@ -11,22 +10,20 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ArtistsComponent implements OnInit {
   showNavigationArrows = false;
-  images: Array<any> = [
-     { 
+  images: Array < any > = [{
       'url': './assets/paint1.1.jpeg'
-    
-       },
-      {
-       'url': './assets/paint2.1.jpeg'
-       },
-       {
-        'url': './assets/paint3.1.jpeg' 
-       
-           }
-  ];
-  constructor(private _http: HttpClient) {}
 
-  ngOnInit() {
-  }
+    },
+    {
+      'url': './assets/paint2.1.jpeg'
+    },
+    {
+      'url': './assets/paint3.1.jpeg'
+
+    }
+  ];
+  constructor(public auth: AuthService) {}
+
+  ngOnInit() {}
 
 }

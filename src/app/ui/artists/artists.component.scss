@@ -1,100 +1,127 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700');
-.layover{
-    // background-image: linear-gradient(to top, #00a5c1 0%, #6dc38e 100%);
-    // opacity: 0.7;
-    margin-top: -40px;
+
+.layover {
+  // background-image: linear-gradient(to top, #00a5c1 0%, #6dc38e 100%);
+  // opacity: 0.7;
+  margin-top: -40px;
 }
-img{
-     width: 100%;
-    //  height:100%;
+
+img {
+  width: 100%;
+  //  height:100%;
 }
+
 .slide-gradient {
- max-height: 650px;
+  max-height: 650px;
 }
+
 .slide-gradient::before {
-content: '';
-position: absolute;
-top: 0;
-right: 0;
-bottom: 0;
-left: 0;
-background-image: linear-gradient(to top, #006374 30%, #6dc38e 70%);
-opacity: 0.5; 
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to top, #006374 30%, #6dc38e 70%);
+  opacity: 0.5;
 }
-.card{
-    background-color: transparent;
-    border: none;
+
+.card {
+  background-color: transparent;
+  border: none;
 }
-.sub-heading{
-    color: #a7a7a7;
-    font-size: 14px;
+
+.sub-heading {
+  color: #a7a7a7;
+  font-size: 14px;
 }
-#profile-cards h4{
-color: #242424;
-font-family: Cabin;
-font-size: 16px;
-font-weight: 700;
-line-height: 35px;
-text-align: center;
+
+#profile-cards h4 {
+  color: #242424;
+  font-family: Cabin;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 35px;
+  text-align: center;
 }
+
 #profile-cards img {
-    width: 168px;
-    height:168px;
+  width: 168px;
+  height: 168px;
 }
+
 #profile-cards p {
-    color: #878787;
-    font-size: 14px;
-    font-weight: 400;
-    text-align:center;
+  color: #878787;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
 }
-#buttons-section h4{
-    color: #2d2c2c;
-font-family: "Cabin";
-font-weight: 700;
-line-height: 60px;
-text-align: center;
+
+#buttons-section h4 {
+  color: #2d2c2c;
+  font-family: "Cabin";
+  font-weight: 700;
+  line-height: 60px;
+  text-align: center;
 }
 
 #buttons-section .btn-lg {
-    padding: 0.85rem 4rem;
+  padding: 0.85rem 4rem;
 }
-.cabin-font{
-    font-family : "cabin";
-    font-weight: 700;
-    font-size : 45px;
+
+.cabin-font {
+  font-family: "cabin";
+  font-weight: 700;
+  font-size: 45px;
 }
-.channel-font{
-    font-family: "Channel";
-    font-weight: 700;
-    font-size : 28px;
-    font-style : italic ; 
+
+.channel-font {
+  font-family: "Channel";
+  font-weight: 700;
+  font-size: 28px;
+  font-style: italic;
 
 }
-.padding-top15{
-    padding-top:15px;
+
+.padding-top15 {
+  padding-top: 15px;
+}
+
+a.custom-btn:hover {
+  color: #fff !important;
+  background-color: #1d3bdd;
+  border-color: #1c38d1;
+}
+
+a.custom-btn:focus {
+  box-shadow: none;
 }
 
 /* carousel classes */
- .carousel-indicators li {
-    border-radius :12px !important ;
-    background-color: #006374;
+.carousel-indicators li {
+  border-radius: 12px !important;
+  background-color: #006374;
 }
+
 .layover .carousel-inner {
-    max-height: 650px;
+  max-height: 650px;
 }
-.carousel-subtext{
-    font-family: "Montserrat";
-font-weight: 500;
-font-size : 65px;
-letter-spacing: -2.6px;
+
+.carousel-subtext {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 65px;
+  letter-spacing: -2.6px;
 }
+
 .carousel-text {
-    font-family: "Montserrat";
-    font-weight: 700;
-    font-size: 65px;
-    letter-spacing: -2.6px;
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 65px;
+  letter-spacing: -2.6px;
 
 }
+
 .carousel-caption {
-    bottom: 45%;
+  bottom: 45%;
 }

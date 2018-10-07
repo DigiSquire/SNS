@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../core/auth.service';
 
@@ -8,8 +8,10 @@ import { AuthService } from '../../core/auth.service';
   styleUrls: ['./artists.component.scss'],
   providers: [NgbCarouselConfig]
 })
-export class ArtistsComponent implements OnInit {
+export class ArtistsComponent implements OnInit, OnDestroy {
   showNavigationArrows = false;
+  private subscription;
+  userRole: string = null;
   images: Array < any > = [{
     'url': './assets/paint1.1-min.jpeg'
 
@@ -22,8 +24,12 @@ export class ArtistsComponent implements OnInit {
 
     }
   ];
-  constructor(public auth: AuthService) {}
+  constructor(private auth: AuthService) {}
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.subscription = this.auth.loggedInUserRole.subscribe((message) => this.userRole = message);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

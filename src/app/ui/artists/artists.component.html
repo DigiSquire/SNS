@@ -72,9 +72,11 @@
     <div class="d-md-flex flex-row justify-content-center">
       <div class="p-5 align-content-center">
         <h4>Learn how to earn</h4>
-        <button type="button" class="btn btn-primary btn-lg">Get In Touch</button>
+<a class="custom-btn btn btn-primary btn-lg" href="mailto:support@spacesnstories.com?Subject=Help%20Me%20Get%20Featured">Get
+  In
+  Touch</a>
       </div>
-      <div *ngIf="!(auth.user|async);"class="p-5 align-content-center">
+      <div *ngIf="!userRole"class="p-5 align-content-center">
         <h4>Start today!</h4>
         <button routerLink="/login" type="button" class="btn btn-primary btn-lg">Register Now</button>
       </div>

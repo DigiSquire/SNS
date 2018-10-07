@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/auth.guard';
+import { LoginAuthGuard } from './core/login-auth.guard';
 import { HomePageComponent } from './ui/home-page/home-page.component';
 import { UserFormComponent } from './ui/user-form/user-form.component';
 import { GalleryComponent } from './ui/gallery/gallery.component';
@@ -19,7 +20,9 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'artists', component: ArtistsComponent },
-  { path: 'login', component: UserFormComponent },
+  { path: 'login',
+    component: UserFormComponent,
+    canActivate: [LoginAuthGuard] },
   { path: 'gallery', component: GalleryComponent },
 ];
 

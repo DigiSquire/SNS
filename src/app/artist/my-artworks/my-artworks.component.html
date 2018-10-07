@@ -13,26 +13,26 @@
           <div class="mb-auto text-white sale-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rent===true">Sale</div>
         </div>
         <div class="card-ht">
-          <img class="card-img-top" src={{url}}{{file.filename}} alt="Card image cap">
+          <img class="card-img-top" src={{file.url}} alt="Card image cap">
         </div>
       </div>
 
       <div class="card-body text-center">
         <div class="d-flex justify-content-center mb-3">
           <mat-chip-list>
-            <mat-chip class="approve" *ngIf="file.metadata[0].approvalStatus==='approved'" selected>Approved</mat-chip>
+            <mat-chip class="approve" *ngIf="file.metadata[0].approvalStatus==='approved'" selected>Approved</mat-chip> 
             <mat-chip color="warn" *ngIf="file.metadata[0].approvalStatus==='rejected'" selected>Rejected</mat-chip>
             <mat-chip color="warn" *ngIf="file.metadata[0].approvalStatus==='pending'" selected>Approval Pending</mat-chip>
           </mat-chip-list>
         </div>
 
-        <h6 class="card-title">{{file.metadata[0].name}}</h6>
+        <h6 class="card-title text-capitalize">{{file.metadata[0].name}}</h6>
         <p class="card-text artist-name text-capitalize">by {{file.metadata[0].artBy}}</p>
-        <p class="card-text small-price" [class.mb-4]="file.metadata[0].rent===false || file.metadata[0].rent===''"
-          *ngIf="file.metadata[0].buy===true">${{file.metadata[0].sellingPrice}}</p>
-        <p [class.mb-custom]="file.metadata[0].buy===false || file.metadata[0].buy===''">
-          <small class="text-muted" *ngIf="file.metadata[0].rent===true">Rent starts at
-            ${{file.metadata[0].rentPrice}}/month</small>
+        <p class="card-text small-price" [class.mb-3]="file.metadata[0].sellingPrice===null"
+          *ngIf="file.metadata[0].buy===true">{{file.metadata[0].sellingPrice | currency}}</p>
+        <p [class.mb-custom]="file.metadata[0].buy===false">
+          <small class="text-muted text-capitalize" *ngIf="file.metadata[0].rent===true && file.metadata[0].rentPrice">Rent starts at
+            {{file.metadata[0].rentPrice | currency}}/month</small>
         </p>
       </div>
     </div>

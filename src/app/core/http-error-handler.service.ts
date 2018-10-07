@@ -36,9 +36,12 @@ export class HttpErrorHandler {
         return (error: HttpErrorResponse): Observable<Result> => {
             // TODO: send the error to remote logging infrastructure
             console.error(error); // log to console instead
-            if (error.status === 501 || error.statusText === 'Unknown Error') {
+            if (error.status === 501 || error.statusText === 'Unknown Error') {                
                 message = `Our services are down for maintenance , we will be back shortly`;
                 this.messageService.update(`${message}`, 'error');
+                return Observable.of(null);
+            } else if (error.error && error.status === 503) {
+                this.messageService.update(`${error.error.message}`, 'error');
                 return Observable.of(null);
             }else {
                 console.log(`${serviceName}: ${operation} failed`);

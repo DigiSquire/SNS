@@ -96,8 +96,8 @@ export class ArtworkService {
           this.notify.update('There Was An Error Uploading Your Artwork', 'error');
         } else {
           this.auth.changeMessage(false);
-          this.notify.update(`Image: ${result.file.originalname} Uploaded Successfully`, 'success');
-          return result.file.originalname;
+          this.notify.update(`${result.message}`, 'success');
+          return true;
         }
       }),
       catchError(this.handleHTTPError('uploadArtwork'))

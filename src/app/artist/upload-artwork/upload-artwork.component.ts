@@ -148,7 +148,7 @@ export class UploadArtworkComponent implements OnChanges {
         medium: ''
         
       }),
-      rent: '',
+      rent: false,
       rentTenure: this.fb.group({
         oneMonth : '',
         oneMonthRentPrice : '',
@@ -158,8 +158,8 @@ export class UploadArtworkComponent implements OnChanges {
         sixMonthRentPrice : ''
 
         }),
-      buy: '',
-      print: '',
+      buy: false,
+      print: false,
       rentPrice: '',
       sellingPrice: '',
       printPrice: '',
@@ -225,7 +225,7 @@ export class UploadArtworkComponent implements OnChanges {
     data.push(this.heroForm.get('metadata').value);
   
     formData.append('metadata', JSON.stringify(data));
-    formData.append('file', this.heroForm.get('file').value);
+    formData.append('image', this.heroForm.get('file').value);
     return formData;
   }
   onSubmit(formData: any, formDirective: FormGroupDirective) {
@@ -235,9 +235,13 @@ export class UploadArtworkComponent implements OnChanges {
     console.log(formModel);
     console.log('Submit Executed');
     return this.artService.uploadArtwork(formModel).subscribe((result => {
-      console.log(result);
-      formDirective.resetForm();
-      this.heroForm.reset();
+      if (result) {
+        formDirective.resetForm();
+        this.heroForm.reset();
+      }else {
+        this.auth.changeMessage(false);
+      }
+      
     }));
   }
 

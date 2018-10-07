@@ -11,14 +11,14 @@ import { AuthService } from '../../core/auth.service';
 export class ArtistsComponent implements OnInit {
   showNavigationArrows = false;
   images: Array < any > = [{
-      'url': './assets/paint1.1.jpeg'
+    'url': './assets/paint1.1-min.jpeg'
 
     },
     {
-      'url': './assets/paint2.1.jpeg'
+      'url': './assets/paint2.1-min.jpeg'
     },
     {
-      'url': './assets/paint3.1.jpeg'
+      'url': './assets/paint3.1-min.jpeg'
 
     }
   ];

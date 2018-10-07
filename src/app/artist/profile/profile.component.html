@@ -1,4 +1,4 @@
-<form class="mt-4 mb-4" [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="finished">
+<form class="mt-4 mb-4" [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="finished && !noData">
     <div class="form-group">
         <mat-form-field class="example-full-width">
             <input  class="text-capitalize"matInput placeholder="First Name" formControlName="firstName" required>

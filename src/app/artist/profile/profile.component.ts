@@ -13,6 +13,7 @@ import { AuthService } from '../../core/auth.service';
 export class ProfileComponent implements OnInit {
   email: string;
   finished = false;
+  noData = true;
   profileForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
@@ -52,6 +53,10 @@ export class ProfileComponent implements OnInit {
           // So on every subsequent visit the form comes populated
           console.log(result);
           this.finished = true;
+          this.noData = false;
+        }else {
+          this.finished = true;
+          this.noData = true;
         }
       });
     }

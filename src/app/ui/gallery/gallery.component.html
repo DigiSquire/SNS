@@ -22,12 +22,12 @@
 
       <div class="card-body text-center">
         <h6 class="card-title text-capitalize">{{file.metadata[0].name}}</h6>
-        <p class="card-text small-price" style="color: #6ECCF0;" [class.mb-4]="file.metadata[0].rent===false || file.metadata[0].rent===''"
-          *ngIf="file.metadata[0].buy===true">{{file.metadata[0].sellingPrice | currency}}</p>
+        <p style="color: #6ECCF0;" class="card-text small-price" [class.mb-3]="file.metadata[0].sellingPrice===null" *ngIf="file.metadata[0].buy===true">{{file.metadata[0].sellingPrice
+          | currency}}</p>
         <p [class.mb-custom]="file.metadata[0].buy===false">
-          <small class="text-muted text-capitalize" *ngIf="file.metadata[0].rent===true && file.metadata[0].rentPrice">Rent starts at
-            {{file.metadata[0].rentPrice | currency}}/month</small>
-        </p>
+              <small class="text-muted text-capitalize" *ngIf="file.metadata[0].rent===true && file.metadata[0].rentPrice">Rent starts at
+                {{file.metadata[0].rentPrice | currency}}/month</small>
+            </p>
       </div>
     </div>
 

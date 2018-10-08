@@ -69,10 +69,13 @@
 }
 
 .notification.is-success {
-    background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+    background-color: #23d160;
     color: #fff
 }
-
+.notification.is-welcome {
+  background: linear-gradient(40deg, #45cafc, #303f9f);
+  color: #fff
+}
 .notification.is-warning {
     background-color: #ffdd57;
     color: rgba(0,0,0,.7)

@@ -34,37 +34,40 @@
 <div class="container">
   <section class="page-heading mt-5 mb-5">
     <h2 class="text-center cabin-font">How it<span class="channel-font"> works?</span></h2>
-    <p class="text-center sub-heading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ullamcorper
-      enim, vestibulum dignissim augue. Proin elementum
-      enim sit amet sodales ornare. Suspendisse commodo semper tellus.</p>
+    <p class="p-overwrite text-center sub-heading">We have some simple steps designed to get you started quickly. Try
+      them
+      out !!.
+      <p class="p-overwrite text-center sub-heading"> Have
+        questions? We will be more than happy to answer.</p>
+      <p class="p-overwrite text-center sub-heading">Drop us an email at <a class="" href="mailto:artists@spacesnstories.com?Subject=Query%20Regaring%20">artists@spacesnstories.com.</a></p>
   </section>
   <section id="profile-cards">
     <div class="d-md-flex flex-row">
       <div class="p-2">
         <img class="card-img-top" src="./assets/card1.svg" alt="Card image cap">
         <h4 class="padding-top15">Create your Profile</h4>
-        <p>Integer rutrum pulvinar ex nec hendrerit,integer et dui turpis.</p>
+        <p>It will just take less than a minute to create your profile.</p>
       </div>
-      <div class="p-2">
+      <div class="d-flex align-items-center flex-column p-2">
         <img class="card-img-top" src="./assets/upload-image.svg" alt="Card image cap">
         <h4 class="padding-top15">Upload your Artwork</h4>
-        <p>Integer rutrum pulvinar ex nec hendrerit,integer et dui turpis.</p>
+        <p>Use this to upload your original artwork and add details of your work.</p>
       </div>
-      <div class="p-2">
+      <div class="d-flex align-items-center flex-column p-2">
         <img class="card-img-top" src="./assets/preference.svg" alt="Card image cap">
         <h4 class="padding-top15">Select your preference</h4>
-        <p>Integer rutrum pulvinar ex nec hendrerit,integer et dui turpis.</p>
+        <p>Here you can select if you want to rent your artwork or sell originals or prints.</p>
       </div>
 
-      <div class="p-2">
+      <div class="d-flex align-items-center flex-column p-2">
         <img class="card-img-top" src="./assets/review.svg" alt="Card image cap">
         <h4 class="padding-top15">Get it reviewed and approved</h4>
-        <p>Integer rutrum pulvinar ex nec hendrerit,integer et dui turpis.</p>
+        <p>We will work with you to ensure you feature the right work in right way.</p>
       </div>
-      <div class="p-2">
+      <div class="d-flex align-items-center flex-column p-2">
         <img class="card-img-top" src="./assets/feature.svg" alt="Card image cap">
         <h4 class="padding-top15">Get Featured</h4>
-        <p>Integer rutrum pulvinar ex nec hendrerit,integer et dui turpis.</p>
+        <p>Once approved, your work will feature on the site and we will take it from there.</p>
       </div>
     </div>
   </section>
@@ -72,11 +75,11 @@
     <div class="d-md-flex flex-row justify-content-center">
       <div class="p-5 align-content-center">
         <h4>Learn how to earn</h4>
-<a class="custom-btn btn btn-primary btn-lg" href="mailto:artists@spacesnstories.com?Subject=Help%20Me%20Get%20Featured">Get
-  In
-  Touch</a>
+        <a class="custom-btn btn btn-primary btn-lg" href="mailto:artists@spacesnstories.com?Subject=Help%20Me%20Get%20Featured">Get
+          In
+          Touch</a>
       </div>
-      <div *ngIf="!userRole"class="p-5 align-content-center">
+      <div *ngIf="!userRole" class="p-5 align-content-center">
         <h4>Start today!</h4>
         <button routerLink="/login" type="button" class="btn btn-primary btn-lg">Register Now</button>
       </div>

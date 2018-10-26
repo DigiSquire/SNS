@@ -1,4 +1,10 @@
-.example-full-width{
-    width:50%;
-    display:block;
+.example-full-width {
+  width: 50%;
+  display: block;
+}
+
+@media(max-width: 767px) {
+  .example-full-width {
+    width: 100%;
+  }
 }

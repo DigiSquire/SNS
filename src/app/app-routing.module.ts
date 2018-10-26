@@ -7,7 +7,7 @@ import { UserFormComponent } from './ui/user-form/user-form.component';
 import { GalleryComponent } from './ui/gallery/gallery.component';
 import { ArtistsComponent } from './ui/artists/artists.component';
 const routes: Routes = [
-  { path: '', redirectTo: 'gallery', pathMatch: 'full' },
+  { path: '', redirectTo: 'artists', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
   {
     path: 'artist-center',    

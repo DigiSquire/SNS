@@ -61,7 +61,8 @@
  
 
   <!-- <button type="submit" [disabled]="!profileForm.valid">Update Profile</button> -->
-  <button  type="submit" mat-raised-button color="primary" [disabled]="!profileForm.valid">Update Profile</button>
+<button *ngIf="email!==undefined" type="submit" mat-raised-button color="primary" [disabled]="!profileForm.dirty || !profileForm.valid">Update
+  Profile</button>
 </form>
 
 <!-- <hr>

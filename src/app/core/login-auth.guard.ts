@@ -12,7 +12,6 @@ export class LoginAuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      console.log(state.url);
       return this.authorize(state.url);
   }
   authorize(attemptedPath: String): Promise<boolean> {

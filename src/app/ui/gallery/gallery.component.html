@@ -33,6 +33,6 @@
 
   </div>
 </div>
-<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1500" (scrolled)="onScroll()">
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="3000" (scrolled)="onScroll()">
 </div>
 <mat-spinner style="margin:0 auto;" *ngIf="!finished" [diameter]="40" color="warn"></mat-spinner>

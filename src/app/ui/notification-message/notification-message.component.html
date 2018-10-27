@@ -1,11 +1,15 @@
 <div class="container">
-  <div *ngIf="notify.msg | async as msg" class="notification col-md-12 col-sm-12 col-xs-12" [ngClass]="{ 
+  <div class="wrapper">
+    <div *ngIf="notify.msg | async as msg" class="notification col-md-12 col-sm-12 col-xs-12" [ngClass]="{ 
     'is-danger': msg.style == 'error',
     'is-welcome': msg.style == 'welcome',
     'is-success': msg.style == 'success',
-    'is-info': msg.style == 'info'
+    'is-info': msg.style == 'info',
+    'mt-4': onArtist== true,
+    'position-notification': onArtist== true
   }">
-    <button class="delete" (click)="notify.clear()"></button>
-    {{ msg.content }}
+      <button class="delete" (click)="notify.clear()"></button>
+      {{ msg.content }}
+    </div>
   </div>
 </div>

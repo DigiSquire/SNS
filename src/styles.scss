@@ -3,11 +3,10 @@
   font-family: "Channel";
   src: url("./assets/fonts/Channel.ttf") format("truetype");
 }
-@import url('https://fonts.googleapis.com/css?family=Cabin');
-// @font-face {
-//   font-family: "Cabin-Regular";
-//   src: url("./assets/fonts/Cabin-Regular.ttf") format("truetype");
-// }
+@font-face {
+  font-family: "Cabin-Regular";
+  src: url("./assets/fonts/Cabin-Regular.ttf") format("truetype");
+}
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 html {
   position: relative;
@@ -16,7 +15,7 @@ button:focus {
   outline: none
 }
 body {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'Cabin-Regular', sans-serif;
   padding-top: 10.5rem;
 }
 
@@ -36,7 +35,7 @@ a {
  }
 
 p {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'Cabin-Regular', sans-serif;
 }
 
 a:hover {

@@ -15,7 +15,7 @@ import { MaterialModule } from '../material/material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { ArtistsComponent } from './artists/artists.component';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -27,6 +27,7 @@ import { ArtistsComponent } from './artists/artists.component';
     UploadsModule,   
     MaterialModule, 
     NgbModule,
+    SharedModule
   ],
   declarations: [
     HomePageComponent,

@@ -7,24 +7,20 @@ import { AdminCenterComponent } from './admin-center/admin-center.component';
 import { PendingArtworksComponent } from './pending-artworks/pending-artworks.component';
 import { ApprovedArtworksComponent } from './approved-artworks/approved-artworks.component';
 import { RejectedArtworksComponent } from './rejected-artworks/rejected-artworks.component';
-import { DialogComponent } from './dialog/dialog.component';
-
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
     AdminCenterRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   declarations: [
     AdminCenterComponent,
     PendingArtworksComponent,
     ApprovedArtworksComponent,
-    RejectedArtworksComponent,
-    DialogComponent
-  ],
-    entryComponents: [
-      DialogComponent
-    ],
+    RejectedArtworksComponent
+  ]
 })
 export class AdminModule { }

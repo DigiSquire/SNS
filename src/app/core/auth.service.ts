@@ -82,7 +82,7 @@ export class AuthService {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(credential => {
-        return credential.user.getIdToken()
+        return credential.user.getIdToken(true)
       }).then((idToken) => {
         const userData = {
           'idToken': idToken,
@@ -113,7 +113,7 @@ isLoggedIn() {
 async checkLoginStreamRole() {
   const user = await this.isLoggedIn()
   if (user) {
-    const idTokenResult = await this.afAuth.auth.currentUser.getIdTokenResult();
+    const idTokenResult = await this.afAuth.auth.currentUser.getIdTokenResult(true);
     if (!!idTokenResult.claims.artist) {
       if (this.email.getValue() === null) {
         this.email.next(user.email)
@@ -136,7 +136,7 @@ checkLoginAndRole(route: String): Promise<boolean> {
     return this.isLoggedIn().then((user) => {
       if (user) {
         // sessionStorage.setItem(environment.emailId, user.email);
-        return this.afAuth.auth.currentUser.getIdTokenResult().then((idTokenResult) => {
+        return this.afAuth.auth.currentUser.getIdTokenResult(true).then((idTokenResult) => {
           if (!!idTokenResult.claims.artist && route.indexOf(environment.role_admin) === -1) {            
               if (this.email.getValue() === null) {
                 this.email.next(user.email)

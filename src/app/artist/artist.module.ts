@@ -8,15 +8,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { MyArtworksComponent } from './my-artworks/my-artworks.component';
 import { UploadArtworkComponent } from './upload-artwork/upload-artwork.component';
 import { DropZoneDirective } from '../uploads/drop-zone.directive';
-import { LoadingModule } from 'ngx-loading';
 import { NumbersOnlyDirective } from '../core/numbers-only.directive';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
     ArtistCenterRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
-    LoadingModule
+    SharedModule
   ],
   declarations: [
     NumbersOnlyDirective,

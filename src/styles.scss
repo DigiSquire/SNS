@@ -1,13 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
 @font-face {
   font-family: "Channel";
-  src: url("./assets/fonts/Channel.ttf") format("truetype");
+  src: url("/assets/fonts/Channel.eot?") format("eot"),
+  url("/assets/fonts/Channel.woff") format("woff"),
+  url("/assets/fonts/Channel.ttf") format("truetype"),
+  url("/assets/fonts/Channel.svg#Channel") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
-@font-face {
-  font-family: "Cabin-Regular";
-  src: url("./assets/fonts/Cabin-Regular.ttf") format("truetype");
-}
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 html {
   position: relative;
 }
@@ -15,7 +18,7 @@ button:focus {
   outline: none
 }
 body {
-  font-family: 'Cabin-Regular', sans-serif;
+  font-family: 'Cabin', sans-serif;
   padding-top: 10.5rem;
 }
 
@@ -35,7 +38,7 @@ a {
  }
 
 p {
-  font-family: 'Cabin-Regular', sans-serif;
+  font-family: 'Cabin', sans-serif;
 }
 
 a:hover {

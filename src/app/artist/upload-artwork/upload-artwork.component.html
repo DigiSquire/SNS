@@ -99,8 +99,8 @@
            <div formArrayName="rows"> 
             <div *ngFor="let row of heroForm.controls.metadata.controls.rentInformation.controls.rows.controls; let i = index" [formGroupName]="i">
              
-               <mat-checkbox class="example-margin" formControlName="checkbox_value" >{{row.value.month}} month</mat-checkbox>
-                <mat-form-field class="example-full-width">
+               <mat-checkbox class="example-margin" formControlName="checkbox_value" (change)="clearPriceIfNecessary(i)" >{{row.value.month}} month</mat-checkbox>
+                <mat-form-field class="example-full-width"  *ngIf="heroForm.get('metadata.rentInformation.rows').value[i].checkbox_value">
                   <input autocomplete="off"   matInput placeholder="Price:" formControlName="price" OnlyNumber="true">
                 </mat-form-field> 
               </div>

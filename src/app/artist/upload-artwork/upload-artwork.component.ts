@@ -189,11 +189,11 @@ export class UploadArtworkComponent implements OnChanges {
     });
   }
 
-  // clearPriceIfNecessary(id) {
-  //   if (!this.heroForm.get('metadata.rentInformation.rows.${id}').value.checkbox_value) {
-  //     this.heroForm.get('metadata.rentInformation.rows.${id}').patchValue({price: ''});
-  //   }
-  // }
+ clearPriceIfNecessary(id) {
+     if (!this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value) {
+       this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
+     }
+   }
   patchValues() {
     const rows = this.heroForm.get('metadata.rentInformation.rows') as FormArray;
     this.rentDetails.map(detail => {

@@ -90,7 +90,7 @@
         </div>
         <a *ngIf="!passReset && existingUserForm.controls.existingEmail.valid" class="help is-info" (click)="resetPassword()">Reset
           Password for {{existingUserForm.value.existingEmail}}?</a>
-        <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
+        <!-- <p *ngIf="passReset && existingUserForm.controls.existingEmail.valid" class="help is-info">Reset requested. Check your email instructions.</p> -->
       </div>
     </form>
   </div>

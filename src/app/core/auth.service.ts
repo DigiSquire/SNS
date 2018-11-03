@@ -211,7 +211,7 @@ checkLoginAndRole(route: String): Promise<boolean> {
 
     return fbAuth
       .sendPasswordResetEmail(email)
-      .then(() => this.notify.update('Password update email sent', 'info'))
+      .then(() => this.notify.update('Reset requested. Check your email for instructions.', 'info'))
       .catch(error => this.handleError(error));
   }
   // If error, console log and notify user

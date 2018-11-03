@@ -48,3 +48,14 @@ h1,h2,h3,h4{
 .spinner-three-bounce {
   bottom: 50% !important;
 }
+.mat-disabled .mat-slide-toggle-bar {
+  background: linear-gradient(40deg, #45cafc, #303f9fb3) !important
+}
+
+.mat-disabled .mat-slide-toggle-thumb {
+  background-color: #3F51B5;
+}
+.mat-slide-toggle.mat-disabled .mat-slide-toggle-label,
+.mat-slide-toggle.mat-disabled .mat-slide-toggle-thumb-container {
+  cursor: not-allowed !important;
+}

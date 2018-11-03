@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators, FormGroupDirective, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Address, Hero, states, categories, medium, classification } from '../../core/data.model';
 import { environment } from '../../../environments/environment';
@@ -25,14 +25,21 @@ export class UploadArtworkComponent implements OnChanges {
   availableFrom: Date= null;
   availableTo: Date= null;
   file;
+   rentDetails = [
+    { month: 1, price: '' },
+    { month: 3, price: '' },
+    { month: 6, price: ''}
+   
+  ];
   constructor(
     private fb: FormBuilder, private http: HttpClient,
     private artService: ArtworkService, private auth: AuthService,
     private notify: NotifyService) {
-    
+     
     this.auth.getEmail.subscribe((message) => {
       this.email = message;
       this.createForm();
+      this.patchValues();
     });
     
     // this.logNameChange();
@@ -118,7 +125,13 @@ export class UploadArtworkComponent implements OnChanges {
 
   createForm() {
     console.log(`Signed in user's email is: ${this.email}`)
+    // const controls = this.rentDetails.map(c => new FormGroup( {
+    //   month : new FormControl(),
+    //   price : new FormControl()
+    // } ));
+    
     this.heroForm = this.fb.group({
+      
       metadata: this.fb.group({
         availableFrom: null,
         availableTo: null,
@@ -128,18 +141,11 @@ export class UploadArtworkComponent implements OnChanges {
         height: '',
         width: '',
         depth: ''
-
       }),
-        category: this.fb.group({
+      category: this.fb.group({
         artType: ''
       }),
-      
       weight: '',
-      
-      //   artType:this.fb.group({
-      //     categories
-      // }),
-      
       classification: this.fb.group({
         artClassification: ''
         
@@ -148,19 +154,29 @@ export class UploadArtworkComponent implements OnChanges {
         medium: ''
         
       }),
-      rent: false,
-      rentTenure: this.fb.group({
-        oneMonth : '',
-        oneMonthRentPrice : '',
-        threeMonth : '',
-        threeMonthRentPrice : '',
-        sixMonth : '',
-        sixMonthRentPrice : ''
+      rentInformation : this.fb.group({
+        rent: false,
+        rentPrice: [null],
+      //  rentDetails: this.buildRentDetails()
+      rows: this.fb.array([])
+        
+      }),
+     
+      // rentTenure: this.fb.group({
+      //   oneMonth : '',
+      //   oneMonthRentPrice : '',
+      //   threeMonth : '',
+      //   threeMonthRentPrice : '',
+      //   sixMonth : '',
+      //   sixMonthRentPrice : ''
 
-        }),
+      //   }),
+
+      
+
       buy: false,
       print: false,
-      rentPrice: '',
+      
       sellingPrice: '',
       printPrice: '',
       approvalStatus: 'pending',
@@ -173,6 +189,48 @@ export class UploadArtworkComponent implements OnChanges {
     });
   }
 
+  // clearPriceIfNecessary(id) {
+  //   if (!this.heroForm.get('metadata.rentInformation.rows.${id}').value.checkbox_value) {
+  //     this.heroForm.get('metadata.rentInformation.rows.${id}').patchValue({price: ''});
+  //   }
+  // }
+  patchValues() {
+    const rows = this.heroForm.get('metadata.rentInformation.rows') as FormArray;
+    this.rentDetails.map(detail => {
+        rows.push(this.fb.group({
+          checkbox_value: [null],
+          newdisablecontrol: ({ value: '', disabled: true }),
+          month: detail.month,
+           price: [null]
+        }));
+      
+    });
+  }
+   
+  // buildRentDetails() {
+  //   const arr = this.rentDetails.map(rentDetail => {
+  //     this.fb.group({
+  //       checkbox_value: false,
+  //       material_id: new FormControl({ value: x.id, disabled: true }, Validators.required),
+  //       material_name: x.name,
+  //       quantity: [null]
+  //     })
+  //     return this.fb.control(rentDetail.selected);
+  //   });
+  //   return this.fb.array(arr);
+  // }
+  
+  //  createItem(): FormGroup {
+  //   return this.fb.group({
+  //    month: [null],
+  //     price: ''
+  // });
+  //  }
+  //  addItem(): void {
+  //   this.rentDetails = this.heroForm.get('rentDetails') as FormArray;
+  //   this.rentDetails.push(this.createItem());
+  //  }
+   
   ngOnChanges() {
     this.rebuildForm();
   }
@@ -234,6 +292,7 @@ export class UploadArtworkComponent implements OnChanges {
     const formModel = this.prepareSave();
     console.log(formModel);
     console.log('Submit Executed');
+
     return this.artService.uploadArtwork(formModel).subscribe((result => {
       if (result) {
         formDirective.resetForm();

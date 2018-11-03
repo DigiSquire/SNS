@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy:sns": "ng build --prod --base-href \"https://spacesnstories.digisquire.co\" "
+    "deploy:test": "ng build --prod --base-href \"http://test.spacesnstories.com\" ",
+    "deploy:prod": "ng build --prod --base-href \"http://spacesnstories.com\" "
   },
   "private": true,
   "dependencies": {

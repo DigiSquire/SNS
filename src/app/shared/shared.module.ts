@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ArtworkCardComponent } from './artwork-card/artwork-card.component';
 import { MaterialModule } from '../material/material.module';
 import { DialogComponent } from './dialog/dialog.component';
+import { ContactEmailsComponent } from './contact-emails/contact-emails.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -10,10 +11,12 @@ import { DialogComponent } from './dialog/dialog.component';
   ],
   declarations: [
     ArtworkCardComponent,
-    DialogComponent
+    DialogComponent,
+    ContactEmailsComponent
   ],
   exports: [
-    ArtworkCardComponent
+    ArtworkCardComponent,
+    ContactEmailsComponent
   ],
   entryComponents: [
     DialogComponent

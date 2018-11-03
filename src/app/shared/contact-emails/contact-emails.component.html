@@ -1,0 +1,10 @@
+<ng-template #showSupport>
+  <a class="d-flex p-2" href="mailto:support@spacesnstories.com?Subject=Query%20Regarding">
+    <span [ngClass]="{'text-white': header, 'text-black':!header }">
+      <i class="far fa-envelope p-1"></i>support@spacesnstories.com</span>
+  </a>
+</ng-template>
+<a *ngIf="this.location.path().indexOf('artists')>-1; else showSupport" class="d-flex p-2" href="mailto:artists@spacesnstories.com?Subject=Query%20Regarding">
+  <span [ngClass]="{'text-white': header, 'text-black':!header }">
+    <i class="far fa-envelope p-1"></i>artists@spacesnstories.com</span>
+</a>

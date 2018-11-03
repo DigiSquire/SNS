@@ -93,8 +93,13 @@ export class UserFormComponent implements OnInit {
   }
   resetPassword() {
     window.scroll(0, 0);
+    this.auth.changeMessage(true);
     this.auth.resetPassword(this.existingUserForm.value['existingEmail'])
-      .then(() => {this.passReset = false; this.existingUserForm.reset(); });
+      .then(() => {
+        this.passReset = false;
+        this.existingUserForm.reset();
+        this.auth.changeMessage(false);
+      });
   }
 
   buildSignUpForm() {

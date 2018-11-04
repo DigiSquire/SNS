@@ -11,7 +11,7 @@ export class HomePageComponent implements OnInit {
 
   animals$;
 
-  title = 'Welcome to Spaces and Stories';
+  title = 'Welcome to Spaces n Stories';
   description = 'Giving Artists and art connoisseur to connect on a reliable platform';
 
   newAnimal: { name?: string, bio?: string } = {}

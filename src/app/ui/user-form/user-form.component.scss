@@ -120,3 +120,8 @@ a {
   color: #1c90f3;
   font-weight: 700;
 }
+@media (max-width: 767px) {
+  .font-85 {
+    font-size: 85%;
+  }
+}

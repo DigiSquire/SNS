@@ -280,6 +280,10 @@ export class UploadArtworkComponent implements OnChanges {
     console.log(`Signed in user's email is: ${this.email}`)
     const formData = new FormData();
     const data = [];
+    // Assign the lowest value to rentPrice
+    const rentPrices = this.heroForm.get('metadata').value.rentInformation.rows;
+    this.heroForm.get('metadata').value.rentInformation.rentPrice = Math.max(...rentPrices.map(s => s.price));
+
     data.push(this.heroForm.get('metadata').value);
   
     formData.append('metadata', JSON.stringify(data));

@@ -4,7 +4,7 @@ export const environment = {
     apiKey: 'AIzaSyCKM1VlODa0nDYzIimBAmv5EREWztL7Ssc',
     authDomain: 'ironic-objectivist-220216.firebaseapp.com'
   },
-  API_BASE_URI: 'http://apiv1.spacesnstories.com/api',
+  API_BASE_URI: 'https://apiv1.spacesnstories.com/api',
   API_BASE_URI_LOCAL: 'http://localhost:8083/api',
   id: '_id',
   emailId: 'emailId',

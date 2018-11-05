@@ -125,13 +125,7 @@ export class UploadArtworkComponent implements OnChanges {
 
   createForm() {
     console.log(`Signed in user's email is: ${this.email}`)
-    // const controls = this.rentDetails.map(c => new FormGroup( {
-    //   month : new FormControl(),
-    //   price : new FormControl()
-    // } ));
-    
     this.heroForm = this.fb.group({
-      
       metadata: this.fb.group({
         availableFrom: null,
         availableTo: null,

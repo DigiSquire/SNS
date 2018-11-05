@@ -49,16 +49,16 @@ export class UserFormComponent implements OnInit {
       'pattern': 'Password should include at least one letter & one number.',
       'minlength': 'Password must be at least 4 characters long.',
       'maxlength': 'Password cannot be more than 40 characters long.',
-    },
+    }
     'existingEmail': {
       'required': 'Email is required.',
-      'pattern': 'Email must be a valid email.'
+      // 'pattern': 'Email must be a valid email.'
     },
     'existingPassword': {
       'required': 'Password is required.',
-      'pattern': 'Password should include at least one letter & one number.',
-      'minlength': 'Password must be at least 4 characters long.',
-      'maxlength': 'Password cannot be more than 40 characters long.',
+      // 'pattern': 'Password should include at least one letter & one number.',
+      // 'minlength': 'Password must be at least 4 characters long.',
+      // 'maxlength': 'Password cannot be more than 40 characters long.',
     }
     
   };
@@ -128,14 +128,18 @@ export class UserFormComponent implements OnInit {
   buildSignInForm() {
     this.existingUserForm = this.fb.group({
       'existingEmail': ['', [
-        Validators.required,
-        Validators.pattern(this.emailPattern)
+        Validators.required
+        // ,
+        // Validators.pattern(this.emailPattern)
       ]],
-      'existingPassword': ['', [
-        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-        Validators.minLength(6),
-        Validators.maxLength(25),
-      ]]
+      'existingPassword': ['',
+      [
+        Validators.required,
+        // Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+        // Validators.minLength(6),
+        // Validators.maxLength(25),
+      ]
+    ]
     });
 
     this.existingUserForm.valueChanges.subscribe((data) => this.onExistingValueChanged(data));

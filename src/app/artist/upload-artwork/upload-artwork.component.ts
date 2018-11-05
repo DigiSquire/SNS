@@ -249,8 +249,20 @@ export class UploadArtworkComponent implements OnChanges {
   //     this.heroForm.get('file').setValue(file);
   //   }
   // }
+  
   rebuildForm() {
     this.heroForm.reset();
+    const rowsToDelete = this.heroForm.get('metadata.rentInformation.rows') as FormArray;
+    while (rowsToDelete.length !== 0) {
+      rowsToDelete.removeAt(0)
+         }
+    // const clearFormArray = (this.heroForm.get('metadata.rentInformation.rows'): FormArray) => {
+    //   while (this.heroForm.get('metadata.rentInformation.rows').length !== 0) {
+    //     rows.removeAt(0)
+    //   }
+    // }
+    this.patchValues();
+    
     // {
     //   name: this.hero.name
     // });

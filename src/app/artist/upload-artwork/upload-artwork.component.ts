@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators, FormGroupDirective, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Address, Hero, states, categories, medium, classification } from '../../core/data.model';
@@ -25,6 +25,7 @@ export class UploadArtworkComponent implements OnChanges {
   availableFrom: Date= null;
   availableTo: Date= null;
   file;
+  @ViewChild('uploadFile') uploadFile: any;
    rentDetails = [
     { month: 1, price: '' },
     { month: 3, price: '' },
@@ -251,7 +252,10 @@ export class UploadArtworkComponent implements OnChanges {
   // }
   
   rebuildForm() {
+    this.uploadFile.nativeElement.value = '';
     this.heroForm.reset();
+    this.file = null;
+    
     const rowsToDelete = this.heroForm.get('metadata.rentInformation.rows') as FormArray;
     while (rowsToDelete.length !== 0) {
       rowsToDelete.removeAt(0)

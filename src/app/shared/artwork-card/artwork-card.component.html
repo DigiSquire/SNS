@@ -8,11 +8,11 @@
     <div class="card card-size">
       <div class="wrapper">
 
-        <div *ngIf="file.metadata[0].rent===true" class="d-flex align-items-start flex-column pos-abs">
+        <div *ngIf="file.metadata[0].rentInformation.rent===true" class="d-flex align-items-start flex-column pos-abs">
           <div class="mb-auto  text-white rented">Rent</div>
         </div>
         <div *ngIf="file.metadata[0].buy===true" class="d-flex align-items-start flex-column pos-abs">
-          <div class="mb-auto text-white sale-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rent===true">Sale</div>
+          <div class="mb-auto text-white sale-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rentInformation.rent===true">Sale</div>
         </div>
         <div class="card-ht">
           <img class="card-img-top" src={{file.url}} alt="Card image cap">
@@ -27,7 +27,7 @@
         <!-- For Gallery rent starts @ -->
         <!-- <div class="portfolio-view  flex-column">
           <button class="mb-2 btn-lay primary" *ngIf="file.metadata[0].buy===true" mat-raised-button>BUY NOW</button>
-          <button class="btn-lay secondary" *ngIf="file.metadata[0].rent===true" mat-raised-button>RENT STARTS AT
+          <button class="btn-lay secondary" *ngIf="file.metadata[0].rentInformation.rent===true" mat-raised-button>RENT STARTS AT
             $59/MONTH</button>
         </div> -->
 
@@ -40,9 +40,9 @@
           *ngIf="file.metadata[0].buy===true">{{file.metadata[0].sellingPrice
           | currency}}</p>
         <p [class.mb-custom]="file.metadata[0].buy===false">
-          <small class="text-muted text-capitalize" *ngIf="file.metadata[0].rent===true && file.metadata[0].rentPrice">Rent
+          <small class="text-muted text-capitalize" *ngIf="file.metadata[0].rentInformation.rent===true && file.metadata[0].rentInformation.rentPrice">Rent
             starts at
-            {{file.metadata[0].rentPrice | currency}}/month</small>
+            {{file.metadata[0].rentInformation.rentPrice | currency}}/month</small>
         </p>
       </div>
       
@@ -71,9 +71,9 @@
         <p class="card-text small-price" [class.mb-3]="file.metadata[0].sellingPrice===null" *ngIf="file.metadata[0].buy===true">{{file.metadata[0].sellingPrice
           | currency}}</p>
         <p [class.mb-custom]="file.metadata[0].buy===false">
-          <small class="text-muted text-capitalize" *ngIf="file.metadata[0].rent===true && file.metadata[0].rentPrice">Rent
+          <small class="text-muted text-capitalize" *ngIf="file.metadata[0].rentInformation.rent===true && file.metadata[0].rentInformation.rentPrice">Rent
             starts at
-            {{file.metadata[0].rentPrice | currency}}/month</small>
+            {{file.metadata[0].rentInformation.rentPrice | currency}}/month</small>
         </p>
 
       </div>

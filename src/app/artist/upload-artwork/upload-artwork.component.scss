@@ -12,8 +12,7 @@
 }
 
 h3 {
-  font-family: 'Cabin-Regular',
-    sans-serif;
+  font-family: 'Cabin-Regular', sans-serif;
 }
 
 .ml-05 {
@@ -38,7 +37,12 @@ h3 {
   margin: 10px 0;
 
   &.hovering {
-    border: 2px solid #f16624;
+    border: 2px dashed #23d160;
+    color: #dadada !important;
+  }
+  
+  &.dropped {
+    border: 2px solid #23d160;
     color: #dadada !important;
   }
 
@@ -57,7 +61,74 @@ h3 {
 }
 
 .mat-checkbox {
-  font-family: 'Cabin-Regular',
-    sans-serif;
+  font-family: 'Cabin-Regular', sans-serif;
   font-size: 0.97rem;
+}
+.file {
+  align-items: stretch;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+}
+.file-label {
+  align-items: stretch;
+  display: flex;
+  cursor: pointer;
+  justify-content: flex-start;
+  overflow: hidden;
+  position: relative;
+}
+.file-input {
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  outline: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+}
+.file-cta {
+  background-color: #f5f5f5;
+  color: #4a4a4a;
+      border-color: #dbdbdb;
+      border-radius: 4px;
+      font-size: 1em;
+      padding-left: 1em;
+      padding-right: 1em;
+      white-space: nowrap;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      align-items: center;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      box-shadow: none;
+      display: inline-flex;
+      font-size: 1rem;
+      height: 2.25em;
+      justify-content: flex-start;
+      line-height: 1.5;
+      padding-bottom: calc(.375em - 1px);
+      padding-left: calc(.625em - 1px);
+      padding-right: calc(.625em - 1px);
+      padding-top: calc(.375em - 1px);
+      position: relative;
+      vertical-align: top;
+}
+.file-icon {
+  align-items: center;
+  display: flex;
+  height: 1em;
+  justify-content: center;
+  margin-right: .5em;
+  width: 1em;
+}
+.file-label {
+  align-items: stretch;
+  display: flex;
+  cursor: pointer;
+  justify-content: flex-start;
+  overflow: hidden;
+  position: relative;
 }

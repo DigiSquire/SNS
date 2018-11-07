@@ -3,10 +3,10 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
 import { NotifyService } from './notify.service';
-import 'rxjs/add/operator/do';
+// import 'rxjs/add/operator/do';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/take';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/take';
 
 @Injectable({
   providedIn: 'root'

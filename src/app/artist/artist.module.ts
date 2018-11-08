@@ -10,6 +10,7 @@ import { UploadArtworkComponent } from './upload-artwork/upload-artwork.componen
 import { DropZoneDirective } from '../uploads/drop-zone.directive';
 import { NumbersOnlyDirective } from '../core/numbers-only.directive';
 import { SharedModule } from '../shared/shared.module';
+import { FileSizePipe  } from '../uploads/file-size.pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
     NumbersOnlyDirective,
     ArtistCenterComponent,
     DropZoneDirective,
+    FileSizePipe,
     ProfileComponent,
     MyArtworksComponent,
     UploadArtworkComponent

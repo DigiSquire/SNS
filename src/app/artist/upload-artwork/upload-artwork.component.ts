@@ -14,6 +14,7 @@ import { NotifyService } from '../../core/notify.service';
 
 export class UploadArtworkComponent implements OnChanges {
   @Input() hero: Hero;
+  readonly MAX_SIZE = 3145728;
   email: string;
   // public files: UploadFile[] = [];
   heroForm: FormGroup;
@@ -35,8 +36,7 @@ export class UploadArtworkComponent implements OnChanges {
   constructor(
     private fb: FormBuilder, private http: HttpClient,
     private artService: ArtworkService, private auth: AuthService,
-    private notify: NotifyService) {
-     
+    public notify: NotifyService) {
     this.auth.getEmail.subscribe((message) => {
       this.email = message;
       this.createForm();
@@ -45,17 +45,29 @@ export class UploadArtworkComponent implements OnChanges {
     
     // this.logNameChange();
   }
-
+  clearFile(error: 'image' | 'file') {
+    window.scroll(0, 0);
+    if (error === 'image') {
+      this.notify.update('Unsupported file format.', 'error');
+    } else if (error === 'file') {
+      this.notify.update('Keep your artworks below 3MB.', 'error');
+    }
+    this.uploadFile.nativeElement.value = '';
+    this.file = null;
+    return;
+  }
   startUpload(event: FileList) {
+    // Clear any existing notifications
+    this.notify.clear();
     // The File object
     this.file = event.item(0);
 
     // Client-side validation example
     if (this.file.type.split('/')[0] !== 'image') {
-      console.error('unsupported file type :( ');
-      return;
+      this.clearFile('image');
+    } else if (this.file.size > this.MAX_SIZE) {
+      this.clearFile('file')
     }
-
     // Totally optional metadata
     // const customMetadata = { app: 'My AngularFire-powered PWA!' };
     console.log(this.file);

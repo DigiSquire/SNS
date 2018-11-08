@@ -62,12 +62,12 @@ export class ArtworkCardComponent implements OnInit {
     } else if (this.consumer === 'artist-center') {
       return this.artService.getUserArtworks(this.email, key).pipe(
         tap((images: Result) => {
-          if (images.status === 504) {
+          if (images && images.status === 504) {
             this.isArtPresent = true;
             this.finished = true;
             return;
           }
-          if (images.message !== undefined) {
+          if (images && images.message !== undefined) {
             this.isArtPresent = false;
             this.message = images.message;
             this.finished = true;
@@ -93,12 +93,12 @@ export class ArtworkCardComponent implements OnInit {
     }else if (this.consumer === 'admin-center') {
       return this.adminService.getPendingArtworks(this.action, key).pipe(
         tap((images: Result) => {
-        if (images.status === 504) {
+          if (images && images.status === 504) {
           this.isArtPresent = true;
           this.finished = true;
           return;
         }
-        if (images.message !== undefined) {
+          if (images && images.message !== undefined) {
           this.isArtPresent = false;
           this.message = images.message;
           this.finished = true;

@@ -26,6 +26,8 @@ export class UploadArtworkComponent implements OnChanges {
   availableFrom: Date= null;
   availableTo: Date= null;
   file;
+  // State for dropzone CSS toggling
+  isHovering: boolean;
   @ViewChild('uploadFile') uploadFile: any;
    rentDetails = [
     { month: 1, price: '' },
@@ -44,6 +46,9 @@ export class UploadArtworkComponent implements OnChanges {
     });
     
     // this.logNameChange();
+  }
+  toggleHover(event: boolean) {
+    this.isHovering = event;
   }
   clearFile(error: 'image' | 'file') {
     window.scroll(0, 0);

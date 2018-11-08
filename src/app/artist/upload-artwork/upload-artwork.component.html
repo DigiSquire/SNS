@@ -1,7 +1,7 @@
 <form class=" mt-4 mb-4" [formGroup]="heroForm" #formDirective="ngForm" (ngSubmit)="onSubmit(heroForm,formDirective)">
   
   <div class="form-group">
-    <div class="dropzone" dropZone (dropped)="startUpload($event)">
+    <div class="dropzone" dropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)" [class.hovering]="isHovering">
 
       <h3 class="text-muted">Drag and Drop a File</h3>
       <div class="file">

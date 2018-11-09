@@ -48,8 +48,14 @@
   transition: all .2s ease-out;
 }
 
-@media (max-width: 767px) {
-  .mt-4_5{
-    // margin-top: 3.7rem !important;
+@media (max-width: 991px) {
+  .arrow::before {
+    left: 2em;
+  }
+  .pos-abs{
+    position: relative;
+  }
+  .dropdown-menu {
+    border: none;
   }
 }

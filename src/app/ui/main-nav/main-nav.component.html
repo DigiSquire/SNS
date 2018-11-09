@@ -7,7 +7,7 @@
     aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color: #303f9f;"></i></span>
   </button>
-  <div class="collapse navbar-collapse d-md-flex justify-content-md-center" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse justify-content-md-center" id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
         <a (click)="clearMsg()" class="nav-link text-black" routerLinkActive="text-grey" routerLink="./artists">Artists</a>
@@ -26,7 +26,7 @@
           <span class="text-grey" style="font-size: 80%;font-weight: 100;">or</span> Sign up</a>
         <!-- <ng-template #alreadyLoggedIn> -->
           <div *ngIf="userRole==='artist' && !loading" ngbDropdown>
-            <a ngbDropdownToggle class="arrow">
+            <a ngbDropdownToggle class="arrow pos-abs">
               <i class="fas fa-user icon-color fa-lg p-2"></i>
             </a>
             <div ngbDropdownMenu>

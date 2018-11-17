@@ -127,3 +127,11 @@ a.custom-btn:focus {
 .carousel-caption {
   bottom: 45%;
 }
+@media (min-width: 991px) and (max-width:1199px) {
+  #profile-cards img {
+    width: 160px;
+  }
+  .line-ht-1199{
+    line-height: 18px !important;
+  }
+}

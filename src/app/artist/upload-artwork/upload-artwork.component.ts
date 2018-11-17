@@ -223,14 +223,6 @@ export class UploadArtworkComponent implements OnChanges {
     }else {
       this.heroForm.get('metadata.sellingPrice').clearValidators();
     }
-    // clear rent price 1month checkbox and set-reset validation
-    // if (rentValue) {
-    //   this.heroForm.get('metadata.rentInformation.rows[0]').setValidators(Validators.required);
-    // }else {
-
-    // }
-   
-  
 }
   patchValues() {
     const rows = this.heroForm.get('metadata.rentInformation.rows') as FormArray;

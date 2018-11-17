@@ -149,3 +149,13 @@ td{
 .font-90{
   font-size:98% !important;
 }
+@media (max-width: 767px){
+  .example-full-width {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width:1023px) {
+  .example-full-width {
+    width: 80%;
+  }
+}

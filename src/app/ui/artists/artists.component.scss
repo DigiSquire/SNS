@@ -57,6 +57,7 @@ img {
   opacity: 0.5;
   background-image: linear-gradient(0deg, #00a5c1 0%, #6dc38e 100%);
 }
+
 .card {
   background-color: transparent;
   border: none;
@@ -138,6 +139,15 @@ a.custom-btn:focus {
   max-height: 650px;
 }
 
+.carousel-caption {
+  position: absolute;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .carousel-subtext {
   font-family: "Montserrat";
   font-weight: 500;
@@ -152,10 +162,6 @@ a.custom-btn:focus {
   letter-spacing: -2.6px;
 
 }
-
-.carousel-caption {
-  bottom: 45%;
-}
 @media (min-width: 991px) and (max-width:1199px) {
   #profile-cards img {
     width: 160px;
@@ -163,4 +169,20 @@ a.custom-btn:focus {
   .line-ht-1199{
     line-height: 18px !important;
   }
+}
+@media (max-width:1199px) {
+.slide-gradient {
+    max-height: 408px;
+}
+.carousel-caption {
+  right: 5%;
+  left: 5%;
+}
+.carousel-text{
+  font-size: 45px;
+}
+.carousel-subtext {
+  font-size: 40px;
+}
+
 }

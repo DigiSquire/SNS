@@ -26,6 +26,7 @@ export class UploadArtworkComponent implements OnChanges {
   availableFrom: Date= null;
   availableTo: Date= null;
   file;
+  atLeastOneChecked = false;
   // State for dropzone CSS toggling
   isHovering: boolean;
   @ViewChild('uploadFile') uploadFile: any;
@@ -205,6 +206,15 @@ export class UploadArtworkComponent implements OnChanges {
      if (!this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value) {
        this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
      }
+   }
+  
+   atleastOneChecked() {
+     if (this.heroForm.get('metadata.buy').value || this.heroForm.get('metadata.rentInformation.rent').value ) {
+      this.atLeastOneChecked = true;
+     }else {
+      this.atLeastOneChecked = false;
+     }
+    
    }
   patchValues() {
     const rows = this.heroForm.get('metadata.rentInformation.rows') as FormArray;

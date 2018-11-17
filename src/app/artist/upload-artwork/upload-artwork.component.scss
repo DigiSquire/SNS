@@ -136,18 +136,19 @@ h3 {
   overflow: hidden;
   position: relative;
 }
-th{
+th, td{
   font-weight: normal;
-  font-size: 80%;
-}
-td{
-  font-size: 80%;
+  font-size: 70%;
 }
 .table-wrapper{
-  width:50%
+  width:15%
 }
 .font-90{
-  font-size:98% !important;
+  font-size:85% !important;
+}
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #dee2e64d;
 }
 @media (max-width: 767px){
   .example-full-width {

@@ -204,7 +204,11 @@ export class UploadArtworkComponent implements OnChanges {
 
  clearPriceIfNecessary(id) {
      if (!this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value) {
-       this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
+      this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
+      this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).clearValidators();
+     }else if (this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value) {
+      this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).setValidators(Validators.required);
+      
      }
    }
   
@@ -222,6 +226,7 @@ export class UploadArtworkComponent implements OnChanges {
      this.heroForm.get('metadata.sellingPrice').patchValue('');
     }else {
       this.heroForm.get('metadata.sellingPrice').clearValidators();
+      this.heroForm.get('metadata.sellingPrice').patchValue('');
     }
 }
   patchValues() {

@@ -209,7 +209,6 @@ export class UploadArtworkComponent implements OnChanges {
    }
   
    atleastOneChecked() {
-    if (this.heroForm.get('metadata.buy').value || this.heroForm.get('metadata.rentInformation.rent').value ) {
     const buyValue = this.heroForm.get('metadata.buy').value ;
     const rentValue = this.heroForm.get('metadata.rentInformation.rent').value;
     if (buyValue || rentValue ) {
@@ -217,12 +216,21 @@ export class UploadArtworkComponent implements OnChanges {
     }else {
      this.atLeastOneChecked = false;
     }
-    // clear selling price 
+    // clear selling price and set-reset validation
     if (buyValue) {
+      this.heroForm.get('metadata.sellingPrice').setValidators(Validators.required);
      this.heroForm.get('metadata.sellingPrice').patchValue('');
+    }else {
+      this.heroForm.get('metadata.sellingPrice').clearValidators();
     }
+    // clear rent price 1month checkbox and set-reset validation
+    // if (rentValue) {
+    //   this.heroForm.get('metadata.rentInformation.rows[0]').setValidators(Validators.required);
+    // }else {
+
+    // }
    
-  }
+  
 }
   patchValues() {
     const rows = this.heroForm.get('metadata.rentInformation.rows') as FormArray;

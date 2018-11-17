@@ -170,7 +170,7 @@ a.custom-btn:focus {
     line-height: 18px !important;
   }
 }
-@media (max-width:1199px) {
+@media (min-width:768px) and (max-width:1199px) {
 .slide-gradient {
     max-height: 408px;
 }
@@ -184,5 +184,31 @@ a.custom-btn:focus {
 .carousel-subtext {
   font-size: 40px;
 }
+
+}
+@media (max-width:767px) {
+  .slide-gradient {
+    max-height: 408px;
+  }
+
+  .carousel-caption {
+    right: 1%;
+    left: 1%;
+  }
+
+  .carousel-text {
+    font-size: 25px;
+  }
+
+  .carousel-subtext {
+    font-size: 20px;
+    letter-spacing: -1.6px;
+  }
+
+}
+@media (max-width:414px) {
+  .slide-gradient {
+    max-height: 212px;
+  }
 
 }

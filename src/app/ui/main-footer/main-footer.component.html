@@ -56,7 +56,14 @@
           <a routerLink="./artists"class="alt-text-small">How It Works</a>
         </li>
         <li class="lh-condensed mb-2">
-          <a class="muted-link alt-text-small">Get In Touch</a>
+        <ng-template #showSupport>
+          <a class="alt-text-small" href="mailto:support@spacesnstories.com?Subject=Query%20Regarding">Get
+            In Touch</a>
+        </ng-template>
+
+        <a class="alt-text-small" *ngIf="this.location.path().indexOf('artists')>-1; else showSupport"
+          href="mailto:artists@spacesnstories.com?Subject=Query%20Regarding">Get
+          In Touch</a>
         </li>
         <!-- <li class="lh-condensed mb-2">
           <a class="muted-link alt-text-small">Delivery and Returns</a>

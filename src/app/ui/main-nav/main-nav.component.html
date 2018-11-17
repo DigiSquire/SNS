@@ -3,9 +3,9 @@
   <a routerLink="./gallery" class="navbar-brand mb-0 h1">
     <img class="logo" src="./assets/logo@2x.png" alt="Spaces and stories logo">
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"><i class="fas fa-bars" style="color: #303f9f;"></i></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color: #303f9f;"></i></span>
   </button>
   <div class="collapse navbar-collapse justify-content-md-center" id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto">
@@ -14,9 +14,16 @@
       </li>
       <li class="nav-item">
         <a (click)="clearMsg()" class="nav-link text-black" routerLinkActive="text-grey" routerLink="./gallery">Gallery</a>
-      </li>      
+      </li>
       <li class="nav-item">
-        <a (click)="clearMsg()" class="nav-link text-black" routerLinkActive="text-grey">Get In Touch</a>
+        <ng-template #showSupport>
+          <a (click)="clearMsg()" class="nav-link text-black" routerLinkActive="text-grey" href="mailto:support@spacesnstories.com?Subject=Query%20Regarding">Get
+            In Touch</a>
+        </ng-template>
+
+        <a (click)="clearMsg()" class="nav-link text-black" *ngIf="this.location.path().indexOf('artists')>-1; else showSupport"
+          routerLinkActive="text-grey" href="mailto:artists@spacesnstories.com?Subject=Query%20Regarding">Get
+          In Touch</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-md-0">
@@ -25,28 +32,31 @@
           routerLink="./login">Sign in
           <span class="text-grey" style="font-size: 80%;font-weight: 100;">or</span> Sign up</a>
         <!-- <ng-template #alreadyLoggedIn> -->
-          <div *ngIf="userRole==='artist' && !loading" ngbDropdown>
-            <a ngbDropdownToggle class="arrow pos-abs">
-              <i class="fas fa-user icon-color fa-lg p-2"></i>
-            </a>
-            <div ngbDropdownMenu>
-              <a (click)="clearMsg()" routerLink="./artist-center/profile" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Profile</a>
-              <a (click)="clearMsg()" routerLink="./artist-center/upload" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Upload</a>
-              <a (click)="clearMsg()" routerLink="./artist-center/my-artworks" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">My Artworks</a>
-              <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign out</a>
-            </div>
+        <div *ngIf="userRole==='artist' && !loading" ngbDropdown>
+          <a ngbDropdownToggle class="arrow pos-abs">
+            <i class="fas fa-user icon-color fa-lg p-2"></i>
+          </a>
+          <div ngbDropdownMenu>
+            <a (click)="clearMsg()" routerLink="./artist-center/profile" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Profile</a>
+            <a (click)="clearMsg()" routerLink="./artist-center/upload" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Upload</a>
+            <a (click)="clearMsg()" routerLink="./artist-center/my-artworks" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">My
+              Artworks</a>
+            <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign
+              out</a>
           </div>
-          <div *ngIf="userRole==='admin'  && !loading" ngbDropdown>
-            <a ngbDropdownToggle class="arrow">
-              <i class="fas fa-user icon-color fa-lg p-2"></i>
-            </a>
-            <div ngbDropdownMenu>
-              <a (click)="clearMsg()" routerLink="./admin-center/pending-approvals" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Pending-Approvals</a>
-              <a (click)="clearMsg()" routerLink="./admin-center/approved" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Approved</a>
-              <a (click)="clearMsg()" routerLink="./admin-center/rejected" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Rejected</a>
-              <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign out</a>
-            </div>
+        </div>
+        <div *ngIf="userRole==='admin'  && !loading" ngbDropdown>
+          <a ngbDropdownToggle class="arrow">
+            <i class="fas fa-user icon-color fa-lg p-2"></i>
+          </a>
+          <div ngbDropdownMenu>
+            <a (click)="clearMsg()" routerLink="./admin-center/pending-approvals" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Pending-Approvals</a>
+            <a (click)="clearMsg()" routerLink="./admin-center/approved" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Approved</a>
+            <a (click)="clearMsg()" routerLink="./admin-center/rejected" class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black">Rejected</a>
+            <a class="nav-item nav-link btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3 text-black" (click)="auth.signOut()">Sign
+              out</a>
           </div>
+        </div>
         <!-- </ng-template> -->
       </li>
     </ul>

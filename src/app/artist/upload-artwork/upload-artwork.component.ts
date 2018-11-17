@@ -209,13 +209,21 @@ export class UploadArtworkComponent implements OnChanges {
    }
   
    atleastOneChecked() {
-     if (this.heroForm.get('metadata.buy').value || this.heroForm.get('metadata.rentInformation.rent').value ) {
-      this.atLeastOneChecked = true;
-     }else {
-      this.atLeastOneChecked = false;
-     }
-    
-   }
+    if (this.heroForm.get('metadata.buy').value || this.heroForm.get('metadata.rentInformation.rent').value ) {
+    const buyValue = this.heroForm.get('metadata.buy').value ;
+    const rentValue = this.heroForm.get('metadata.rentInformation.rent').value;
+    if (buyValue || rentValue ) {
+     this.atLeastOneChecked = true;
+    }else {
+     this.atLeastOneChecked = false;
+    }
+    // clear selling price 
+    if (buyValue) {
+     this.heroForm.get('metadata.sellingPrice').patchValue('');
+    }
+   
+  }
+}
   patchValues() {
     const rows = this.heroForm.get('metadata.rentInformation.rows') as FormArray;
     this.rentDetails.map(detail => {

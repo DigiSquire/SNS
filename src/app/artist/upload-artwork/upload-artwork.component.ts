@@ -21,12 +21,16 @@ export class UploadArtworkComponent implements OnChanges {
   nameChangeLog: string[] = [];
   states = states;
   medium= medium;
+  sellCheckbox = false;
   classification= classification;
   categories= categories;
   availableFrom: Date= null;
   availableTo: Date= null;
   file;
   atLeastOneChecked = false;
+  rentCheckboxes = false;
+  atLeastOneMonthRentChecked = false;
+  formArrayLength = 0;
   // State for dropzone CSS toggling
   isHovering: boolean;
   @ViewChild('uploadFile') uploadFile: any;
@@ -44,6 +48,10 @@ export class UploadArtworkComponent implements OnChanges {
       this.email = message;
       this.createForm();
       this.patchValues();
+      // this.heroForm.valueChanges.subscribe(val => {
+      //   this.atLeastOneChecked = this.verifyCheckboxes();
+      // });
+     
     });
     
     // this.logNameChange();
@@ -202,32 +210,70 @@ export class UploadArtworkComponent implements OnChanges {
     });
   }
 
- clearPriceIfNecessary(id) {
+  rentChange() {
+    const rentValue = this.heroForm.get('metadata.rentInformation.rent').value;
+    if (rentValue) {
+      this.atLeastOneMonthRentChecked = this.verifyIfAnyChecked();
+      if (this.atLeastOneMonthRentChecked) {
+        this.rentCheckboxes = true ;
+        this.atLeastOneChecked = this.verifyCheckboxes();
+      } else {
+        this.rentCheckboxes = false ;
+        this.atLeastOneChecked = this.verifyCheckboxes();
+      }
+    }else {
+      this.rentCheckboxes = false ;
+      this.atLeastOneChecked = this.verifyCheckboxes();
+    }
+  }
+  verifyIfAnyChecked() {
+    let flag = false;
+
+    for (let i = 0; i < this.formArrayLength; i++) {
+      if (this.heroForm.get(`metadata.rentInformation.rows.${i}`).value.checkbox_value) {
+        flag = true;
+        break;
+      }
+    }
+    return flag;
+  }
+  verifyCheckboxes() {
+    let flag = false;
+    if (this.sellCheckbox || this.rentCheckboxes) {
+      flag = true;
+      return flag;
+    }else { flag = false;
+      return flag;
+    }
+    
+  }
+  clearPriceIfNecessary(id) {
+    this.rentChange();
      if (!this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value) {
       this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
       this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).clearValidators();
      }else if (this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value) {
+      this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
       this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).setValidators(Validators.required);
       
      }
    }
   
-   atleastOneChecked() {
+   sellChange() {
     const buyValue = this.heroForm.get('metadata.buy').value ;
-    const rentValue = this.heroForm.get('metadata.rentInformation.rent').value;
-    if (buyValue || rentValue ) {
-     this.atLeastOneChecked = true;
-    }else {
-     this.atLeastOneChecked = false;
-    }
-    // clear selling price and set-reset validation
+   
     if (buyValue) {
       this.heroForm.get('metadata.sellingPrice').setValidators(Validators.required);
      this.heroForm.get('metadata.sellingPrice').patchValue('');
+     this.sellCheckbox = true;
+     this.atLeastOneChecked = this.verifyCheckboxes();
     }else {
       this.heroForm.get('metadata.sellingPrice').clearValidators();
       this.heroForm.get('metadata.sellingPrice').patchValue('');
+     this.sellCheckbox = false;
+     this.atLeastOneChecked = this.verifyCheckboxes();
     }
+
 }
   patchValues() {
     const rows = this.heroForm.get('metadata.rentInformation.rows') as FormArray;
@@ -238,7 +284,7 @@ export class UploadArtworkComponent implements OnChanges {
           month: detail.month,
            price: [null]
         }));
-      
+        this.formArrayLength++;
     });
   }
    

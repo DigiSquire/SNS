@@ -1,3 +1,6 @@
+form{
+      border-bottom: 2px solid rgba(0, 0, 0, .12);
+}
 .example-full-width {
   width: 50%;
   display: block;
@@ -132,4 +135,17 @@ h3 {
   justify-content: flex-start;
   overflow: hidden;
   position: relative;
+}
+th{
+  font-weight: normal;
+  font-size: 80%;
+}
+td{
+  font-size: 80%;
+}
+.table-wrapper{
+  width:50%
+}
+.font-90{
+  font-size:98% !important;
 }

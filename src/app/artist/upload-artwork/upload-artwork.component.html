@@ -115,6 +115,8 @@
                <mat-checkbox class="example-margin" formControlName="checkbox_value" (change)="clearPriceIfNecessary(i)" >{{row.value.month}} month</mat-checkbox>
                 <mat-form-field class="example-full-width"  *ngIf="heroForm.get('metadata.rentInformation.rows').value[i].checkbox_value">
                   <input autocomplete="off" matInput placeholder="Price:" formControlName="price" OnlyNumber="true">
+                  <span matPrefix>$&nbsp;</span>
+                  <span matSuffix>/month</span>
                 </mat-form-field> 
               </div>
                </div> 

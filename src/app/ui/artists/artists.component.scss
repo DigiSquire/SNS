@@ -1,43 +1,37 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700');
 
 .layover {
-  // background-image: linear-gradient(to top, #00a5c1 0%, #6dc38e 100%);
-  // opacity: 0.7;
   margin-top: -40px;
 }
-.p-overwrite{
+
+.p-overwrite {
   margin-bottom: 0.3rem;
 }
+
 img {
   width: 100%;
-  //  height:100%;
 }
 
 .slide-gradient {
   max-height: 100vh;
 }
 
-// .slide-gradient::before {
-//   content: '';
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   bottom: 0;
-//   left: 0;
-//   background-image: linear-gradient(to top, #006374 30%, #6dc38e 70%);
-//   opacity: 0.5;
-// }
-.slide-gradient-1::before{
- content: '';
- position: absolute;
- top: 0;
- right: 0;
- bottom: 0;
- left: 0;
- background-image: linear-gradient(0deg, #f15f22 0%, #fbee3b 100%);
- opacity: 0.5;
+.slide-gradient img {
+  height: 100%;
 }
-.slide-gradient-2::before{
+
+.slide-gradient-1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(0deg, #f15f22 0%, #fbee3b 100%);
+  opacity: 0.5;
+}
+
+.slide-gradient-2::before {
   content: '';
   position: absolute;
   top: 0;
@@ -47,6 +41,7 @@ img {
   opacity: 0.5;
   background-image: linear-gradient(0deg, #f7ec3b 0%, #4eb748 100%);
 }
+
 .slide-gradient-3::before {
   content: '';
   position: absolute;
@@ -148,6 +143,7 @@ a.custom-btn:focus {
   align-items: center;
   flex-direction: column;
 }
+
 .carousel-subtext {
   font-family: "Montserrat";
   font-weight: 500;
@@ -162,34 +158,35 @@ a.custom-btn:focus {
   letter-spacing: -2.6px;
 
 }
+
 @media (min-width: 991px) and (max-width:1199px) {
   #profile-cards img {
     width: 160px;
   }
-  .line-ht-1199{
+
+  .line-ht-1199 {
     line-height: 18px !important;
   }
 }
+
 @media (min-width:768px) and (max-width:1199px) {
-.slide-gradient {
-    max-height: 408px;
-}
-.carousel-caption {
-  right: 5%;
-  left: 5%;
-}
-.carousel-text{
-  font-size: 45px;
-}
-.carousel-subtext {
-  font-size: 40px;
-}
+
+  .carousel-caption {
+    right: 5%;
+    left: 5%;
+  }
+
+  .carousel-text {
+    font-size: 45px;
+  }
+
+  .carousel-subtext {
+    font-size: 40px;
+  }
 
 }
+
 @media (max-width:767px) {
-  .slide-gradient {
-    max-height: 318px;
-  }
 
   .carousel-caption {
     right: 1%;
@@ -203,12 +200,6 @@ a.custom-btn:focus {
   .carousel-subtext {
     font-size: 20px;
     letter-spacing: -1.6px;
-  }
-
-}
-@media (max-width:414px) {
-  .slide-gradient {
-    max-height: 212px;
   }
 
 }

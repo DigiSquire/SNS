@@ -1,8 +1,11 @@
 <section class="layover">
   <ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows">
     <ng-template ngbSlide>
-<div class="slide-gradient slide-gradient-1">
-        <img [src]="images[0].url" alt="Random first slide">
+      <div class="slide-gradient slide-gradient-1">
+        <picture>
+          <source media="(max-width: 767px)" [srcset]="images[0].urlMob">
+          <img [src]="images[0].url" alt="WE have ART in our hearts, YOU have your heart in ART">
+        </picture>
       </div>
       <div class="carousel-caption">
         <h3 class="carousel-text">WE <span class="carousel-subtext">have </span> <span class="carousel-text">ART </span>
@@ -11,8 +14,11 @@
       </div>
     </ng-template>
     <ng-template ngbSlide>
-<div class="slide-gradient slide-gradient-2">
-        <img [src]="images[1].url" alt="Random first slide">
+      <div class="slide-gradient slide-gradient-2">
+        <picture>
+          <source media="(max-width: 767px)"  [srcset]="images[1].urlMob">
+          <img [src]="images[1].url" alt="YOU provide the art, WE provide the spaces">
+        </picture>
       </div>
       <div class="carousel-caption">
         <h3 class="carousel-text">YOU <span class="carousel-subtext">provide the art,</span> </h3>
@@ -20,12 +26,15 @@
       </div>
     </ng-template>
     <ng-template ngbSlide>
-<div class="slide-gradient slide-gradient-3">
-        <img [src]="images[2].url" alt="Random first slide">
+      <div class="slide-gradient slide-gradient-3">
+        <picture>
+          <source media="(max-width: 767px)"  [srcset]="images[2].urlMob">
+          <img [src]="images[2].url" alt="YOUR MISSION:: Build your series. OURS:Build your audience">
+        </picture>
       </div>
       <div class="carousel-caption">
         <h3 class="carousel-text">YOUR MISSION:<span class="carousel-subtext"> Build your series</span> </h3>
-        <h3 class="carousel-text">OURS : <span class="carousel-subtext">Build your audience</span></h3>
+        <h3 class="carousel-text">OURS: <span class="carousel-subtext">Build your audience</span></h3>
       </div>
     </ng-template>
   </ngb-carousel>
@@ -61,7 +70,7 @@
 
       <div class="d-flex align-items-center flex-column p-2">
         <img class="card-img-top" src="./assets/review.svg" alt="Card image cap">
-        <h4 class="padding-top15 line-ht-1199" >Get reviewed and approved</h4>
+        <h4 class="padding-top15 line-ht-1199">Get reviewed and approved</h4>
         <p>We will work with you to ensure you feature the right work in the right way.</p>
       </div>
       <div class="d-flex align-items-center flex-column p-2">

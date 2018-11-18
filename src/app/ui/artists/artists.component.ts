@@ -13,14 +13,17 @@ export class ArtistsComponent implements OnInit, OnDestroy {
   private subscription;
   userRole: string = null;
   images: Array < any > = [{
-    'url': './assets/paint1.1-min.jpeg'
+    'url': './assets/large-device/slide-1.jpeg',
+    'urlMob': './assets/small-device/slide-1.jpeg'
 
     },
     {
-      'url': './assets/paint2.1-min.jpeg'
+      'url': './assets/large-device/slide-2.jpeg',
+      'urlMob': './assets/small-device/slide-2.jpeg'
     },
     {
-      'url': './assets/paint3.1-min.jpeg'
+      'url': './assets/large-device/slide-3.jpeg',
+      'urlMob': './assets/small-device/slide-3.jpeg'
 
     }
   ];

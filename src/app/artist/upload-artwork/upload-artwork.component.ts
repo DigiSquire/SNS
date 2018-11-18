@@ -268,7 +268,7 @@ export class UploadArtworkComponent implements OnChanges {
         this.rentCheckboxes = true;
         for (let i = 0; i < this.formArrayLength; i++) {
           this.heroForm.get(`metadata.rentInformation.rows.${i}`).clearValidators();
-          this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({price: ''});
+        //  this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({price: ''});
           this.heroForm.get(`metadata.rentInformation.rows.${i}.price`).clearValidators();
           this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
         }

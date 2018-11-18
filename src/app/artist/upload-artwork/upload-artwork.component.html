@@ -29,7 +29,7 @@
   <div class="container" formGroupName="metadata">
     <div class="form-group">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Name" formControlName="name" required>
+        <input autocomplete="off" matInput placeholder="Name" formControlName="name" required>
         <mat-error *ngIf="heroForm.get('metadata.name').hasError('required')">
           Name is <strong>required</strong>
         </mat-error>
@@ -37,7 +37,7 @@
     </div>
     <div class="form-group">
       <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Description" formControlName="description" required></textarea>
+        <textarea autocomplete="off" matInput placeholder="Description" formControlName="description" required></textarea>
         <mat-error *ngIf="heroForm.get('metadata.description').hasError('required')">
           Description is <strong>required</strong>
         </mat-error>
@@ -64,7 +64,7 @@
 
     <div class="form-group">
       <mat-form-field class="example-full-width">
-        <input autocomplete="off"matInput placeholder="Weight" formControlName="weight" OnlyNumber="true">
+        <input autocomplete="off" matInput placeholder="Weight" formControlName="weight" OnlyNumber="true">
         <span matSuffix>lbs</span>
       </mat-form-field>
     </div>
@@ -151,14 +151,14 @@
     </div> -->
     <div class="form-group" style="display:inline;">
       <mat-form-field>
-        <input matInput [matDatepicker]="picker1" placeholder="Available From" formControlName="availableFrom">
+        <input autocomplete="off" matInput [matDatepicker]="picker1" placeholder="Available From" formControlName="availableFrom">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
     </div>
     <div class="form-group" style="display:inline;margin-left:25px;">
       <mat-form-field>
-        <input matInput [matDatepicker]="picker2" placeholder="Available To" formControlName="availableTo">
+        <input autocomplete="off" matInput [matDatepicker]="picker2" placeholder="Available To" formControlName="availableTo">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>

@@ -268,6 +268,8 @@ export class UploadArtworkComponent implements OnChanges {
         this.rentCheckboxes = true;
         for (let i = 0; i < this.formArrayLength; i++) {
           this.heroForm.get(`metadata.rentInformation.rows.${i}`).clearValidators();
+          this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({price: ''});
+          this.heroForm.get(`metadata.rentInformation.rows.${i}.price`).clearValidators();
           this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
         }
 
@@ -280,11 +282,11 @@ export class UploadArtworkComponent implements OnChanges {
           this.atLeastOneChecked = this.verifyCheckboxes();
 
         }else {
-          this.rentCheckboxes = false ; 
+          // this.rentCheckboxes = false ; 
           this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
           this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).clearValidators();
           this.heroForm.get(`metadata.rentInformation.rows.${id}`).updateValueAndValidity();
-          this.atLeastOneChecked = this.verifyCheckboxes();
+        //  this.atLeastOneChecked = this.verifyCheckboxes();
         }
      // this.heroForm.get(`metadata.rentInformation.rows.${id}`).updateValueAndValidity();
       }else {
@@ -309,13 +311,13 @@ export class UploadArtworkComponent implements OnChanges {
             this.heroForm.get(`metadata.rentInformation.rows.${i}.price`).clearValidators();
             this.heroForm.get(`metadata.rentInformation.rows.${i}`).clearValidators();
             this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({price: ''});
-            this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({checkbox_value: null});
+            this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({checkbox_value: false});
             this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
           }
           console.log(this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value);
           this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).clearValidators();
           this.heroForm.get(`metadata.rentInformation.rows.${id}`).clearValidators();
-          this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({checkbox_value: null});
+          this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({checkbox_value: false});
           this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
           this.heroForm.get(`metadata.rentInformation.rows.${id}`).updateValueAndValidity();
           this.atLeastOneChecked = this.verifyCheckboxes();

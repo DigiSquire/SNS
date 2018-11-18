@@ -213,33 +213,28 @@ export class UploadArtworkComponent implements OnChanges {
 // on change of Rent Out checkbox
   rentChange() {
      this.rentValue = this.heroForm.get('metadata.rentInformation.rent').value;
-     
+     if (this.rentValue) {
       for (let i = 0; i < this.formArrayLength; i++) {
-        if (this.rentValue) {
-        this.heroForm.get(`metadata.rentInformation.rows.${i}`).setValidators(Validators.required);
-      this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
-      console.log(this.heroForm.get(`metadata.rentInformation.rows.${i}.checkbox_value`));
-     }else {
-      this.heroForm.get(`metadata.rentInformation.rows.${i}`).clearValidators();
-      this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
-      console.log(this.heroForm.get(`metadata.rentInformation.rows.${i}.checkbox_value`));
+          this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({price: ''});
+          this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({checkbox_value: null});
+          this.heroForm.get(`metadata.rentInformation.rows.${i}`).setValidators(Validators.required);
+          this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
+          console.log(this.heroForm.get(`metadata.rentInformation.rows.${i}.checkbox_value`));
      }
-    }
-    //   this.atLeastOneMonthRentChecked = this.verifyIfAnyChecked();
-      // if (this.atLeastOneMonthRentChecked) {
-      //   this.rentCheckboxes = true ;
-      //   this.atLeastOneChecked = this.verifyCheckboxes();
-      // } else {
-      //   this.rentCheckboxes = false ;
-      //   this.atLeastOneChecked = this.verifyCheckboxes();
-      // }
-    // }else {
-    //   this.rentCheckboxes = false ;
-    //   for (let i = 0; i < this.formArrayLength; i++) {
-    //     this.heroForm.get(`metadata.rentInformation.rows.${i}.checkbox_value`).patchValue(false);
-    //   }
-    //   this.atLeastOneChecked = this.verifyCheckboxes();
-    // }
+    }else {
+      for (let i = 0; i < this.formArrayLength; i++) {
+        this.heroForm.get(`metadata.rentInformation.rows.${i}.price`).clearValidators();
+        this.heroForm.get(`metadata.rentInformation.rows.${i}`).clearValidators();
+        this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({price: ''});
+        this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({checkbox_value: null});
+        
+        this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
+      }
+      this.rentCheckboxes = false ; 
+      this.atLeastOneChecked = this.verifyCheckboxes();
+      
+     }
+    
   }
 
   // on change of 1/3/6 month checkbox
@@ -267,6 +262,7 @@ export class UploadArtworkComponent implements OnChanges {
   }
    clearPriceIfNecessary(id) {
      if (this.rentValue) {
+       
       this.atLeastOneMonthRentChecked = this.verifyIfAnyChecked();
       if (this.atLeastOneMonthRentChecked) {
         this.rentCheckboxes = true;
@@ -275,8 +271,8 @@ export class UploadArtworkComponent implements OnChanges {
           this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
         }
 
-        this.heroForm.get(`metadata.rentInformation.rows.${id}`).clearValidators();
-        this.heroForm.get(`metadata.rentInformation.rows.${id}`).updateValueAndValidity();
+        // this.heroForm.get(`metadata.rentInformation.rows.${id}`).clearValidators();
+        // this.heroForm.get(`metadata.rentInformation.rows.${id}`).updateValueAndValidity();
         if (this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value) {
           this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
           this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).setValidators(Validators.required);
@@ -285,43 +281,46 @@ export class UploadArtworkComponent implements OnChanges {
 
         }else {
           this.rentCheckboxes = false ; 
+          this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
+          this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).clearValidators();
+          this.heroForm.get(`metadata.rentInformation.rows.${id}`).updateValueAndValidity();
           this.atLeastOneChecked = this.verifyCheckboxes();
         }
      // this.heroForm.get(`metadata.rentInformation.rows.${id}`).updateValueAndValidity();
       }else {
-        this.rentCheckboxes = false ; 
-        this.atLeastOneChecked = this.verifyCheckboxes();
-        // for (let i = 0; i < this.formArrayLength; i++) {
-        //   this.heroForm.get(`metadata.rentInformation.rows.${i}`).setValidators(Validators.required);
-        //   this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
-        // }
-        this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).clearValidators();
-          this.heroForm.get(`metadata.rentInformation.rows.${id}`).updateValueAndValidity();
+        
+        
+         for (let i = 0; i < this.formArrayLength; i++) {
+          this.heroForm.get(`metadata.rentInformation.rows.${i}`).setValidators(Validators.required);
+          this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
+         }
+         this.rentCheckboxes = false ; 
+         this.atLeastOneChecked = this.verifyCheckboxes();
+         this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
+         this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).clearValidators();
+           this.heroForm.get(`metadata.rentInformation.rows.${id}`).updateValueAndValidity();
        
       }
           
             console.log(this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value);
         }else {
           this.rentCheckboxes = false ; 
+          for (let i = 0; i < this.formArrayLength; i++) {
+            this.heroForm.get(`metadata.rentInformation.rows.${i}.price`).clearValidators();
+            this.heroForm.get(`metadata.rentInformation.rows.${i}`).clearValidators();
+            this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({price: ''});
+            this.heroForm.get(`metadata.rentInformation.rows.${i}`).patchValue({checkbox_value: null});
+            this.heroForm.get(`metadata.rentInformation.rows.${i}`).updateValueAndValidity();
+          }
           console.log(this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value);
+          this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).clearValidators();
           this.heroForm.get(`metadata.rentInformation.rows.${id}`).clearValidators();
-          this.heroForm.get(`metadata.rentInformation.rows.${id}.checkbox_value`).patchValue(false);
+          this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({checkbox_value: null});
           this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
           this.heroForm.get(`metadata.rentInformation.rows.${id}`).updateValueAndValidity();
           this.atLeastOneChecked = this.verifyCheckboxes();
          
         }
-        
-  //    if (!this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value) {
-  //     this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
-  //     this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).clearValidators();
-  //     this.heroForm.updateValueAndValidity();
-  //    }else if (this.heroForm.get(`metadata.rentInformation.rows.${id}`).value.checkbox_value) {
-  //     this.heroForm.get(`metadata.rentInformation.rows.${id}`).patchValue({price: ''});
-  //     this.heroForm.get(`metadata.rentInformation.rows.${id}.price`).setValidators(Validators.required);
-  //     this.heroForm.updateValueAndValidity();
-      
-  //    }
     
   }
   

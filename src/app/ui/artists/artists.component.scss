@@ -187,18 +187,20 @@ a.custom-btn:focus {
 }
 
 @media (max-width:767px) {
-
+.slide-gradient img {
+  height: 360px;
+}
   .carousel-caption {
     right: 1%;
     left: 1%;
   }
 
   .carousel-text {
-    font-size: 25px;
+    font-size: 30px;
   }
 
   .carousel-subtext {
-    font-size: 20px;
+    font-size: 25px;
     letter-spacing: -1.6px;
   }
 

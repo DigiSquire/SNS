@@ -13,7 +13,7 @@ img {
 }
 
 .slide-gradient {
-  max-height: 100vh;
+  max-height: 76vh;
 }
 
 .slide-gradient img {
@@ -187,6 +187,9 @@ a.custom-btn:focus {
 }
 
 @media (max-width:767px) {
+ .slide-gradient {
+  max-height: 40vh;
+}
 .slide-gradient img {
   height: 360px;
 }

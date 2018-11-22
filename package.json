@@ -9,9 +9,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "deploy:test": "ng build --prod --base-href \"http://test.spacesnstories.com\" ",
-    "deploy:prod": "ng build --prod --base-href \"http://spacesnstories.com\" "
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

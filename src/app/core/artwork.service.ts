@@ -6,6 +6,7 @@ import { NotifyService } from './notify.service';
 import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { AuthService } from './auth.service';
+import { callLifecycleHooksChildrenFirst } from '@angular/core/src/view/provider';
 const httpOptions = {
   headers: new HttpHeaders({
     'Authorization': 'my-auth-token',
@@ -86,10 +87,10 @@ export class ArtworkService {
     }
     
   }
-  uploadArtwork = (formData) => {
-    this.auth.changeMessage(true);
-    console.log(formData);
-    return this.http.post<any>(this.uploadURL, formData, httpOptions).pipe(
+  uploadArtwork = (payload) => {
+    // this.auth.changeMessage(true);
+    console.log('payload to service call', payload);
+    return this.http.post<any>(this.uploadURL, payload, httpOptions).pipe(
       map(result => {
         if (!result) {
           this.auth.changeMessage(false);

@@ -7,9 +7,19 @@ export const environment = {
   production: false,
   firebaseConfig: {
     apiKey: 'AIzaSyCKM1VlODa0nDYzIimBAmv5EREWztL7Ssc',
-    authDomain: 'ironic-objectivist-220216.firebaseapp.com'
+    authDomain: 'ironic-objectivist-220216.firebaseapp.com',
+    storageBucket: "ironic-objectivist-220216.appspot.com",
   },
+  // var config = {
+  //   apiKey: "AIzaSyCKM1VlODa0nDYzIimBAmv5EREWztL7Ssc",
+  //   authDomain: "ironic-objectivist-220216.firebaseapp.com",
+  //   databaseURL: "https://ironic-objectivist-220216.firebaseio.com",
+  //   projectId: "ironic-objectivist-220216",
+  //   storageBucket: "ironic-objectivist-220216.appspot.com",
+  //   messagingSenderId: "41338027600"
+  // };
   API_BASE_URI: 'https://ironic-objectivist-220216.appspot.com/api',
+  // API_BASE_URI: 'https://apiv1.spacesnstories.com/api',
   API_BASE_URI_LOCAL: 'http://localhost:8083/api',
   id: '_id',
   emailId: 'emailId',

@@ -1,8 +1,11 @@
 import {  Injectable } from '@angular/core';
 import {  Router } from '@angular/router';
 import {  catchError } from 'rxjs/operators';
+// import * as firebase from 'firebase/app';
+// import {  AngularFireAuth } from 'angularfire2/auth';
+
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
-import {  AngularFireAuth } from 'angularfire2/auth';
 import {  environment } from '../../environments/environment';
 import {  BehaviorSubject } from 'rxjs';
 import 'rxjs/add/operator/switchMap'

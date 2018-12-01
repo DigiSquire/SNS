@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'login',
     component: UserFormComponent,
     canActivate: [LoginAuthGuard] },
-  { path: 'gallery', component: GalleryComponent },
+  // { path: 'gallery', component: GalleryComponent },
 ];
 
 @NgModule({

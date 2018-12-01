@@ -19,7 +19,9 @@ export class LoginAuthGuard implements CanActivate {
       this.auth.checkLoginAndRole(attemptedPath)
       .then((hasAccess) => {        
         if (hasAccess) {
-          this.router.navigate(['./gallery']);          
+            this.router.navigate(['./artists']);
+            // Temporary removal
+            // this.router.navigate(['./gallery']);
           resolve(false);
         }else {      
           resolve(true);

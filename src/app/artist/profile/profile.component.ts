@@ -75,8 +75,6 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     window.scroll(0, 0);
-    // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
     return this.artService.updateProfile(this.profileForm.value).subscribe((result => {
       if (result) {
         // Preserve the form details in UI after successful submit OR

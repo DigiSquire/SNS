@@ -154,9 +154,24 @@ th, td{
   .example-full-width {
     width: 100%;
   }
+  .table-wrapper {
+    width: 50%
+  }
 }
 @media (min-width: 768px) and (max-width:1023px) {
   .example-full-width {
     width: 80%;
+  }
+  .table-wrapper {
+    width: 25%
+  }
+}
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .example-full-width {
+    width: 80%;
+  }
+
+  .table-wrapper {
+    width: 18%
   }
 }

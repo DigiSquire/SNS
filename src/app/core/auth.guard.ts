@@ -37,7 +37,9 @@ export class AuthGuard implements CanActivate {
           if (this.auth.permissionMsg.getValue()) {
             this.notify.update(this.auth.permissionMsg.getValue(), 'error');
             // route to previous url
-            this.router.navigate(['./gallery']); 
+            this.router.navigate(['./artists']);
+            // Temporary removal
+            // this.router.navigate(['./gallery']); 
           }else {
             this.notify.update('Login to continue', 'error');          
             this.router.navigate(['./login']); 

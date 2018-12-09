@@ -1,7 +1,9 @@
 .card-title {
   margin-bottom: 0.25rem;
 }
-
+.card-img-top {
+  max-height: 360px;
+}
 h3 {
   font-family: 'Cabin-Regular', sans-serif;
 }
@@ -26,6 +28,8 @@ small {
 
 .card-body {
   padding: 0.5rem;
+  max-height: 148px;
+  min-height: 148px;
 }
 
 .small-price {

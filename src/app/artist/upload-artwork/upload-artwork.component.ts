@@ -528,7 +528,7 @@ export class UploadArtworkComponent implements OnChanges {
         // Check Below with Nida
         this.form.resetForm();
         this.uploadFile.nativeElement.value = '';
-        this.heroForm.reset();
+      //  this.heroForm.reset();
         this.rebuildForm();
         this.file = null;
         // formDirective.resetForm();
@@ -580,10 +580,15 @@ export class UploadArtworkComponent implements OnChanges {
   }
   onSubmit(formDirective: FormGroupDirective) {
   //  formDirective.resetForm();  
-    this.auth.changeMessage(true);
+   // this.auth.changeMessage(true);
     this.notify.clear();
     window.scroll(0, 0);
-    this.uploadFileToFS(this.heroForm.get('file').value, formDirective);  
+    this.form.resetForm();
+    this.rebuildForm();
+    this.createForm();
+    this.patchValues();
+
+   // this.uploadFileToFS(this.heroForm.get('file').value, formDirective);  
     
   }
 
@@ -610,6 +615,8 @@ export class UploadArtworkComponent implements OnChanges {
     this.notify.clear();
     window.scroll(0, 0);
     this.rebuildForm();
+    this.createForm();
+    this.patchValues();
   }
 
   // logNameChange() {

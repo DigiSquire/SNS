@@ -527,16 +527,19 @@ export class UploadArtworkComponent implements OnChanges {
         console.log('Success, formDirective received to service', formDirective);
         // Check Below with Nida
         this.form.resetForm();
-        this.uploadFile.nativeElement.value = '';
-      //  this.heroForm.reset();
         this.rebuildForm();
+        this.createForm();
+        this.patchValues();
+        this.uploadFile.nativeElement.value = '';
         this.file = null;
-        // formDirective.resetForm();
-        // this.heroForm.reset();
       } else {
         this.auth.changeMessage(false);
         this.form.resetForm();
         this.rebuildForm();
+        this.createForm();
+        this.patchValues();
+        this.uploadFile.nativeElement.value = '';
+        this.file = null;
       }
     }
     ));
@@ -579,16 +582,10 @@ export class UploadArtworkComponent implements OnChanges {
     }
   }
   onSubmit(formDirective: FormGroupDirective) {
-  //  formDirective.resetForm();  
-   // this.auth.changeMessage(true);
+    this.auth.changeMessage(true);
     this.notify.clear();
-    window.scroll(0, 0);
-    this.form.resetForm();
-    this.rebuildForm();
-    this.createForm();
-    this.patchValues();
-
-   // this.uploadFileToFS(this.heroForm.get('file').value, formDirective);  
+    window.scroll(0, 0); 
+    this.uploadFileToFS(this.heroForm.get('file').value, formDirective);  
     
   }
 
@@ -618,11 +615,4 @@ export class UploadArtworkComponent implements OnChanges {
     this.createForm();
     this.patchValues();
   }
-
-  // logNameChange() {
-  //   const nameControl = this.heroForm.get('name');
-  //   nameControl.valueChanges.forEach(
-  //     (value: string) => this.nameChangeLog.push(value)
-  //   );
-  // }
 }

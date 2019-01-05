@@ -13,7 +13,7 @@ cache:
     - node_modules
 
 script:
-  - build:devgit
+  - npm run build:devgit
   
 deploy:
   provider: pages

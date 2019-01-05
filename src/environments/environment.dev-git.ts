@@ -13,5 +13,5 @@ export const environment = {
   invalidUser: 'auth/user-not-found',
   role_artist: 'artist',
   role_admin: 'admin',
-  bucket: 'PROD/'
+  bucket: 'DEV/'
 };

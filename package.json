@@ -7,9 +7,8 @@
     "start": "node dist/server",
     "serve": "ng serve -o",
     "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "build:test": "npm run build -- --configuration=test",
+    "build:devgit": "npm run build -- --configuration=dev-git"
   },
   "private": true,
   "dependencies": {

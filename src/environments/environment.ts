@@ -17,5 +17,6 @@ export const environment = {
   wrongCredentials: 'auth/wrong-password',
   invalidUser: 'auth/user-not-found',
   role_artist: 'artist',
-  role_admin: 'admin'
+  role_admin: 'admin',
+  bucket: 'DEV/'
 };

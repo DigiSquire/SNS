@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import {
   FormArray,
   FormBuilder,
@@ -498,11 +499,12 @@ export class UploadArtworkComponent implements OnChanges {
     // Generate a file name wih hex-code
     const fileName = uuid.v4() + file.name;
     console.log('Generated Filename', fileName);
-    this.storage.upload('PROD/' + fileName, file).then((uploadResponse) => {
+    console.log(`will be uploading to ${environment.bucket}${fileName}`);
+    this.storage.upload(`${environment.bucket}${fileName}`, file).then((uploadResponse) => {
       // Initiate Upload to FS
       console.log('Upload success response', uploadResponse);
       // Retrieve  URL
-      this.storage.ref('PROD/' + fileName).getDownloadURL()
+      this.storage.ref(`${environment.bucket}${fileName}`).getDownloadURL()
       .subscribe((URL) => {
         console.log('URL Received', URL);
         // Assign the URL to metadata object

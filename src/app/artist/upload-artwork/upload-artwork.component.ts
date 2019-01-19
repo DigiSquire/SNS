@@ -48,7 +48,7 @@ export class UploadArtworkComponent implements OnChanges {
   isHovering: boolean;
   downloadURL;
   
-   @ViewChild('uploadFile') uploadFile: any;
+  @ViewChild('uploadFile') uploadFile: any;
   @ViewChild('formDirective') form: any;
   rentDetails = [{
       month: 1,
@@ -517,17 +517,17 @@ export class UploadArtworkComponent implements OnChanges {
         if (this.heroForm.get('metadata').value.rentInformation.rentPrice === 999999999999999) {
           this.heroForm.get('metadata').value.rentInformation.rentPrice = 0;
         }
-        console.log('lowest value', this.heroForm.get('metadata').value.rentInformation.rentPrice);
-
+        if (this.heroForm.get('metadata').value.artBy === undefined || this.heroForm.get('metadata').value.artBy === ''){
+          this.heroForm.get('metadata').value.artBy = `${sessionStorage.getItem('fname')} ${sessionStorage.getItem('lname')}`;
+        }
         // Update the data to be sent to server
         preparePayload.push(this.heroForm.get('metadata').value);
         payload.data = preparePayload;
-        console.log('Payload to be sent ', payload );
+
         // Initiate save to MongoDB
         return this.artService.uploadArtwork(payload).subscribe((result => {
       if (result) {
-        console.log('Success, formDirective received to service', formDirective);
-        // Check Below with Nida
+  
         this.form.resetForm();
         this.rebuildForm();
         this.createForm();

@@ -10,7 +10,8 @@ import {
   MatChipsModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatRippleModule
+  MatRippleModule,
+  MatSelectModule
 } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -42,6 +43,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatRippleModule,
+    MatSelectModule,
     InfiniteScrollModule
   ]
 })

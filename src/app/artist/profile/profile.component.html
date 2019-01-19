@@ -1,68 +1,93 @@
 <form class="mt-4 mb-4" [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="finished && !noData">
-    <div class="form-group">
-        <mat-form-field class="example-full-width">
-            <input  class="text-capitalize"matInput placeholder="First Name" formControlName="firstName" required>
-            <mat-error *ngIf="profileForm.get('firstName').hasError('required')">
-                First Name is <strong>required</strong>
-              </mat-error>
-          </mat-form-field>
-          </div>
+  <div class="form-group">
+    <mat-form-field class="example-full-width">
+      <input class="text-capitalize" matInput placeholder="First Name" formControlName="firstName" required>
+      <mat-error *ngIf="profileForm.get('firstName').hasError('required')">
+        First Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
 
   <div class="form-group">
-      <mat-form-field class="example-full-width">
-          <input  class="text-capitalize"matInput placeholder="Last Name" formControlName="lastName" required>
-          <mat-error *ngIf="profileForm.get('lastName').hasError('required')">
-              Last Name is <strong>required</strong>
-            </mat-error>
-        </mat-form-field>
-        </div>
-  <div class="form-group">
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Email" formControlName="email" readonly >
-              </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input class="text-capitalize" matInput placeholder="Last Name" formControlName="lastName" required>
+      <mat-error *ngIf="profileForm.get('lastName').hasError('required')">
+        Last Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
   </div>
   <div class="form-group">
-      <mat-form-field class="example-full-width">
-          <input type="number" matInput placeholder="Contact Number" formControlName="contactNumber">
-        </mat-form-field>
-</div>
-<div class="form-group">
     <mat-form-field class="example-full-width">
-        <textarea class="text-capitalize"matInput placeholder="Address" formControlName="address"></textarea>
-      </mat-form-field>
-</div>
-
-  <!-- <div formGroupName="address">
-    <h3>Address</h3>
-    <div class="form-group">
-        <mat-form-field class="example-full-width">
-            <input  matInput placeholder="Street" formControlName="street" >
-          </mat-form-field>
-          </div>
- 
-    <div class="form-group">
-        <mat-form-field class="example-full-width">
-            <input  matInput placeholder="City" formControlName="city" >
-          </mat-form-field>
-          </div>
-          <div class="form-group">
-              <mat-form-field class="example-full-width">
-                  <input  matInput placeholder="State" formControlName="state" >
-                </mat-form-field>
-                </div>
-                <div class="form-group">
-<mat-form-field class="example-full-width">
-      <input matInput #postalCode maxlength="6" placeholder="Zip Code" value="">
+      <input matInput placeholder="Email" formControlName="email" readonly>
     </mat-form-field>
+  </div>
+
+  <div formGroupName="address">
+    <div class="form-group">
+      <mat-form-field class="col-sm-4">
+        <mat-select placeholder="Country" formControlName="country" (selectionChange)="setCountryCode($event.value)">
+          <mat-option *ngFor="let country of countries" [value]="country">
+            {{country}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="profileForm.get('address.country').hasError('required')">
+          Country name is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <input autocomplete="off" matInput maxlength="6" placeholder="Zip Code" formControlName="zip">
+        <mat-error *ngIf="profileForm.get('address.zip').hasError('required')">
+          Zip Code is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input class="text-capitalize"matInput placeholder="Street Address" formControlName="street">
+        <mat-error *ngIf="profileForm.get('address.street').hasError('required')">
+          Street name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
     </div>
 
-  </div> -->
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input class="text-capitalize" matInput placeholder="City" formControlName="city">
+        <mat-error *ngIf="profileForm.get('address.city').hasError('required')">
+          City name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
 
- 
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input class="text-capitalize" matInput placeholder="State" formControlName="state">
+        <mat-error *ngIf="profileForm.get('address.state').hasError('required')">
+          State name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
+
+  </div>
+
+
+  <!-- Contact no field -->
+  <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <span matPrefix>{{profileForm.get('countryCode').value}} &nbsp;</span>
+          <input type="tel" matInput placeholder="Contact Number" formControlName="contactNumber">
+          <mat-error *ngIf="profileForm.get('contactNumber').hasError('required')">
+            Contact Number is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+  </div>
 
   <!-- <button type="submit" [disabled]="!profileForm.valid">Update Profile</button> -->
-<button *ngIf="email!==undefined" type="submit" mat-raised-button color="primary" [disabled]="!profileForm.dirty || !profileForm.valid">Update
-  Profile</button>
+  <button *ngIf="email!==undefined" type="submit" mat-raised-button color="primary" [disabled]="!profileForm.dirty || !profileForm.valid">Update
+    Profile</button>
 </form>
 
 <!-- <hr>

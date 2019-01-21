@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   email: string;
   finished = false;
   noData = true;
-  countries = country;
+  countries = country.sort();;
 
   profileForm = this.fb.group({
     firstName: ['', Validators.required],

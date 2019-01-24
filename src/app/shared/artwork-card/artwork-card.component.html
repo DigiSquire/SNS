@@ -34,7 +34,7 @@
       </div>
 
       <!-- For gallery -->
-      <div class="card-body text-center" *ngIf="consumer =='gallery'">
+      <!-- <div class="card-body text-center" *ngIf="consumer =='gallery'">
         <h6 class="card-title text-capitalize">{{file.metadata[0].name}}</h6>
         <p style="color: #6ECCF0;" class="card-text small-price" [class.mb-3]="file.metadata[0].sellingPrice===null"
           *ngIf="file.metadata[0].buy===true">{{file.metadata[0].sellingPrice
@@ -44,10 +44,10 @@
             starts at
             {{file.metadata[0].rentInformation.rentPrice | currency}}/month</small>
         </p>
-      </div>
+      </div> -->
       
       <!-- Parent wrapper is common for both artist-center & admin-center -->
-      <div class="card-body text-center" *ngIf="consumer =='artist-center' || consumer =='admin-center'">
+      <div class="card-body text-center">
         <!-- For artist: My Artworks section -->
         <div class="d-flex justify-content-center mb-3" *ngIf="consumer =='artist-center'">
           <mat-chip-list>

@@ -4,6 +4,7 @@ import { ArtworkCardComponent } from './artwork-card/artwork-card.component';
 import { MaterialModule } from '../material/material.module';
 import { DialogComponent } from './dialog/dialog.component';
 import { ContactEmailsComponent } from './contact-emails/contact-emails.component';
+import { ArtInfoComponent } from './art-info/art-info.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -12,14 +13,16 @@ import { ContactEmailsComponent } from './contact-emails/contact-emails.componen
   declarations: [
     ArtworkCardComponent,
     DialogComponent,
-    ContactEmailsComponent
+    ContactEmailsComponent,
+    ArtInfoComponent
   ],
   exports: [
     ArtworkCardComponent,
     ContactEmailsComponent
   ],
   entryComponents: [
-    DialogComponent
+    DialogComponent,
+    ArtInfoComponent
   ]
 })
 export class SharedModule { }

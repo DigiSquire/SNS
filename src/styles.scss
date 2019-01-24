@@ -59,3 +59,7 @@ h1,h2,h3,h4{
 .mat-slide-toggle.mat-disabled .mat-slide-toggle-thumb-container {
   cursor: not-allowed !important;
 }
+
+.custom-dialog .mat-dialog-container{
+  border-radius: 4px !important;
+}

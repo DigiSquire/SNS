@@ -7,6 +7,7 @@ import { tap, take } from 'rxjs/operators';
 import { Result } from '../../core/result.interface';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
+import { ArtInfoComponent } from "../art-info/art-info.component";
 @Component({
   selector: 'artwork-card',
   templateUrl: './artwork-card.component.html',
@@ -142,5 +143,14 @@ export class ArtworkCardComponent implements OnInit {
       if (item._id === data) { currentFiles.splice(index, 1); }
     });
     this.files.next(currentFiles);
+  }
+  showMoreInfo(fileInfo): void {
+    fileInfo.consumer = this.consumer;
+    this.dialog.open(ArtInfoComponent, {
+      data: fileInfo,
+      panelClass : 'custom-dialog',
+      height : 'auto', 
+      width : '55%'
+    });
   }
 }

@@ -1,0 +1,44 @@
+<h1 mat-dialog-title class="title">{{data.name}}</h1>
+<div class="price-info">{{data.sellingPrice | currency}}</div>
+<div class="description">{{data.description}}</div>
+<div class="info">
+  <div class="row">
+    <div class="col-sm-6" *ngIf="data.consumer === 'admin-center' || data.consumer === 'artist-center' || (data.consumer === 'gallery' && (data.dimension.height*data.dimension.width*data.dimension.depth > 0))">
+      Dimensions : <span *ngIf="(data.dimension.height*data.dimension.width*data.dimension.depth) > 0">{{data.dimension.height}}cm <span class="no-transform">x</span> {{data.dimension.width}}cm <span class="no-transform">x</span> {{data.dimension.depth}}cm </span>
+                   <span *ngIf="data.dimension.height == null || data.dimension.width == null || data.dimension.depth == null  || data.dimension.height == 0 || data.dimension.width == 0 || data.dimension.depth == null ">NA</span>
+    </div>
+    <div class="col-sm-6">
+      Artist Name : <span *ngIf="data.artBy !== ''">{{data.artBy}}</span>  
+                    <span *ngIf="data.artBy === ''">NA</span>
+    </div>
+    <div class="col-sm-6" *ngIf="data.consumer === 'admin-center' || data.consumer === 'artist-center' || (data.consumer === 'gallery' && data.category.artType && data.category.artType !== 'undefined' && data.category.artType !== null &&  data.category.artType !== '')">
+      Artwork : <span *ngIf="data.category.artType !== ''">{{data.category.artType}}</span>  
+                <span *ngIf="data.category.artType === ''">NA</span>
+    </div>
+    <div class="col-sm-6" *ngIf="data.consumer === 'admin-center' || data.consumer === 'artist-center' || (data.consumer === 'gallery' && data.year && data.year !== 'undefined' && data.year !== null && data.year !== '')">
+      Year : <span *ngIf="data.year !== null || data.year !== ''">{{data.year | date:'MMMM , yyyy'}}</span>
+             <span *ngIf="!data.year || data.year == 'undefined' || data.year == null || data.year == ''">NA</span>
+    </div>
+    <div class="col-sm-6" *ngIf="data.consumer === 'admin-center' || data.consumer === 'artist-center' || (data.consumer === 'gallery' && data.classification.artClassification && data.classification.artClassification !== 'undefined' && data.classification.artClassification !== null && data.classification.artClassification !== '')">
+      Category : <span *ngIf="data.classification.artClassification !== null && data.classification.artClassification !== ''">{{data.classification.artClassification}}</span>
+                 <span *ngIf="!data.classification.artClassification || data.classification.artClassification == 'undefined' || data.classification.artClassification == null || data.classification.artClassification == ''">NA</span>
+    </div>
+    <div class="col-sm-6" *ngIf="data.consumer === 'admin-center' || data.consumer === 'artist-center' || (data.consumer === 'gallery' && data.artmedium.medium && data.artmedium.medium !== 'undefined' && data.artmedium.medium !== null && data.artmedium.medium !== '')">
+      Medium : <span *ngIf="data.artmedium.medium !== ''">{{data.artmedium.medium}}</span>  
+               <span *ngIf="!data.artmedium.medium || data.artmedium.medium == 'undefined' || data.artmedium.medium == null || data.artmedium.medium == ''">NA</span>
+    </div>
+    <div class="col-sm-6" *ngIf="data.consumer === 'admin-center' || data.consumer === 'artist-center' || (data.consumer === 'gallery' && data.availableFrom && data.availableFrom !== 'undefined' && data.availableFrom !== null && data.availableFrom !== '')">
+      Available From : <span *ngIf="data.availableFrom !== null">{{data.availableFrom | date:'longDate'}}</span>
+                       <span *ngIf="!data.availableFrom || data.availableFrom == 'undefined' || data.availableFrom == null || data.availableFrom == ''">NA</span>
+    </div>
+    <div class="col-sm-6" *ngIf="data.consumer === 'admin-center' || data.consumer === 'artist-center' || (data.consumer === 'gallery' && data.availableTo && data.availableTo !== 'undefined' && data.availableTo !== null && data.availableTo !== '')">
+      Available To : <span *ngIf="data.availableTo !== null">{{data.availableTo | date:'longDate'}}</span>
+                       <span *ngIf="!data.availableTo || data.availableTo == 'undefined' || data.availableTo == null || data.availableTo == ''">NA</span>
+    </div>
+  </div>
+  <hr *ngIf="data.rentInformation.rent">
+  <div class="row" *ngIf="data.rentInformation.rent">
+      <div class="col-sm-12">Rent Tenure : </div>
+      <div class="rent-info" *ngFor="let row of data.rentInformation.rows"><span class="col-sm-3" *ngIf="row.checkbox_value">Rent at {{row.price | currency}} for {{row.month}} month(s)</span></div>   
+  </div>  
+</div>

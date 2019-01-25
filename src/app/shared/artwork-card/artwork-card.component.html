@@ -65,11 +65,11 @@
           </mat-chip-list>
         </div>
 
-        <!-- Common for all -->
+        <!-- Common for both -->
         <h6 class="card-title text-capitalize">{{file.metadata[0].name}} <i class="fa fa-info-circle icon-blue" aria-hidden="true" (click)="showMoreInfo(file.metadata[0]);"></i></h6>
         <p class="card-text artist-name text-capitalize">by {{file.metadata[0].artBy}}</p>
-        <p class="card-text small-price" *ngIf="file.metadata[0].dimension.height*file.metadata[0].dimension.width*file.metadata[0].dimension.depth > 0">{{file.metadata[0].dimension.height}} cm x {{file.metadata[0].dimension.width}} cm x {{file.metadata[0].dimension.depth}} cm  </p>
-        <p class="card-text small-price" [class.mb-3]="file.metadata[0].sellingPrice===null" *ngIf="file.metadata[0].buy===true">{{file.metadata[0].sellingPrice
+        <small class="text-muted" *ngIf="file.metadata[0].dimension.height*file.metadata[0].dimension.width*file.metadata[0].dimension.depth > 0">{{file.metadata[0].dimension.height}} cm x {{file.metadata[0].dimension.width}} cm x {{file.metadata[0].dimension.depth}} cm  </small>
+        <p class="card-text small-price custom-margin-price" [class.mb-3]="file.metadata[0].sellingPrice===null" *ngIf="file.metadata[0].buy===true">{{file.metadata[0].sellingPrice
           | currency}}</p>
         <p [class.mb-custom]="file.metadata[0].buy===false">
           <small class="text-muted text-capitalize" *ngIf="file.metadata[0].rentInformation.rent===true && file.metadata[0].rentInformation.rentPrice">Rent

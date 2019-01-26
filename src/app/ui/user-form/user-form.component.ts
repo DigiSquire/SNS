@@ -46,19 +46,16 @@ export class UserFormComponent implements OnInit {
     },
     'password': {
       'required': 'Password is required.',
-      'pattern': 'Password should include at least one letter & one number.',
-      'minlength': 'Password must be at least 4 characters long.',
-      'maxlength': 'Password cannot be more than 40 characters long.',
+      'pattern': 'Password should include at least one letter & one number, no special characters allowed.',
+      'minlength': 'Password must be at least 6 characters long.',
+      'maxlength': 'Password cannot be more than 25 characters long.',
     },
     'existingEmail': {
       'required': 'Email is required.',
       // 'pattern': 'Email must be a valid email.'
     },
     'existingPassword': {
-      'required': 'Password is required.',
-      // 'pattern': 'Password should include at least one letter & one number.',
-      // 'minlength': 'Password must be at least 4 characters long.',
-      // 'maxlength': 'Password cannot be more than 40 characters long.',
+      'required': 'Password is required.'
     }
     
   };

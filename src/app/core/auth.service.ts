@@ -222,7 +222,7 @@ checkLoginAndRole(route: String): Promise<boolean> {
         this.changeMessage(false);
       }
       ).catch(() => {
-        this.notify.update('Error encountered while resetting your password, please try again', 'error');
+        this.notify.update('The email link has expired, please try again', 'error');
         this.router.navigate(['./login']);
       });
     }else {

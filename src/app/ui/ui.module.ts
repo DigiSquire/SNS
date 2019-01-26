@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { ArtistsComponent } from './artists/artists.component';
 import { SharedModule } from '../shared/shared.module';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { SharedModule } from '../shared/shared.module';
     NavComponent,
     MainFooterComponent,
     PageTitleComponent,
-    ArtistsComponent
+    ArtistsComponent,
+    PasswordResetComponent
   ],
   exports: [
     MainNavComponent,

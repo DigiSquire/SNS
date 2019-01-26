@@ -1,20 +1,18 @@
 import {  Injectable } from '@angular/core';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import {  catchError } from 'rxjs/operators';
 // import * as firebase from 'firebase/app';
 // import {  AngularFireAuth } from 'angularfire2/auth';
-
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import {  environment } from '../../environments/environment';
 import {  BehaviorSubject } from 'rxjs';
-import 'rxjs/add/operator/switchMap'
 import {  NotifyService } from './notify.service';
 
 import {  HttpClient } from '@angular/common/http';
 import {  HttpHeaders } from '@angular/common/http';
 import {  HttpErrorHandler,  HandleError } from './http-error-handler.service';
-import { first } from 'rxjs/operators';
+import { first, filter } from 'rxjs/operators';
 interface Error {
   code: string;
   message: string;
@@ -53,11 +51,15 @@ export class AuthService {
   private userRegisterURL = `${ environment.API_BASE_URI }/user/register`; // URL to web api
   private handleHTTPError: HandleError;
   user: Promise <User> ;
+  activatedRouteParams;
 
 
   constructor(private afAuth: AngularFireAuth,
     private http: HttpClient,
-    private router: Router, private notify: NotifyService, httpErrorHandler: HttpErrorHandler) {
+    private router: Router,
+    private notify: NotifyService,
+    httpErrorHandler: HttpErrorHandler) {
+    
     this.changeMessage(true);
     this.handleHTTPError = httpErrorHandler.createHandleError('AuthService');
     // this.user = this.afAuth.authState
@@ -211,6 +213,39 @@ checkLoginAndRole(route: String): Promise<boolean> {
       .sendPasswordResetEmail(email)
       .then(() => this.notify.update('Reset requested. Check your email for instructions.', 'info'))
       .catch(error => this.handleError(error));
+  }
+  // Handle password reset
+  handleResetPassword(actionCode) {
+    if (actionCode !== undefined) {
+      this.afAuth.auth.verifyPasswordResetCode(actionCode).then((email) => {
+        this.notify.update('Please reset your password', 'success');
+        this.changeMessage(false);
+      }
+      ).catch(() => {
+        this.notify.update('Error encountered while resetting your password, please try again', 'error');
+        this.router.navigate(['./login']);
+      });
+    }else {
+      this.notify.update('Error encountered while resetting your password, please try again', 'error');
+      this.router.navigate(['./login']);
+    }
+    
+  }
+  confirmPasswordReset(actionCode, newPassword) {
+    if (actionCode !== undefined) {
+    this.afAuth.auth.confirmPasswordReset(actionCode, newPassword).then(() => {
+      this.notify.update(`Your password was reset successfully, please login with the new password`, 'success');
+      this.router.navigate(['./login']);
+    }).catch( () => {
+      // Error occurred during confirmation. The code might have expired or the
+      // password is too weak.
+      this.notify.update('Error encountered while resetting your password, please try again', 'error');
+      this.router.navigate(['./login']);
+    });
+    }else {
+      this.notify.update('Error encountered while resetting your password, please try again', 'error');
+      this.router.navigate(['./login']);
+    }
   }
   // If error, console log and notify user
   private handleError(error: Error) {

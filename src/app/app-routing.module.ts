@@ -4,6 +4,7 @@ import { AuthGuard } from './core/auth.guard';
 import { LoginAuthGuard } from './core/login-auth.guard';
 import { HomePageComponent } from './ui/home-page/home-page.component';
 import { UserFormComponent } from './ui/user-form/user-form.component';
+import { PasswordResetComponent } from './ui//password-reset/password-reset.component';
 import { GalleryComponent } from './ui/gallery/gallery.component';
 import { ArtistsComponent } from './ui/artists/artists.component';
 const routes: Routes = [
@@ -23,6 +24,11 @@ const routes: Routes = [
   { path: 'login',
     component: UserFormComponent,
     canActivate: [LoginAuthGuard] },
+  {
+    path: 'reset-password',
+    component: PasswordResetComponent,
+    canActivate: [LoginAuthGuard]
+  },
   { path: 'gallery', component: GalleryComponent },
 ];
 

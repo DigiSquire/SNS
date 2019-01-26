@@ -7,3 +7,8 @@ export interface Result {
     success: boolean;
     role: 'artist' | 'publicUser';
 }
+export interface Files {
+    filename: string;
+    contentType: string;
+    metadata: Array<Object>;
+}

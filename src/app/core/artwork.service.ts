@@ -6,18 +6,12 @@ import { NotifyService } from './notify.service';
 import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { AuthService } from './auth.service';
-import { callLifecycleHooksChildrenFirst } from '@angular/core/src/view/provider';
+import { Files} from './result.interface';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Authorization': 'my-auth-token',
     'Access-Control-Allow-Origin': '*',
   })
 };
-export interface Files { 
-  filename: string;
-  contentType: string;
-  metadata: Array<Object>;
-}
 @Injectable({
   providedIn: 'root'
 })

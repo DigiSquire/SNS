@@ -87,12 +87,7 @@ export class AuthService {
       .then(credential => {
         return credential.user.getIdToken(true)
       }).then((idToken) => {
-        const userData = {
-          'idToken': idToken,
-          'firstName': firstName,
-          'lastName': lastName
-        }
-        return this.registerNewUser(userData).subscribe((result => {
+        return this.registerNewUser({ idToken, firstName, lastName }).subscribe((result => {
           console.log(result);
           if (result.success === true) {            
             this.checkRoleRedirect();

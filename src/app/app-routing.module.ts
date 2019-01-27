@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/auth.guard';
+import { ResetPasswordAuthGuard } from './core/reset-password.guard';
 import { LoginAuthGuard } from './core/login-auth.guard';
 import { HomePageComponent } from './ui/home-page/home-page.component';
 import { UserFormComponent } from './ui/user-form/user-form.component';
@@ -27,7 +28,7 @@ const routes: Routes = [
   {
     path: 'reset-password',
     component: PasswordResetComponent,
-    canActivate: [LoginAuthGuard]
+    canActivate: [ResetPasswordAuthGuard]
   },
   { path: 'gallery', component: GalleryComponent },
 ];

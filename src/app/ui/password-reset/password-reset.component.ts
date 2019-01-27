@@ -30,12 +30,6 @@ export class PasswordResetComponent implements OnInit {
   constructor(private fb: FormBuilder, public auth: AuthService, private activatedRoute: ActivatedRoute) { 
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.activatedRouteParams = { ...params };
-      console.log(this.activatedRouteParams);
-      if (this.activatedRouteParams.params.mode === 'resetPassword') {
-        this.auth.handleResetPassword(this.activatedRouteParams.params.oobCode)
-      }else {
-        return
-      }
     });
   }
 

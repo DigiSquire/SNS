@@ -214,23 +214,7 @@ checkLoginAndRole(route: String): Promise<boolean> {
       .then(() => this.notify.update('Reset requested. Check your email for instructions.', 'info'))
       .catch(error => this.handleError(error));
   }
-  // Handle password reset
-  handleResetPassword(actionCode) {
-    if (actionCode !== undefined) {
-      this.afAuth.auth.verifyPasswordResetCode(actionCode).then((email) => {
-        this.notify.update('Please reset your password', 'success');
-        this.changeMessage(false);
-      }
-      ).catch(() => {
-        this.notify.update('The email link has expired, please try again', 'error');
-        this.router.navigate(['./login']);
-      });
-    }else {
-      this.notify.update('Error encountered while resetting your password, please try again', 'error');
-      this.router.navigate(['./login']);
-    }
-    
-  }
+
   confirmPasswordReset(actionCode, newPassword) {
     if (actionCode !== undefined) {
     this.afAuth.auth.confirmPasswordReset(actionCode, newPassword).then(() => {

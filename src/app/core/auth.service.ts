@@ -218,7 +218,7 @@ checkLoginAndRole(route: String): Promise<boolean> {
   confirmPasswordReset(actionCode, newPassword) {
     if (actionCode !== undefined) {
     this.afAuth.auth.confirmPasswordReset(actionCode, newPassword).then(() => {
-      this.notify.update(`Your password was reset successfully, please login with the new password`, 'success');
+      this.notify.update(`You can now sign in with your new password`, 'success');
       this.router.navigate(['./login']);
     }).catch( () => {
       // Error occurred during confirmation. The code might have expired or the

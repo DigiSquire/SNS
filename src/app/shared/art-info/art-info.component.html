@@ -3,10 +3,6 @@
 <div class="description">{{data.description}}</div>
 <div class="info">
   <div class="row">
-    <div class="col-sm-6">
-      Artist Name : <span *ngIf="data.artBy !== ''">{{data.artBy}}</span>  
-                    <span *ngIf="data.artBy === ''">NA</span>
-    </div>
     <div class="col-sm-6" *ngIf="data.consumer === 'admin-center' || data.consumer === 'artist-center' || (data.consumer === 'gallery' && (data.dimension.height*data.dimension.width*data.dimension.depth > 0))">
       Dimensions : <span *ngIf="(data.dimension.height*data.dimension.width*data.dimension.depth) > 0">{{data.dimension.height}}<span class="no-transform"> inch x </span>{{data.dimension.width}}<span class="no-transform"> inch x</span> {{data.dimension.depth}}<span class="no-transform"> inch</span></span>
                    <span *ngIf="data.dimension.height == null || data.dimension.width == null || data.dimension.depth == null  || data.dimension.height == 0 || data.dimension.width == 0 || data.dimension.depth == null ">NA</span>

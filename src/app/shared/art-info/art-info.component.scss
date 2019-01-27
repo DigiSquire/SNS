@@ -59,16 +59,27 @@
     text-transform: uppercase;
 }
 
-// @media only screen and (min-width: 768px) {
+// @media only screen and (min-width:768px) and (max-width:481) {
 //     .title {
 //         font-size: 2vw;
+//         line-height: 10vh;
 //     }
 //     .price-info {
-//         font-size: 1.8vw;
+//         line-height: 1vh;
 //     }
+//     .info {
+//         line-height: 4.3vh;
+//     }
+//     .description {
+//         line-height: 3vh;
+//     }
+//     .rent-info{
+//         line-height: 2.5vh;
+//     }
+
 // }
 
-@media only screen and (orientation:portrait) {
+@media only screen and (max-width:480px) {
     .title {
         font-size: 3.5vw;
         line-height: 3.5vh;

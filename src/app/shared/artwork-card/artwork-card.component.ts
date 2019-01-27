@@ -150,7 +150,7 @@ export class ArtworkCardComponent implements OnInit {
       data: fileInfo,
       panelClass : 'custom-dialog',
       height : 'auto', 
-      width : '55%'
+      width : 'auto'
     });
   }
 }

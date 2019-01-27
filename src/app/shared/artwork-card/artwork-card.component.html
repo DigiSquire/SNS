@@ -5,7 +5,7 @@
   </div>
   <!-- card component -->
   <div *ngFor="let file of files | async" class="col-md-3 mb-4">
-    <div class="card card-size">
+<div class="card card-size">
       <div class="wrapper">
 
         <div *ngIf="file.metadata[0].rentInformation.rent===true" class="d-flex align-items-start flex-column pos-abs">
@@ -15,7 +15,7 @@
           <div *ngIf="consumer !=='gallery'" class="mb-auto text-white sale-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rentInformation.rent===true">Sale</div>
           <div *ngIf="consumer ==='gallery'"class="mb-auto text-white buy-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rentInformation.rent===true">Buy</div>
         </div>
-        <div class="card-ht">
+        <div class="card-ht" (click)="showMoreInfo(file.metadata[0]);">
           <img class="card-img-top" src={{file.url}} alt="Card image cap">
         </div>
 
@@ -47,7 +47,8 @@
         </div>
 
         <!-- Common for both -->
-        <h6 class="card-title text-capitalize">{{file.metadata[0].name}} <i class="fa fa-info-circle icon-blue" aria-hidden="true" title="View more" (click)="showMoreInfo(file.metadata[0]);"></i></h6>
+        <h6 class="card-title text-capitalize">{{file.metadata[0].name}}
+          <i *ngIf="consumer =='admin-center' && file.metadata[0].approvalStatus==='pending'" class="fa fa-info-circle icon-blue" aria-hidden="true" title="View more" (click)="showMoreInfo(file.metadata[0]);"></i></h6>
         <p class="card-text artist-name text-capitalize">by {{file.metadata[0].artBy}}</p>
         <small class="text-muted" *ngIf="file.metadata[0].dimension.height*file.metadata[0].dimension.width*file.metadata[0].dimension.depth > 0">{{file.metadata[0].dimension.height}} inch x {{file.metadata[0].dimension.width}} inch x {{file.metadata[0].dimension.depth}} inch</small>
         <p class="card-text small-price" [class.mb-3]="file.metadata[0].sellingPrice===null" *ngIf="file.metadata[0].buy===true">{{file.metadata[0].sellingPrice

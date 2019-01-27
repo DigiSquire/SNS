@@ -1,6 +1,6 @@
 .price-info {
    // font-size: 24px;
-    font-size: 1.5rem;
+    font-size: 4vw;
     letter-spacing: 1px;
     line-height: 43px;
     color: #ec5a93;
@@ -9,7 +9,7 @@
 }
 
 .title {
-    font-size: 1.75rem;
+    font-size: 3.2vw;
     //font-size: 28px;
     letter-spacing: 1px;
     line-height: 60px;
@@ -58,4 +58,13 @@
     font-style: normal;
     font-weight: 400;
     text-transform: uppercase;
+}
+
+@media only screen and (min-width: 768px) {
+    .title {
+        font-size: 2vw;
+    }
+    .price-info {
+        font-size: 1.8vw;
+    }
 }

@@ -50,7 +50,12 @@ small {
   z-index: 1;
   padding: 0 0.59em;
 }
-
+.buy-fill {
+    position: absolute;
+    background-color: #35A8E6;
+    z-index: 1;
+    padding: 0 0.68em;  
+}
 .rented {
   position: absolute;
   background-color: #EC5A93;

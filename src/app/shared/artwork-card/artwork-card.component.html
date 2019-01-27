@@ -12,7 +12,8 @@
           <div class="mb-auto  text-white rented">Rent</div>
         </div>
         <div *ngIf="file.metadata[0].buy===true" class="d-flex align-items-start flex-column pos-abs">
-          <div class="mb-auto text-white sale-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rentInformation.rent===true">Sale</div>
+          <div *ngIf="consumer !=='gallery'" class="mb-auto text-white sale-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rentInformation.rent===true">Sale</div>
+          <div *ngIf="consumer ==='gallery'"class="mb-auto text-white buy-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rentInformation.rent===true">Buy</div>
         </div>
         <div class="card-ht">
           <img class="card-img-top" src={{file.url}} alt="Card image cap">

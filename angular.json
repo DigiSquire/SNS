@@ -28,7 +28,7 @@
           },
           "configurations": {
             "dev-git": {
-              "baseHref": "https://test.spacesnstories.com/",
+              "baseHref": "https://DigiSquire.github.io/SNS/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,

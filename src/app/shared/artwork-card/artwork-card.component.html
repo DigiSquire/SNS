@@ -12,11 +12,11 @@
           <div class="mb-auto  text-white rented">Rent</div>
         </div>
         <div *ngIf="file.metadata[0].buy===true" class="d-flex align-items-start flex-column pos-abs">
-          <div *ngIf="consumer !=='gallery'" class="mb-auto text-white sale-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rentInformation.rent===true">Sale</div>
+          <div *ngIf="consumer !=='gallery'" class="mb-auto text-white sale-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rentInformation.rent===true">Sell</div>
           <div *ngIf="consumer ==='gallery'"class="mb-auto text-white buy-fill" [class.mt-4]="file.metadata[0].buy===true && file.metadata[0].rentInformation.rent===true">Buy</div>
         </div>
         <div class="card-ht" (click)="showMoreInfo(file.metadata[0]);">
-          <img class="card-img-top" src={{file.url}} alt="Card image cap">
+          <img class="card-img-top" [src]=file.url [alt]="file.metadata[0].description">
         </div>
 
         <!-- For Admin Center-Pending-approvals section -->
@@ -49,8 +49,12 @@
         <!-- Common for both -->
         <h6 class="card-title text-capitalize">{{file.metadata[0].name}}
           <i *ngIf="consumer =='admin-center' && file.metadata[0].approvalStatus==='pending'" class="fa fa-info-circle icon-blue" aria-hidden="true" title="View more" (click)="showMoreInfo(file.metadata[0]);"></i></h6>
-        <p class="card-text artist-name text-capitalize">by {{file.metadata[0].artBy}}</p>
-        <small class="text-muted" *ngIf="file.metadata[0].dimension.height*file.metadata[0].dimension.width*file.metadata[0].dimension.depth > 0">{{file.metadata[0].dimension.height}} inch x {{file.metadata[0].dimension.width}} inch x {{file.metadata[0].dimension.depth}} inch</small>
+        <!-- <p class="card-text artist-name text-capitalize">by {{file.metadata[0].artBy}}</p> -->
+        <small class="text-muted">
+          <span *ngIf="file.metadata[0].dimension.height">{{file.metadata[0].dimension.height}} inch</span>
+          <span *ngIf="file.metadata[0].dimension.width"> x {{file.metadata[0].dimension.width}} inch</span>
+          <span *ngIf="file.metadata[0].dimension.depth"> x {{file.metadata[0].dimension.depth}} inch </span>
+        </small>
         <p class="card-text small-price" [class.mb-3]="file.metadata[0].sellingPrice===null" *ngIf="file.metadata[0].buy===true">{{file.metadata[0].sellingPrice
           | currency}}</p>
         <p [class.mb-custom]="file.metadata[0].buy===false">

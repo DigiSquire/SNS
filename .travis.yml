@@ -4,9 +4,11 @@ node_js:
 dist: trusty
 sudo: false
 
+# safelist
 branches:
   only:
   - master
+  - ArtBy-Hotfix
 
 cache:
   directories:

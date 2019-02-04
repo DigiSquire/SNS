@@ -47,7 +47,7 @@
     <hr *ngIf="data.rentInformation.rent">
     <div class="row" *ngIf="data.rentInformation.rent">
         <div class="col-sm-12">Rent Tenure : </div>
-        <div class="rent-info" *ngFor="let row of data.rentInformation.rows"><span class="col-sm-12 col-md-4" *ngIf="row.checkbox_value">Rent at {{row.price | currency}} for {{row.month}} month(s)</span></div>   
+        <div class="rent-info" *ngFor="let row of data.rentInformation.rows"><span class="col-sm-12 col-md-4" *ngIf="row.checkbox_value">Rent at {{row.price | currency}}/month for {{row.month}} month(s)</span></div>   
     </div>  
   </div>
 </mat-dialog-content>

@@ -37,7 +37,7 @@
                 <span *ngIf="!data.artmedium.medium || data.artmedium.medium == 'undefined' || data.artmedium.medium == null || data.artmedium.medium == ''">NA</span>
       </div>
        <div class="col-sm-12 col-md-6" *ngIf="data.consumer === 'admin-center' || data.consumer === 'artist-center' || (data.consumer === 'gallery' && data.printPrice && data.printPrice !== 'undefined' && data.printPrice !== null && data.printPrice !== '')">
-        Print Price : <span *ngIf="data.printPrice !== ''">{{data.printPrice}}</span>  
+        Print Price : <span *ngIf="data.printPrice !== ''">{{data.printPrice | currency}}</span>  
                 <span *ngIf="!data.printPrice || data.printPrice == 'undefined' || data.printPrice == null || data.printPrice == ''">NA</span>
       </div>
     </div>

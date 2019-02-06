@@ -6,7 +6,7 @@ import { NotifyService } from './notify.service';
 import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { AuthService } from './auth.service';
-import { Files} from './result.interface';
+import { Files, UserProfile} from './result.interface';
 const httpOptions = {
   headers: new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
@@ -17,13 +17,12 @@ const httpOptions = {
 })
 export class ArtworkService { 
   readonly uploadURL = `${environment.API_BASE_URI}/artist/upload`;
-  email: string;
   private handleHTTPError: HandleError;
   constructor(private http: HttpClient,
       private notify: NotifyService,
       httpErrorHandler: HttpErrorHandler, private auth: AuthService) { 
-    this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');
-    this.auth.getEmail.subscribe((message) => this.email = message);
+      this.handleHTTPError = httpErrorHandler.createHandleError('ArtWorkService');
+    
   }
   getArtworks(lastKey?) {
     const getImagesURL = `${environment.API_BASE_URI}/gallery/files`;
@@ -58,9 +57,8 @@ export class ArtworkService {
   }
   updateProfile = (profileData) => {
     this.auth.changeMessage(true);
-    const id = sessionStorage.getItem(environment.id);
-    if ( id != null) {
-      const url = `${environment.API_BASE_URI}/user/updateProfile/${id}`
+    if (this.auth.getUserProfileData()._id != null) {
+      const url = `${environment.API_BASE_URI}/user/updateProfile/${this.auth.getUserProfileData()._id}`
       console.log(profileData);
       return this.http.put<any>(url, profileData, httpOptions).pipe(
         map(result => {
@@ -82,7 +80,6 @@ export class ArtworkService {
     
   }
   uploadArtwork = (payload) => {
-    // this.auth.changeMessage(true);
     console.log('payload to service call', payload);
     return this.http.post<any>(this.uploadURL, payload, httpOptions).pipe(
       map(result => {

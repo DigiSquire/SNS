@@ -5,8 +5,7 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormGroupDirective,
-  FormControl
+  FormGroupDirective
 } from '@angular/forms';
 import {
   HttpClient
@@ -27,8 +26,6 @@ import * as uuid from 'uuid';
 export class UploadArtworkComponent implements OnChanges {
   @Input() hero: Hero;
   readonly MAX_SIZE = 3145728;
-  email: string;
-  // public files: UploadFile[] = [];
   heroForm: FormGroup;
   nameChangeLog: string[] = [];
   states = states;
@@ -69,15 +66,17 @@ export class UploadArtworkComponent implements OnChanges {
     private artService: ArtworkService, private auth: AuthService,
     public notify: NotifyService,
     private storage: AngularFireStorage) {
-    this.auth.getEmail.subscribe((message) => {
-      this.email = message;
-      this.createForm();
-      this.patchValues();
-      // this.heroForm.valueChanges.subscribe(val => {
-      //   this.atLeastOneChecked = this.verifyCheckboxes();
-      // });
+    this.createForm();
+    this.patchValues();
+    // this.auth.getEmail.subscribe((message) => {
+    //   this.email = message;
+    //   this.createForm();
+    //   this.patchValues();
+    //   // this.heroForm.valueChanges.subscribe(val => {
+    //   //   this.atLeastOneChecked = this.verifyCheckboxes();
+    //   // });
 
-    });
+    // });
 
     // this.logNameChange();
   }
@@ -157,7 +156,6 @@ export class UploadArtworkComponent implements OnChanges {
   // }
 
   createForm() {
-    console.log(`Signed in user's email is: ${this.email}`)
     this.heroForm = this.fb.group({
       metadata: this.fb.group({
         availableFrom: null,
@@ -208,10 +206,9 @@ export class UploadArtworkComponent implements OnChanges {
         printPrice: '',
         approvalStatus: 'pending',
         agreement: '',
-        owner: this.email,
+        owner: this.auth.getUserProfileData().email,
         URL: null,
-        artBy: `${sessionStorage.getItem('fname')} ${sessionStorage.getItem('lname')}`
-
+        artBy: this.auth.getUserProfileData().artBy
       }),
       file: [null, Validators.required]
     });
@@ -473,24 +470,7 @@ export class UploadArtworkComponent implements OnChanges {
   addLair() {
     this.secretLairs.push(this.fb.group(new Address()));
   }
-  prepareSave() {
-    console.log(`Signed in user's email is: ${this.email}`)
-    // const formData = new FormData();
-    // const data = [];
-    
-    // Return download URL and 
-    // data.push(this.heroForm.get('metadata').value);
-    // return this.uploadFileToFS(this.heroForm.get('file').value);
-    // data.push(this.heroForm.get('metadata').value);
-    // formData.append('metadata', JSON.stringify(data));
 
-    // formData.append('image', this.heroForm.get('file').value);
-
-    // const file = this.heroForm.get('file').value;
-    
-  
-    // return formData;
-  }
   uploadFileToFS(file, formDirective: FormGroupDirective) {
     const payload = {
       data : []
@@ -517,8 +497,9 @@ export class UploadArtworkComponent implements OnChanges {
         if (this.heroForm.get('metadata').value.rentInformation.rentPrice === 999999999999999) {
           this.heroForm.get('metadata').value.rentInformation.rentPrice = 0;
         }
-        if (this.heroForm.get('metadata').value.artBy === undefined || this.heroForm.get('metadata').value.artBy === ''){
-          this.heroForm.get('metadata').value.artBy = `${sessionStorage.getItem('fname')} ${sessionStorage.getItem('lname')}`;
+        // Assign the artBy value as first-name + last-name
+        if (this.heroForm.get('metadata').value.artBy === null) {
+          this.heroForm.get('metadata').value.artBy = this.auth.getUserProfileData().artBy;
         }
         // Update the data to be sent to server
         preparePayload.push(this.heroForm.get('metadata').value);

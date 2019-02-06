@@ -12,3 +12,22 @@ export interface Files {
     contentType: string;
     metadata: Array<Object>;
 }
+interface Address {
+    street: string
+}
+export interface UserProfile {
+    email: string;
+    firstName?: string,
+    lastName?: string,
+    artBy?: string;
+    contactNumber?: string;
+    countryCode?: string;
+    address?: {
+        street: string,
+        city: string,
+        state: string,
+        zip: string,
+        country: string
+    };
+    _id?: null
+}

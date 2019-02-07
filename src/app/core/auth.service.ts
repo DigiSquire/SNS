@@ -12,7 +12,8 @@ import {  NotifyService } from './notify.service';
 import {  HttpClient } from '@angular/common/http';
 import {  HttpHeaders } from '@angular/common/http';
 import {  HttpErrorHandler,  HandleError } from './http-error-handler.service';
-import { first, filter } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
+import { UserProfile } from './result.interface';
 interface Error {
   code: string;
   message: string;
@@ -48,6 +49,9 @@ export class AuthService {
   private email = new BehaviorSubject<string>(null);
   getEmail = this.email.asObservable();
 
+  private userProfile = new BehaviorSubject<UserProfile>(null);
+  getUserProfile = this.userProfile.asObservable();
+
   private userRegisterURL = `${ environment.API_BASE_URI }/user/register`; // URL to web api
   private handleHTTPError: HandleError;
   user: Promise <User> ;
@@ -82,7 +86,17 @@ export class AuthService {
   changeMessage(isLoading: boolean) {
     this.messageSource.next(isLoading)
   }
-
+  setUserProfile(userProfile: UserProfile) {
+    const existingId = this.getUserProfileData()._id;
+    console.log('Existing ID ****', existingId);
+    if (userProfile && userProfile._id === undefined) {
+      userProfile._id = existingId;
+    }
+    this.userProfile.next(userProfile);
+  }
+  getUserProfileData () {
+    return this.userProfile.getValue();
+  }
   emailSignUp(email: string, password: string, firstName: string, lastName: string) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
@@ -111,12 +125,15 @@ isLoggedIn() {
 }
 
 async checkLoginStreamRole() {
-  const user = await this.isLoggedIn()
+  const user = await this.isLoggedIn();
   if (user) {
     const idTokenResult = await this.afAuth.auth.currentUser.getIdTokenResult(true);
     if (!!idTokenResult.claims.artist) {
       if (this.email.getValue() === null) {
-        this.email.next(user.email)
+        this.email.next(user.email);
+        // Set to user profile BehaviorSubject
+        const userProfile: UserProfile = {email: user.email}
+        this.userProfile.next(userProfile);
       }
       // Show artist user UI.
       this.userRole.next('artist');
@@ -139,7 +156,10 @@ checkLoginAndRole(route: String): Promise<boolean> {
         return this.afAuth.auth.currentUser.getIdTokenResult(true).then((idTokenResult) => {
           if (!!idTokenResult.claims.artist && route.indexOf(environment.role_admin) === -1) {            
               if (this.email.getValue() === null) {
-                this.email.next(user.email)
+                this.email.next(user.email);
+                // Set to user profile BehaviorSubject
+                const userProfile: UserProfile = { email: user.email }
+                this.userProfile.next(userProfile);
               }
             // Show artist user UI.
             this.userRole.next('artist');
@@ -252,8 +272,7 @@ checkLoginAndRole(route: String): Promise<boolean> {
       // Reset Role and email id saved
       this.userRole.next(null);
       this.email.next(null);
-      console.log('clearing session storage');
-      sessionStorage.clear();
+      this.setUserProfile(null);
 
       this.router.navigate(['/']);
       isAuthenticated === 'unAuthenticated' ?

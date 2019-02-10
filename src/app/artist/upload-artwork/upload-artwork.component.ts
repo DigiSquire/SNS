@@ -5,6 +5,7 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
+  ValidatorFn,
   FormGroupDirective
 } from '@angular/forms';
 import {
@@ -17,6 +18,7 @@ import { NotifyService } from '../../core/notify.service';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import * as uuid from 'uuid';
+// import { requireCheckboxesToBeCheckedValidator } from '../../core/require-checkboxes-to-be-checked.validator';
 @Component({
   selector: 'upload-artwork',
   templateUrl: './upload-artwork.component.html',
@@ -26,6 +28,7 @@ import * as uuid from 'uuid';
 export class UploadArtworkComponent implements OnChanges {
   @Input() hero: Hero;
   readonly MAX_SIZE = 3145728;
+  readonly APPROVAL_STATUS= 'pending';
   heroForm: FormGroup;
   nameChangeLog: string[] = [];
   states = states;
@@ -158,26 +161,37 @@ export class UploadArtworkComponent implements OnChanges {
   createForm() {
     this.heroForm = this.fb.group({
       metadata: this.fb.group({
-        availableFrom: null,
-        availableTo: null,
+        availableFrom: [null, Validators.required],
+        availableTo: [null, Validators.required],
         name: ['', Validators.required],
         description: ['', Validators.required],
         dimension: this.fb.group({
-          height: '',
-          width: '',
-          depth: ''
+          height: ['',
+                    [Validators.required]
+          ],
+          width: ['',
+            [Validators.required]
+          ],
+          depth: ['',
+            [Validators.required]
+          ]
         }),
         category: this.fb.group({
-          artType: ''
+          artType: ['',
+            [Validators.required]
+          ]
         }),
-        weight: '',
+        weight: ['',
+          [Validators.required]
+        ],
         classification: this.fb.group({
-          artClassification: ''
+          artClassification: ['',
+            [Validators.required]
+          ]
 
         }),
         artmedium: this.fb.group({
-          medium: ''
-
+          medium: null
         }),
         rentInformation: this.fb.group({
           rent: false,
@@ -204,7 +218,7 @@ export class UploadArtworkComponent implements OnChanges {
 
         sellingPrice: '',
         printPrice: '',
-        approvalStatus: 'pending',
+        approvalStatus: this.APPROVAL_STATUS,
         agreement: '',
         owner: this.auth.getUserProfileData().email,
         URL: null,
@@ -212,7 +226,24 @@ export class UploadArtworkComponent implements OnChanges {
       }),
       file: [null, Validators.required]
     });
+    this.heroForm.get('metadata.category.artType').valueChanges
+      .subscribe(value => this.setArtType(value));
   }
+  setArtType(artTypeValue: string): void {
+    // Remove console statement when DEV is tested
+    console.log(`got existing value as :${this.heroForm.get('metadata.artmedium.medium').value}`);
+    if (this.heroForm.get('metadata.artmedium.medium').value !== null) {
+      this.heroForm.get('metadata.artmedium.medium').reset();
+    }
+    const mediumRadioControl = this.heroForm.get('metadata.artmedium.medium');
+    if (artTypeValue === 'Paintings') {
+      mediumRadioControl.setValidators(Validators.required);
+    } else {
+      mediumRadioControl.clearValidators();
+    }
+    mediumRadioControl.updateValueAndValidity();
+  }
+  
   // on change of Rent Out checkbox
   rentChange() {
     this.rentValue = this.heroForm.get('metadata.rentInformation.rent').value;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ArtworkService } from '../../core/artwork.service';
 import { UserProfile } from '../../core/result.interface';
 import { AuthService } from '../../core/auth.service';

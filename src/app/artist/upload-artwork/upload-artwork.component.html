@@ -23,7 +23,7 @@
         </label>
       </div>
       <div *ngIf="file" class="text-center">
-        <img class="preview-image" [src]="previewImageURL" style="width: 450px; height: 281.394px;">
+        <img class="preview-image" [src]="previewImageURL" style="max-width: 450px; height: 281.394px;">
         <div class="col-sm-12" style="margin-top: 0.75em;">
           <span> You choose to upload {{file.name}} | {{file.size | fileSize}}</span>
           <i matRipple class="far fa-trash-alt trash" (click)="clearFile('trash')"></i>

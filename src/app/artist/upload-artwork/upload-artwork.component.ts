@@ -117,7 +117,7 @@ export class UploadArtworkComponent implements OnChanges {
     const reader = new FileReader();
     reader.readAsDataURL(file); // read file as data url
 
-    reader.onload = (event) => { // called once readAsDataURL is completed
+    reader.onload = (event: any) => { // called once readAsDataURL is completed
       this.previewImageURL = event.target.result;
     }
   }

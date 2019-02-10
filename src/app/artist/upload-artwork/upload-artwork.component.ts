@@ -5,7 +5,6 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  ValidatorFn,
   FormGroupDirective
 } from '@angular/forms';
 import {
@@ -47,6 +46,7 @@ export class UploadArtworkComponent implements OnChanges {
   // State for dropzone CSS toggling
   isHovering: boolean;
   downloadURL;
+  previewImageURL: string;
   
   @ViewChild('uploadFile') uploadFile: any;
   @ViewChild('formDirective') form: any;
@@ -86,7 +86,7 @@ export class UploadArtworkComponent implements OnChanges {
   toggleHover(event: boolean) {
     this.isHovering = event;
   }
-  clearFile(error: 'image' | 'file') {
+  clearFile(error: 'image' | 'file' | 'trash') {
     window.scroll(0, 0);
     if (error === 'image') {
       this.notify.update('Unsupported file format.', 'error');
@@ -95,6 +95,7 @@ export class UploadArtworkComponent implements OnChanges {
     }
     this.uploadFile.nativeElement.value = '';
     this.file = null;
+    this.previewImageURL = null;
     return;
   }
   startUpload(event: FileList) {
@@ -109,8 +110,16 @@ export class UploadArtworkComponent implements OnChanges {
     }else if (this.file.size > this.MAX_SIZE) {
       this.clearFile('file')
     }
-    console.log(this.file);
     this.heroForm.get('file').setValue(this.file);
+    this.renderPreview(this.file);
+  }
+  renderPreview = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file); // read file as data url
+
+    reader.onload = (event) => { // called once readAsDataURL is completed
+      this.previewImageURL = event.target.result;
+    }
   }
   // public dropped(event: UploadEvent) {
   //   this.files = event.files;
@@ -470,6 +479,7 @@ export class UploadArtworkComponent implements OnChanges {
     this.uploadFile.nativeElement.value = '';
     this.heroForm.reset();
     this.file = null;
+    this.previewImageURL = null;
 
     const rowsToDelete = this.heroForm.get('metadata.rentInformation.rows') as FormArray;
     while (rowsToDelete.length !== 0) {
@@ -546,6 +556,7 @@ export class UploadArtworkComponent implements OnChanges {
         this.patchValues();
         this.uploadFile.nativeElement.value = '';
         this.file = null;
+        this.previewImageURL = null;
       } else {
         this.auth.changeMessage(false);
         this.form.resetForm();
@@ -554,6 +565,7 @@ export class UploadArtworkComponent implements OnChanges {
         this.patchValues();
         this.uploadFile.nativeElement.value = '';
         this.file = null;
+        this.previewImageURL = null;
       }
     }
     ));

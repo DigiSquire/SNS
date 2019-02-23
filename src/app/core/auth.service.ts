@@ -88,9 +88,9 @@ export class AuthService {
   }
   setUserProfile(userProfile: UserProfile) {
     const existingId = this.getUserProfileData()._id;
-    console.log('Existing ID ****', existingId);
     if (userProfile && userProfile._id === undefined) {
       userProfile._id = existingId;
+      userProfile.artBy = this.getUserProfileData().artBy;
     }
     this.userProfile.next(userProfile);
   }

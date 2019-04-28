@@ -10,6 +10,7 @@ functions/node_modules
 # compiled output
 /dist
 /spacesnstories
+/spacesnstories.com
 /tmp
 /out-tsc
 /node_modules

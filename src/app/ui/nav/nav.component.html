@@ -4,20 +4,34 @@
     <span class="text-white">
       <i class="fas fa-mobile-alt p-1"></i>+1 925 206 0265</span>
   </a>
-<div class="d-flex ml-auto">
+  <div class="d-flex ml-auto"
+    *ngIf="this.location.path().indexOf('artists')>-1 || this.location.path().indexOf('artist-center')>-1; else showCustomerLinks">
     <!-- Un-comment when Favorites/ Buying  API is ready -->
     <!-- <a *ngIf="(auth.user | async)" class="p-2 text-white">
       <i class="far fa-heart p-1 text-white"></i>Favorites</a>
     <a *ngIf="(auth.user | async)" class="p-2 text-white">
       <i class="fas fa-shopping-cart p-1 text-white"></i> Cart</a> -->
-    <a class="p-2" href="https://www.facebook.com/spacesnstories/" target="_blank">
-      <i class="fab fa-facebook-f ico-social"></i>
-    </a>
-    <!-- <a class="p-2">
-      <i class="fab fa-linkedin-in ico-social"></i>
-    </a> -->
-    <a class="p-2" href="https://www.instagram.com/spacesnstories/" target="_blank">
-      <i class="fab fa-instagram ico-social"></i>
-    </a>
+      <a class="p-2" href="https://www.facebook.com/SpacesnStories.Artists/" target="_blank">
+        <i class="fab fa-facebook-f ico-social"></i>
+      </a>
+      <a class="p-2" href="https://www.instagram.com/SpacesnStories.Artists/" target="_blank">
+        <i class="fab fa-instagram ico-social"></i>
+      </a>
+        <a class="p-2" href="https://twitter.com/artists_SnS" target="_blank">
+          <i class="fab fa-twitter ico-social"></i>
+        </a>
   </div>
+  <ng-template  #showCustomerLinks>
+    <div class="d-flex ml-auto">
+      <a class="p-2" href="https://www.facebook.com/SpacesnStories/" target="_blank">
+        <i class="fab fa-facebook-f ico-social"></i>
+      </a>
+      <a class="p-2" href="https://www.instagram.com/spaces_n_stories/" target="_blank">
+        <i class="fab fa-instagram ico-social"></i>
+      </a>
+      <a class="p-2" href="https://twitter.com/SpacesnStories" target="_blank">
+        <i class="fab fa-twitter ico-social"></i>
+      </a>
+    </div>
+  </ng-template>
 </div>

@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-// import { AuthService } from '../../core/auth.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
-  // constructor(public auth: AuthService) {
-  // }
+  location: Location;
+  constructor(location: Location) {
+    this.location = location;
+  }
+
 }

@@ -62,11 +62,11 @@
       <div class="form-group row" *ngIf="heroForm.get('metadata.category.artType').value=='Paintings'">
         <div class="col-sm-2" formGroupName="artmedium">
           <h3 class="sub-heading">Medium<small class="mb-2 text-muted"><sup>*</sup></small></h3>
-          <mat-error *ngIf="heroForm.get('metadata.artmedium.medium').hasError('required')" style="font-size: 0.75rem;">
+          <!-- <mat-error *ngIf="heroForm.get('metadata.artmedium.medium').hasError('required')" style="font-size: 0.75rem;">
             One selection is <strong>required</strong>
-          </mat-error>
+          </mat-error> -->
           <mat-radio-group class="example-radio-group" formControlName="medium">
-            <mat-radio-button class="example-radio-button" *ngFor="let medium of medium" [value]="medium" required>
+            <mat-radio-button class="example-radio-button" *ngFor="let medium of medium" [value]="medium">
               {{medium}}
             </mat-radio-button>
           </mat-radio-group>
@@ -75,10 +75,10 @@
 
       <div class="form-group">
         <mat-form-field class="example-full-width">
-          <input autocomplete="off" matInput placeholder="Weight" formControlName="weight" OnlyNumber="true" required>
-          <mat-error *ngIf="heroForm.get('metadata.weight').hasError('required')">
+          <input autocomplete="off" matInput placeholder="Weight" formControlName="weight" OnlyNumber="true">
+          <!-- <mat-error *ngIf="heroForm.get('metadata.weight').hasError('required')">
             Weight is <strong>required</strong>
-          </mat-error>
+          </mat-error> -->
           <span matSuffix>lbs</span>
         </mat-form-field>
       </div>
@@ -86,24 +86,24 @@
         <h3 class="sub-heading">Dimension</h3>
         <div class="form-group">
           <mat-form-field class="example-full-width">
-            <input autocomplete="off" matInput placeholder="Height" formControlName="height" OnlyNumber="true" required>
-            <mat-error *ngIf="heroForm.get('metadata.dimension.height').hasError('required')">
+            <input autocomplete="off" matInput placeholder="Height" formControlName="height" OnlyNumber="true">
+            <!-- <mat-error *ngIf="heroForm.get('metadata.dimension.height').hasError('required')">
               Height is <strong>required</strong>
-            </mat-error>
+            </mat-error> -->
             <span matSuffix>inch</span>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <input autocomplete="off" matInput placeholder="Width" formControlName="width" OnlyNumber="true" required>
-            <mat-error *ngIf="heroForm.get('metadata.dimension.width').hasError('required')">
+            <input autocomplete="off" matInput placeholder="Width" formControlName="width" OnlyNumber="true">
+            <!-- <mat-error *ngIf="heroForm.get('metadata.dimension.width').hasError('required')">
               Width is <strong>required</strong>
-            </mat-error>
+            </mat-error> -->
             <span matSuffix>inch</span>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <input autocomplete="off" matInput placeholder="Depth" formControlName="depth" OnlyNumber="true" required>
-            <mat-error *ngIf="heroForm.get('metadata.dimension.depth').hasError('required')">
+            <input autocomplete="off" matInput placeholder="Depth" formControlName="depth" OnlyNumber="true">
+            <!-- <mat-error *ngIf="heroForm.get('metadata.dimension.depth').hasError('required')">
               Depth is <strong>required</strong>
-            </mat-error>
+            </mat-error> -->
             <span matSuffix>inch</span>
           </mat-form-field>
         </div>
@@ -177,7 +177,7 @@
       <div class="form-group" style="display:inline;">
         <mat-form-field>
           <input autocomplete="off" matInput [matDatepicker]="picker1" placeholder="Available From" formControlName="availableFrom"
-            required>
+            >
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
@@ -185,7 +185,7 @@
       <div class="form-group" style="display:inline;margin-left:25px;">
         <mat-form-field>
           <input autocomplete="off" matInput [matDatepicker]="picker2" placeholder="Available To" formControlName="availableTo"
-            required>
+            >
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>

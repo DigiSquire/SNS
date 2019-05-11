@@ -170,37 +170,25 @@ export class UploadArtworkComponent implements OnChanges {
   createForm() {
     this.heroForm = this.fb.group({
       metadata: this.fb.group({
-        availableFrom: [null, Validators.required],
-        availableTo: [null, Validators.required],
+        availableFrom: null,
+        availableTo: null,
         name: ['', Validators.required],
         description: ['', Validators.required],
         dimension: this.fb.group({
-          height: ['',
-                    [Validators.required]
-          ],
-          width: ['',
-            [Validators.required]
-          ],
-          depth: ['',
-            [Validators.required]
-          ]
+          height: '',
+          width: '',
+          depth: ''         
         }),
         category: this.fb.group({
-          artType: ['',
-            [Validators.required]
-          ]
+          artType: ''
         }),
-        weight: ['',
-          [Validators.required]
-        ],
+        weight: '',
         classification: this.fb.group({
-          artClassification: ['',
-            [Validators.required]
-          ]
+          artClassification: ''
 
         }),
         artmedium: this.fb.group({
-          medium: null
+          medium: ''
         }),
         rentInformation: this.fb.group({
           rent: false,
@@ -235,23 +223,23 @@ export class UploadArtworkComponent implements OnChanges {
       }),
       file: [null, Validators.required]
     });
-    this.heroForm.get('metadata.category.artType').valueChanges
-      .subscribe(value => this.setArtType(value));
+    // this.heroForm.get('metadata.category.artType').valueChanges
+    //   .subscribe(value => this.setArtType(value));
   }
-  setArtType(artTypeValue: string): void {
-    // Remove console statement when DEV is tested
-    console.log(`got existing value as :${this.heroForm.get('metadata.artmedium.medium').value}`);
-    if (this.heroForm.get('metadata.artmedium.medium').value !== null) {
-      this.heroForm.get('metadata.artmedium.medium').reset();
-    }
-    const mediumRadioControl = this.heroForm.get('metadata.artmedium.medium');
-    if (artTypeValue === 'Paintings') {
-      mediumRadioControl.setValidators(Validators.required);
-    } else {
-      mediumRadioControl.clearValidators();
-    }
-    mediumRadioControl.updateValueAndValidity();
-  }
+  // setArtType(artTypeValue: string): void {
+  //   // Remove console statement when DEV is tested
+  //   console.log(`got existing value as :${this.heroForm.get('metadata.artmedium.medium').value}`);
+  //   if (this.heroForm.get('metadata.artmedium.medium').value !== null) {
+  //     this.heroForm.get('metadata.artmedium.medium').reset();
+  //   }
+  //   const mediumRadioControl = this.heroForm.get('metadata.artmedium.medium');
+  //   if (artTypeValue === 'Paintings') {
+  //     mediumRadioControl.setValidators(Validators.required);
+  //   } else {
+  //     mediumRadioControl.clearValidators();
+  //   }
+  //   mediumRadioControl.updateValueAndValidity();
+  // }
   
   // on change of Rent Out checkbox
   rentChange() {
